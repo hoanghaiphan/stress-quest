@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stress Quest – Strength, FEA &amp; Reliability</title>
+<style>
+:root{--bg:#0f1420;--panel:#171e2e;--panel2:#1e2739;--line:#2c3850;--txt:#e6ebf5;--mut:#9aa6bf;--acc:#4fc3f7;--acc2:#ffb74d;--ok:#66bb6a;--bad:#ef5350;--w1:#4fc3f7;--w2:#ba68c8;--w3:#ffb74d;--star:#ffd54f}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+header{display:flex;align-items:center;gap:12px;padding:10px 18px;background:#0b0f18;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;flex-wrap:wrap}
+header h1{font-size:20px;margin:0;letter-spacing:.5px;cursor:pointer}
+header h1 span{color:var(--acc2)}
+header .sp{flex:1}
+.btn{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:7px 14px;cursor:pointer;font:inherit;transition:.15s}
+.btn:hover{border-color:var(--acc);background:#243049}
+.btn.pri{background:var(--acc);color:#04131c;border-color:var(--acc);font-weight:600}
+.btn.pri:hover{filter:brightness(1.1)}
+.btn.sm{padding:4px 10px;font-size:13px}
+.btn:disabled{opacity:.45;cursor:default}
+main{max-width:1280px;margin:0 auto;padding:18px}
+.stars{color:var(--star);letter-spacing:2px}
+.stars .off{color:#3a4560}
+.worlds{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:18px}
+.world{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;position:relative;overflow:hidden}
+.world h2{margin:0 0 4px;font-size:19px}
+.world p.sub{margin:0 0 12px;color:var(--mut);font-size:13px}
+.world svg.path{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.25}
+.lvl{display:flex;align-items:center;gap:12px;padding:10px 12px;margin:8px 0;background:var(--panel2);border:1px solid var(--line);border-radius:10px;cursor:pointer;position:relative;transition:.15s}
+.lvl:hover{transform:translateX(4px);border-color:var(--acc)}
+.lvl.locked{opacity:.45;cursor:not-allowed}
+.lvl.locked:hover{transform:none;border-color:var(--line)}
+.lvl .num{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#0b0f18;flex:none}
+.lvl .t{flex:1}
+.lvl .t b{display:block;font-size:14.5px}
+.lvl .t small{color:var(--mut)}
+.boss{margin-top:18px;background:linear-gradient(120deg,#3a1c1c,#1d2133);border:1px solid #7a3a3a;border-radius:14px;padding:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.boss h2{margin:0;font-size:19px}
+.hero{display:flex;gap:16px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.hero p{margin:0;color:var(--mut);max-width:780px}
+.prog{height:8px;background:#26304a;border-radius:4px;overflow:hidden;min-width:160px}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--w1),var(--w2),var(--w3))}
+.levelwrap{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,1fr);gap:16px;align-items:start}
+@media(max-width:900px){.levelwrap{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+.card h3{margin:0 0 8px;font-size:16px}
+.lvhead{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.lvhead h2{margin:0;font-size:20px}
+.tag{font-size:12px;padding:2px 8px;border-radius:10px;background:#26304a;color:var(--mut)}
+canvas{width:100%;display:block;background:#0c111b;border-radius:10px;border:1px solid var(--line);touch-action:none}
+.ctrl{display:grid;grid-template-columns:auto 1fr auto;gap:6px 10px;align-items:center;margin-top:10px;font-size:14px}
+.ctrl input[type=range]{width:100%}
+.ctrl output{min-width:78px;text-align:right;font-variant-numeric:tabular-nums;color:var(--acc)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.task .q{font-size:15px;margin-bottom:10px}
+.task .q b{color:var(--acc2)}
+.ansrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ansrow input{background:#0c111b;border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:8px 10px;font:inherit;width:150px}
+.choices{display:flex;flex-direction:column;gap:6px}
+.choices .btn{text-align:left}
+.choices .btn.right{border-color:var(--ok);background:#1d3a24}
+.choices .btn.wrong{border-color:var(--bad);background:#3a1d1f}
+.fb{margin-top:10px;padding:10px 12px;border-radius:10px;font-size:14px;display:none}
+.fb.ok{display:block;background:#18301f;border:1px solid #2f6a3a}
+.fb.bad{display:block;background:#33191b;border:1px solid #7a3236}
+.fb.info{display:block;background:#1a2640;border:1px solid #2f4a7a}
+.tprog{display:flex;gap:5px;margin-bottom:10px}
+.tprog i{flex:1;height:6px;border-radius:3px;background:#26304a}
+.tprog i.done{background:var(--ok)}.tprog i.half{background:var(--acc2)}.tprog i.miss{background:var(--bad)}.tprog i.cur{background:var(--acc)}
+.modal{position:fixed;inset:0;background:rgba(5,8,14,.78);display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}
+.modal .box{background:var(--panel);border:1px solid var(--line);border-radius:16px;max-width:720px;width:100%;max-height:90vh;overflow:auto;padding:22px}
+.modal h2{margin-top:0}
+.formula{background:#0c111b;border-left:3px solid var(--acc2);padding:8px 12px;border-radius:6px;margin:8px 0;font-family:"Cambria Math","Times New Roman",serif;font-size:16.5px;overflow-x:auto}
+.mut{color:var(--mut)}
+.small{font-size:13px}
+table.dt{border-collapse:collapse;font-size:13px;width:100%}
+table.dt td,table.dt th{border:1px solid var(--line);padding:3px 6px;text-align:right}
+table.dt th{background:#212b40;color:var(--mut)}
+.mat{display:inline-grid;gap:3px;margin:6px 0}
+.mat div{min-width:58px;height:34px;display:grid;place-items:center;background:#0c111b;border:1px solid var(--line);border-radius:6px;font-size:13px;cursor:pointer;font-variant-numeric:tabular-nums}
+.mat div:hover{border-color:var(--acc)}
+.mat div.hl{background:#173247;border-color:var(--acc)}
+.mat div.bc{background:#3a1d1f;color:#a77}
+.mat .hdr{background:none;border:none;color:var(--mut);cursor:default}
+.chip{display:inline-block;padding:5px 10px;border-radius:16px;border:1px solid var(--line);background:var(--panel2);cursor:pointer;margin:3px;font-size:13px;user-select:none}
+.chip.sel{border-color:var(--acc);background:#173247}
+.chip.done{opacity:.4;cursor:default}
+.gloss{columns:2 420px;column-gap:18px}
+.gloss .card{break-inside:avoid;margin-bottom:16px}
+.gloss .formula{font-size:15px}
+.secttl{margin:20px 0 10px;font-size:18px}
+.results{text-align:center}
+.results .big{font-size:46px;color:var(--star);letter-spacing:6px}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#243049;border:1px solid var(--acc);padding:8px 16px;border-radius:10px;z-index:60}
+.legend{font-size:12.5px;color:var(--mut);margin-top:6px}
+.legend b{font-weight:600}
+svg text{font-family:system-ui,sans-serif}
+.dlist{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-size:13px}
+select{background:#0c111b;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:6px}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="logo" title="Back to map">⚙ Stress <span>Quest</span></h1>
+  <div class="sp"></div>
+  <span id="hdrStars" class="stars"></span>
+  <button class="btn" id="bMap">🗺 Map</button>
+  <button class="btn" id="bGloss">📘 Cheat sheet</button>
+  <button class="btn" id="bSet">⚙</button>
+</header>
+<main id="app"></main>
+<div id="modalRoot"></div>
+<script>
