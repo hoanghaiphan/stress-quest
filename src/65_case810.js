@@ -1,0 +1,115 @@
+/* ---------- CASE 8: the arctic contract ---------- */
+defCase({id:'c8',icon:'❄',title:'The Arctic Contract',level:2,domains:['t','s'],inspired:'Challenger 1986 · Liberty ships',
+teaser:'A compressor skid for a site where winter starts happen at −30 °C. The data you need is already on a manager\'s slide – just not all of it.',
+build(){
+ let S;for(let g=0;g<300;g++){S=[...Array(24)].map(()=>{const T=rint(4,30);const p=1/(1+Math.exp((T-11)/2.5));const n=Math.random()<p?rint(1,3):(Math.random()<0.1?1:0);return{T,n};}).sort((a,b)=>a.T-b.T);
+  const warm=S.filter(s=>s.T>=20&&s.n>0).length,cold=S.filter(s=>s.T<15&&s.n>0).length,coldN=S.filter(s=>s.T<15).length;if(warm>=2&&warm<=3&&cold>=4&&coldN>=6&&coldN-cold>=1)break;}
+ const below=S.filter(s=>s.T<15),above=S.filter(s=>s.T>=15);const fb=below.filter(s=>s.n>0).length/below.length,fa=above.filter(s=>s.n>0).length/above.length;
+ const T27=rint(-2,10),Cw=14,Tm=T27+Cw*0.6983;const CV=T=>4+58*(1+Math.tanh((T-Tm)/Cw));const temps=[-40,-30,-20,-10,0,10,20];const pts=temps.map(T=>({T,E:Math.max(2,CV(T)+rnd(-3,3))}));
+ const inc=S.filter(s=>s.n>0);
+ return{brief:{avatar:'👨‍💼',who:'Jens Larsen',role:'Sales director',quote:'The client wants the standard compressor skid at their new site in northern Norway – cold starts down to −30 °C. We have 24 start-ups of field history and "temperature is not a factor" – see my slide. Can you sign off by Friday?',
+  story:'<p>Concerns: (1) the elastomer shaft seals – leak incidents have occurred on start-up; (2) the skid base frame is welded from S355<b>JR</b> plate (impact tested at +20 °C only).</p>',
+  data:`<p class="small"><b>Jens' slide:</b> "Start-ups with seal leak incidents" (only starts that had incidents)</p>`+tbl([['Ambient (°C)',...inc.map(s=>s.T)],['Incidents',...inc.map(s=>s.n)]])},
+  sh:220,sketch:(c)=>{const P=plotArea(c,60,15,550,160,[0,32],[0,3.5]);P.axes('ambient temperature at start-up (°C)','incidents',{ny:4,yoff:34});inc.forEach(s=>dot(c,P.X(s.T),P.Y(s.n),6,'#ef5350','#0c111b'));c.fillStyle='#9aa6bf';c.font='12px system-ui';c.fillText('"No obvious trend"',P.X(20),P.Y(3.2));},
+ steps:[
+  {type:'request',title:'What data?',q:'Before judging the slide, what do you request? (select all you need)',items:[
+   R('All 24 start-ups, including those with ZERO incidents, with ambient temperature',1,'The starts without incidents carry the information – without them no trend can be seen.'),
+   R('Seal material datasheet incl. low-temperature limit (e.g. TR10 / glass transition)',1,'Elastomers lose resilience near their glass transition – a physical mechanism to check.'),
+   R('Charpy impact data for the base-frame steel at low temperature',1,'Needed for the second concern.'),
+   R('Paint specification of the skid',0,'Irrelevant to the failure modes.',2),
+   R('The sales margin of the contract',0,'Not an engineering input.',1)],
+   evidence:{h:'All start-ups (incl. zero-incident starts)',html:'Full data set from the commissioning logs.',H:220,draw:(c)=>{const P=plotArea(c,60,15,550,160,[0,32],[-0.3,3.5]);P.axes('ambient temperature at start-up (°C)','incidents',{yt:[0,1,2,3],yoff:34});S.forEach(s=>dot(c,P.X(s.T),P.Y(s.n),6,s.n?'#ef5350':'#66bb6a','#0c111b'));c.strokeStyle='#ffb74d';c.setLineDash([5,4]);c.beginPath();c.moveTo(P.X(15),15);c.lineTo(P.X(15),175);c.stroke();c.setLineDash([]);}}},
+  {type:'compute',title:'Incident rate when cold',q:'From the full data: what fraction of start-ups below 15 °C had at least one incident? (in %)',ans:100*fb,unit:'%',abs:1,tol:0,dec:1,explain:`Below 15 °C: ${below.filter(s=>s.n>0).length}/${below.length} = ${fmt(100*fb,1)} %. At or above 15 °C: ${above.filter(s=>s.n>0).length}/${above.length} = ${fmt(100*fa,1)} %. The trend is obvious once the zero-incident starts are included.`},
+  {type:'decide',title:'Seals at −30 °C',q:`The coldest start in the history was ${S[0].T} °C. The client needs −30 °C. What do you recommend for the seals?`,opts:[
+   O('Do not extrapolate: specify low-temperature seals qualified (tested) below −30 °C and/or keep the seal area heated before start',1,`The requirement is ${S[0].T+30} °C outside the experience base, in the direction where incidents increase.`,{c:-5}),
+   O('Fine – the incidents were only leaks, not failures',0,'A leak at −30 °C can become a blow-by of process gas; the trend points the wrong way.',{s:-30}),
+   O('Increase the start-up inspection frequency',0.2,'Inspection does not prevent a seal from losing resilience on start.',{s:-15}),
+   O('Ask for more data at warm temperatures',0.1,'Warm data cannot tell you how the seal behaves at −30 °C.',{t:-5})]},
+  {type:'compute',title:'Charpy transition',ref:'w1l1',q:'Charpy V-notch tests on the frame plate (new evidence). Read/estimate the temperature at which the impact energy is 27 J (°C).',ans:T27,abs:4,tol:0,dec:0,unit:'°C',onShow:(st)=>st.addEv({h:'Charpy V tests, S355JR frame plate',html:tbl([['T (°C)',...pts.map(p=>p.T)],['KV (J)',...pts.map(p=>fmt(p.E,0))]]),H:210,draw:(c)=>{const P=plotArea(c,60,15,550,150,[-45,25],[0,130]);P.axes('test temperature (°C)','KV (J)',{yoff:34});P.line(CV,-45,25,'#66bb6a',2);c.strokeStyle='#ffb74d';c.setLineDash([5,4]);c.beginPath();c.moveTo(60,P.Y(27));c.lineTo(610,P.Y(27));c.stroke();c.setLineDash([]);pts.forEach(p=>dot(c,P.X(p.T),P.Y(p.E),5,'#4fc3f7','#0c111b'));}}),
+   explain:`T<sub>27J</sub> ≈ ${T27} °C. Below this the steel behaves in a brittle manner – at −30 °C the impact energy is only ≈ ${fmt(CV(-30),0)} J.`},
+  {type:'decide',title:'Frame steel',q:'Minimum design metal temperature −30 °C. Which frame material do you specify?',opts:[
+   O('S355NL (normalized, impact tested to 27 J at −50 °C)',1,'Margin below the design temperature – the usual choice for low-temperature service.',{c:-8}),
+   O('S355J2 (27 J at −20 °C)',0.35,'Tested 10 °C above the design temperature – insufficient on its own; thickness and stress level would need a fracture assessment.',{c:-3}),
+   O('Keep S355JR – the frame stress is low',0.05,'Brittle fracture can occur at low nominal stresses when a flaw or weld defect is present.',{s:-30}),
+   O('Keep S355JR but use thicker plate',0,'Thicker plate is generally WORSE for brittle fracture (higher constraint, lower toughness).',{s:-30,c:-5})]},
+  {type:'final',title:'Sign-off',q:'Your answer to Jens by Friday:',opts:[
+   O('Conditional yes: low-temperature-qualified seals + seal-area preheating, frame in S355NL, both verified by a cold-start test of a prototype; delivery +6 weeks.',1,'Engineering facts drive the commitment.',{t:-10,c:-8},null,'The first winter brings a −34 °C cold snap. The skid starts without leaks; the client orders three more units.'),
+   O('Yes, as is – the history shows no problems.',0,'',{s:-40},null,'At the first −28 °C start the shaft seal leaks gas, the skid trips and a crack is found in a frame weld at a bracket. The site is shut down for three weeks; the contract penalty is enforced.'),
+   O('No – we cannot operate below 4 °C.',0.35,'Safe but unhelpful: the problems are solvable with known measures.',{c:-20},null,'The client goes to a competitor who offers an arctic package.')]}],
+ debrief:{chain:['Ask for the complete data set – including the "nothing happened" cases.','Plot the full data → trend becomes visible.','Do not extrapolate beyond experience in the direction of increasing risk.','Material toughness is temperature dependent: read the transition curve.','Specify qualified materials and verify with a test.'],
+  concepts:[['Stress–strain, ductility & toughness','w1l1'],['Root-cause toolbox (data, trends)','w3l5'],['Scatter & confidence','w3l4']],
+  pitfalls:['Selection bias: looking only at failures.','Extrapolation outside the tested range.','Assuming low stress = no brittle fracture risk.','Thicker plate as a "fix" for brittle fracture.'],
+  history:'<b>Challenger (1986):</b> On the eve of the launch, O-ring erosion/blow-by data were discussed mainly for flights that had incidents; including flights without incidents shows a clear temperature trend. The launch took place at about 2 °C (36 °F), far colder than any previous launch (coldest ≈ 12 °C / 53 °F); an O-ring seal in a solid rocket booster field joint failed. <b>Liberty ships & the T2 tanker Schenectady (1943):</b> many welded wartime ships suffered brittle fractures, especially in cold water; the Schenectady broke in two while moored at the fitting-out pier. The investigations helped establish the role of the ductile–brittle transition and notch toughness (Charpy) requirements.'}};}});
+
+/* ---------- CASE 9: cabin cutout ---------- */
+defCase({id:'c9',icon:'✈',title:'A Window in the Cabin',level:3,domains:['s','f'],inspired:'de Havilland Comet 1954 · Aloha 243 1988',
+teaser:'A pressurized fuselage needs a cutout for an antenna window. The draftsman drew square corners. You have one design review to get it right.',
+build(){
+ const p=rint(55,60)/1000,R=rint(18,20)/10,t=rint(14,18)/10;const sh=p*R*1000/t;const Kts=4.2,Ktr=2.6;const A=1000,b=-0.15;
+ const Ns=Math.pow(Kts*sh/A,1/b),Nr=Math.pow(Ktr*sh/A,1/b);const Kc=rint(90,110),Y=1.12;const sl=Ktr*sh;const ac=(1/Math.PI)*Math.pow(Kc/(Y*sl),2);
+ const a0=0.005,Cp=2e-11,m=3;const Np=(Math.pow(a0,1-m/2)-Math.pow(ac,1-m/2))/(Cp*Math.pow(Y*sl*Math.sqrt(Math.PI),m)*(m/2-1));const fl=rint(3,5);
+ return{brief:{avatar:'👩‍✈️',who:'Dr. Mara Okafor',role:'Chief of structures',quote:'We need a cutout in the pressurized cabin for an antenna window. The draft has square corners with a small radius. Tell me if this will live – the aircraft will see about '+fl+' flights a day for 25 years.',
+  story:`<p>Cylindrical cabin, radius R = <b>${R} m</b>, skin t = <b>${t} mm</b>, cabin pressure differential p = <b>${fmt(p*1000,0)} kPa</b> – one pressure cycle per flight. Corner options: small radius (K<sub>t</sub> ≈ ${Kts}) or generously rounded (K<sub>t</sub> ≈ ${Ktr}).</p><p class="small">Local S–N curve of the alloy (max stress, R≈0): S<sub>max</sub> = ${A}·N<sup>${b}</sup> MPa. Crack data: K<sub>c</sub> = ${Kc} MPa√m, Paris da/dN = 2·10<sup>−11</sup>(ΔK)<sup>3</sup> m/cycle, Y = 1.12. NDI can reliably detect cracks ≥ 5 mm.</p>`},
+  sh:210,sketch:(c)=>{c.strokeStyle='#4fc3f7';c.lineWidth=2;c.strokeRect(60,40,240,130);c.fillStyle='#9aa6bf';c.font='12px system-ui';c.fillText('skin panel',70,60);c.strokeStyle='#ef5350';c.strokeRect(140,80,80,50);c.fillText('square-ish corner',120,150);
+   c.strokeStyle='#4fc3f7';c.strokeRect(350,40,240,130);c.strokeStyle='#66bb6a';c.beginPath();c.roundRect?c.roundRect(430,80,80,50,18):c.rect(430,80,80,50);c.stroke();c.fillText('rounded corner',430,150);
+   c.fillStyle='#ffb74d';c.fillText('⟵ hoop stress σ = pR/t ⟶',230,195);},
+ steps:[
+  {type:'decide',title:'Governing load case',q:'Which failure mode governs the cutout design?',opts:[
+   O('Fatigue from the pressurization cycle every flight, concentrated at the cutout corners',1,'One cycle per flight, ~'+fl*365*25+' cycles in 25 years – at a stress concentration.'),
+   O('Static burst at maximum pressure',0.3,'Must be checked, but with ample margin the cyclic loading governs.'),
+   O('Buckling of the skin',0.15,'Pressurized skin is in tension; buckling is not the issue here.'),
+   O('Thermal stresses from the window',0.05,'Secondary.')]},
+  {type:'compute',title:'Hoop stress',q:'Nominal hoop stress σ = pR/t (MPa).',ans:sh,unit:'MPa',tol:0.02,dec:1,explain:`σ = ${fmt(p,3)} MPa·${R*1000} mm/${t} mm = ${fmt(sh,1)} MPa.`},
+  {type:'compute',title:'Corner life (draft)',ref:'w1l5',q:`Estimate the crack-initiation life at the small-radius corner: S<sub>max</sub> = K<sub>t</sub>σ = ${Kts}·σ; N = (S<sub>max</sub>/${A})<sup>1/${b}</sup>.`,ans:Ns,logtol:0.1,unit:'flights',explain:`S<sub>max</sub> = ${fmt(Kts*sh,0)} MPa → N ≈ ${fmt(Ns,0)} flights ≈ ${fmt(Ns/(fl*365),1)} years. With rounded corners (K<sub>t</sub> ${Ktr}): ${fmt(Nr,0)} flights ≈ ${fmt(Nr/(fl*365),1)} years.`},
+  {type:'decide',title:'Corner design',q:'What do you change?',opts:[
+   O('Generously rounded corners plus a bonded/riveted doubler around the cutout, and a damage-tolerance (crack growth) assessment',1,'Lower K<sub>t</sub>, lower local stress, and a plan for the cracks that will still appear.',{c:-5}),
+   O('Rounded corners only',0.6,'Big improvement, but without a doubler and damage-tolerance plan the life is still limited.'),
+   O('Thicker skin on the whole fuselage',0.25,'Works but adds a lot of weight; the problem is local.',{c:-20}),
+   O('Keep square corners, use a higher-strength alloy',0.05,'High-strength alloys rarely have proportionally better fatigue and often worse toughness.',{s:-25})]},
+  {type:'compute',title:'Critical crack length',q:`Even with rounded corners, cracks may start. Critical length a<sub>c</sub> = (1/π)(K<sub>c</sub>/(Yσ<sub>loc</sub>))², with conservative local stress σ<sub>loc</sub> = ${Ktr}σ. Give a<sub>c</sub> in mm.`,ans:ac*1000,unit:'mm',tol:0.03,dec:1,explain:`σ<sub>loc</sub> = ${fmt(sl,0)} MPa → a<sub>c</sub> = (1/π)(${Kc}/(1.12·${fmt(sl,0)}))² = ${fmt(ac*1000,1)} mm.`},
+  {type:'compute',title:'Crack growth',q:'Paris-law cycles from a detectable 5 mm crack to a<sub>c</sub> (constant ΔK coefficient, ΔK = Yσ<sub>loc</sub>√(πa)): N = [a₀<sup>−1/2</sup> − a<sub>c</sub><sup>−1/2</sup>]/[C(Yσ√π)³·½].',ans:Np,tol:0.08,dec:0,unit:'flights',explain:`N = ${fmt(Np,0)} flights ≈ ${fmt(Np/(fl*365),1)} years of service.`},
+  {type:'decide',title:'Inspection interval',q:'Which NDI inspection interval do you propose for the cutout corners?',opts:[
+   O(`About N/2 = ${fmt(Np/2,0)} flights – at least two inspection chances before a crack becomes critical`,1,'Standard damage-tolerance logic: inspect at a fraction of the crack-growth life.'),
+   O(`Every ${fmt(Np,0)} flights (= crack-growth life)`,0.2,'Only one chance, and no margin for scatter or a missed crack.',{s:-20}),
+   O(`Every ${fmt(Np/10,0)} flights`,0.6,'Safe, but very costly in downtime.',{c:-15}),
+   O('No inspection needed with rounded corners',0,'Cracks can still initiate (scatter, corrosion, manufacturing damage).',{s:-30})]},
+  {type:'final',title:'Design review',q:'Your conclusion for Dr. Okafor:',opts:[
+   O('Approve with rounded corners + doubler, damage-tolerance inspection programme at the cutout, and a full-scale cyclic pressure test of a representative fuselage section (with corrosion prevention at joints).',1,'',{c:-10,t:-10},null,'The full-scale test runs to three design lifetimes; a small crack found at a rivet in test leads to a minor detail change before service. In service, inspections find no critical cracks.'),
+   O('Approve the draft – static strength has a factor of 2.',0,'',{s:-50},null,'After a few years the first aircraft develops a crack from the cutout corner that grows unnoticed to critical length – an explosive decompression. The fleet is grounded.'),
+   O('Approve with rounded corners; no test needed, the hand calc is enough.',0.45,'Hand calcs miss multi-site and manufacturing effects that a full-scale test reveals.',{s:-15},null,'In service, cracks are found at rivet rows near the doubler earlier than predicted; an expensive inspection and repair programme follows.')]}],
+ debrief:{chain:['Identify the cyclic load (pressurization) and the stress raisers.','Nominal stress (pR/t) × K<sub>t</sub> → local stress → S–N life.','Reduce K<sub>t</sub> and local stress (geometry, doubler).','Assume cracks exist: critical crack size and crack-growth life.','Inspection interval from crack-growth life; validate by full-scale test.'],
+  concepts:[['Kt and S–N curves','w1l5'],['Biaxial stress (hoop/axial)','w1l2'],['Equivalent stress & failure criteria','w1l3']],
+  pitfalls:['Designing for static strength only.','Sharp corners at cutouts.','Assuming "no cracks" – damage tolerance assumes they exist.','Multi-site fatigue at rivet rows; corrosion accelerating crack growth.'],
+  history:'<b>de Havilland Comet (1954):</b> after two Comet 1 aircraft broke up in flight, a full-scale water-tank pressure test of a fuselage ended in a fatigue failure originating at a corner of a cutout – in the investigation of the lost aircraft, attention focused on the ADF window cutout in the cabin roof. It established full-scale fatigue testing and contributed to the move to damage-tolerant design. <b>Aloha Airlines 243 (1988):</b> a Boeing 737 with about 89,680 flight cycles lost a large section of its upper fuselage in flight; multi-site fatigue cracking, aggravated by corrosion and disbonding at lap joints, led to new ageing-aircraft inspection programmes.'}};}});
+
+/* ---------- CASE 10: welded brackets ---------- */
+defCase({id:'c10',icon:'🔩',title:'Cracks at the Weld Toe',level:2,domains:['t','s'],inspired:'Hyatt Regency 1981 (design changes)',
+teaser:'Vibrating screen machines come back with cracked brackets. Production has a quick fix ready. Is it a fix?',
+build(){
+ const cats=[['Weld toe crack at gusset end',rint(40,60)],['Lack of fusion',rint(10,18)],['Porosity',rint(6,9)],['Bolt-hole fretting',rint(3,5)],['Corrosion',rint(2,3)],['Transport damage',rint(1,2)]];const tot=cats.reduce((s,c)=>s+c[1],0);const share=100*cats[0][1]/tot;
+ const ds=rint(55,65),FAT=71,cyc=1.2e6,life=8*cyc;const NL=FAT2=>2e6*Math.pow(FAT2/ds,3);const N0=NL(FAT);
+ const opts=[{t:'Burr-grind the weld toes only (FAT 71 × 1.3 = 92)',F:Math.min(1.3*FAT,112),q:0},{t:'Tapered gusset end with radius transition (FAT 90) + toe grinding (×1.3, capped at FAT 112)',F:Math.min(1.3*90,112),q:0},{t:'Production proposal: replace continuous fillet with stitch (intermittent) welds',F:56,q:0},{t:'Thicker bracket plate: Δσ reduced by 20 %, detail stays FAT 71',F:FAT/0.8,q:0}];
+ opts.forEach(o=>{o.N=NL(o.F);o.ok=o.N>=life;});const gOK=opts[1].N;
+ const fm=[['Weld toe fatigue crack → bracket breaks, screen deck drops',9,6,7],['Paint damage',3,8,4],['Bolt loosening → noise',5,5,5],['Porosity (cosmetic)',2,6,6]];
+ return{brief:{avatar:'👷',who:'Marco Rossi',role:'Production manager',quote:'We have cracked brackets coming back. Our welders say continuous welds distort the bracket – let\'s switch to stitch welds, it\'s faster too. Can you approve the drawing change today?',
+  story:`<p>Vibrating screen machine; the deck hangs on welded steel brackets. Service: ≈ ${fmt(cyc/1e6,1)}·10⁶ stress cycles per year, design life 8 years (= ${fmt(life/1e6,1)}·10⁶ cycles). Field-return inspection results:</p>`,data:tbl(cats.map(c=>[c[0],c[1]]),['Finding','Count'])},
+ steps:[
+  {type:'compute',title:'Pareto',ref:'w3l5',q:'What share of all findings is the top category? (%)',ans:share,unit:'%',abs:1,tol:0,dec:1,explain:`${cats[0][1]}/${tot} = ${fmt(share,1)} % – the vital few.`},
+  {type:'decide',title:'Next step',q:'What is your next investigation step?',opts:[
+   O('Root-cause analysis on the top category: fractography of returned brackets, strain-gauge measurement of the stress range, fishbone/5-whys',1,'Focus effort where the failures are, with physical evidence.',{t:-5}),
+   O('Approve the stitch-weld change – production knows best',0,'A design change without analysis – exactly how disasters start.',{s:-25}),
+   O('Increase final inspection of all welds',0.3,'Catches defects like lack of fusion, but the dominant crack is fatigue at a geometric detail.',{c:-10}),
+   O('FMEA brainstorm on all failure modes before looking at parts',0.45,'Useful later; first understand the dominant mode.')],
+   evidence:{h:'Lab report',html:`Fractography: beach marks, crack initiation at the <b>weld toe at the gusset end</b> – classic fatigue. Strain gauges: nominal stress range Δσ = <b>${ds} MPa</b> at the detail. IIW detail category for this gusset end: <b>FAT 71</b> (Δσ at 2·10⁶ cycles, slope m = 3).`}},
+  {type:'compute',title:'Fatigue life as built',ref:'w1l5',q:'Life of the as-built detail: N = 2·10⁶·(FAT/Δσ)³ cycles.',ans:N0,tol:0.03,dec:0,unit:'cycles',explain:`N = 2·10⁶·(71/${ds})³ = ${fmt(N0,0)} cycles ≈ ${fmt(N0/cyc,1)} years – matches the field cracks.`},
+  {type:'decide',title:'Drawing change',q:'Which design change do you approve? (design life 8 years)',opts:opts.map((o,i)=>({t:o.t,q:i===1?1:i===0?0.4:i===3?0.35:0,fb:`N = 2·10⁶·(${fmt(o.F,0)}/${ds})³ = ${fmt(o.N,0)} cycles = ${fmt(o.N/cyc,1)} years ${o.ok?'≥':'<'} 8 years.${i===2?' Stitch welds create many weld start/stop points – a WORSE detail (lower FAT), not a better one.':''}`,fx:o.ok?{c:-5}:{s:-20}}))},
+  {type:'compute',title:'Improved life',q:'Life of the tapered + ground detail (FAT capped at 112).',ans:gOK,tol:0.03,dec:0,unit:'cycles',explain:`N = 2·10⁶·(112/${ds})³ = ${fmt(gOK,0)} cycles = ${fmt(gOK/cyc,1)} years ≥ 8 years.`},
+  {type:'decide',title:'FMEA priority',q:'In the follow-up FMEA (S/O/D), which item must get the highest priority?',noShuffle:false,opts:fm.map((f,i)=>({t:`${f[0]} (S${f[1]} O${f[2]} D${f[3]}, RPN ${f[1]*f[2]*f[3]})`,q:i===0?1:i===1?0.2:0.3,fb:i===0?'Highest severity AND highest RPN – safety-critical.':'Lower severity. The weld-toe crack (S9: the deck can drop) has both the highest severity and the highest RPN – it comes first. In general, high-severity items get priority even when their RPN is not the highest.'}))},
+  {type:'final',title:'Answer to production',q:'Your answer to Marco:',opts:[
+   O('Reject the stitch-weld change. Approve tapered gusset ends + toe grinding as a controlled design change (with drawing, weld procedure and a strain-gauge check on the first unit); retrofit field units at next service.',1,'Every change to a load path gets an engineering review.',{c:-10},null,'Retrofitted machines run without cracks; distortion is solved with a weld sequence fixture instead of stitch welds.'),
+   O('Approve stitch welds – faster production.',0,'',{s:-40,c:-20},null,'Cracks now appear within months at the stitch ends; a bracket fails and the screen deck drops during operation. A costly recall follows.'),
+   O('Keep the design, just replace cracked brackets under warranty.',0.2,'',{c:-30},null,'Warranty costs climb every year; the root cause stays in the design.')]}],
+ debrief:{chain:['Pareto: find the vital few.','Physical evidence: fractography + measured stress range.','Classify the detail (IIW FAT) and compute life.','Evaluate design options quantitatively – including the ones proposed by others.','Control every design change through engineering review; prioritise by severity.'],
+  concepts:[['Pareto, fishbone & FMEA','w3l5'],['S–N curves & slope','w1l5'],['Hot-spot stresses in FE','w2l5']],
+  pitfalls:['Approving "small" production-driven changes without checking the load path.','Stitch welds in fatigue-loaded structures.','Improving a detail without checking that the new life meets the requirement.','Ranking by RPN alone and ignoring severity.'],
+  history:'<b>Hyatt Regency walkway collapse, Kansas City (1981):</b> the original design hung the walkways from continuous rods; during detailing this was changed to two offset rods, which doubled the load on the fourth-floor box-beam connection. The connection failed and 114 people died. The disaster is a standard lesson on reviewing design changes – especially ones proposed to simplify fabrication.'}};}});

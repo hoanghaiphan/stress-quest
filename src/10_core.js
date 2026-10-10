@@ -87,8 +87,9 @@ function slider(parent,label,min,max,step,val,onInput,fmtFn){
 
 /* ================= Persistence ================= */
 const SKEY='stressQuest_v1';
-let STORE={levels:{},unlockAll:false,seenIntro:false};
+let STORE={levels:{},cases:{},unlockAll:false,seenIntro:false};
 try{const s=JSON.parse(localStorage.getItem(SKEY)||'null');if(s&&s.levels)STORE=Object.assign(STORE,s);}catch(e){}
+if(!STORE.cases)STORE.cases={};
 function save(){try{localStorage.setItem(SKEY,JSON.stringify(STORE));}catch(e){}}
 function starsFor(score){return score>=90?3:score>=70?2:score>=40?1:0;}
 function starHTML(n,max){max=max||3;let s='';for(let i=0;i<max;i++)s+=i<n?'★':'<span class="off">★</span>';return`<span class="stars">${s}</span>`;}
@@ -161,11 +162,12 @@ function runTasks(box,tasks,onFinish){
 /* ================= Screens ================= */
 let CURRENT=null;
 function cleanup(){if(CURRENT&&CURRENT.stop)CURRENT.stop();CURRENT=null;}
-function updHeader(){$('#hdrStars').innerHTML='★ '+totalStars()+' / '+(LEVELS.length*3);}
+function updHeader(){const cs=typeof CASES!=='undefined'?CASES.filter(k=>(STORE.cases[k.id]||{}).best!=null).length:0;$('#hdrStars').innerHTML='📁 '+cs+'/'+(typeof CASES!=='undefined'?CASES.length:0)+' cases &nbsp; ★ '+totalStars()+' / '+(LEVELS.length*3);}
 function showMap(){cleanup();updHeader();const app=$('#app');app.innerHTML='';window.scrollTo(0,0);
  const done=LEVELS.filter(l=>(STORE.levels[l.id]||{}).stars>0).length;
- app.appendChild(el('div',{class:'hero'},`<div style="flex:1;min-width:260px"><h2 style="margin:0 0 4px">Welcome, engineer! 👷</h2><p>Three worlds take you from classic strength of materials through finite elements to the statistics of failure. Each level starts with a concept card, then you get hands-on tasks. Answers are checked with engineering tolerances, and every answer comes with an explanation. Parameters are randomized, so replays differ.</p></div>
-  <div><div class="small mut">Progress: ${done}/${LEVELS.length} levels</div><div class="prog"><i style="width:${100*done/LEVELS.length}%"></i></div></div>`));
+ if(typeof renderCaseHome==='function')renderCaseHome(app);
+ app.appendChild(el('div',{class:'hero',style:'margin-top:26px'},`<div style="flex:1;min-width:260px"><h2 style="margin:0 0 4px">🎯 Training grounds</h2><p>Drill the individual tools in three worlds. Each level starts with a concept card, then hands-on tasks with tolerance-checked answers and explanations. Case Files link back here whenever a concept needs a refresher.</p></div>
+  <div><div class="small mut">Training progress: ${done}/${LEVELS.length} levels</div><div class="prog"><i style="width:${100*done/LEVELS.length}%"></i></div></div>`));
  const ws=el('div',{class:'worlds'});app.appendChild(ws);
  WORLDS.forEach(w=>{const c=el('div',{class:'world',style:`border-top:4px solid ${w.col}`});
   c.appendChild(el('h2',null,w.icon+' '+w.name));c.appendChild(el('p',{class:'sub'},w.sub));
@@ -198,4 +200,4 @@ function showGlossary(){cleanup();const app=$('#app');app.innerHTML='';window.sc
 function settings(){modal(`<h2>Settings</h2><label><input type="checkbox" id="ua" ${STORE.unlockAll?'checked':''}> Unlock all levels (practice mode)</label><p class="mut small">Progress is stored in your browser's localStorage under "${SKEY}".</p><button class="btn" id="rst">🗑 Reset all progress</button>`,
  [{t:'Close',pri:true,fn:()=>{STORE.unlockAll=$('#ua')?STORE.unlockAll:STORE.unlockAll;save();showMap();}}]);
  $('#ua').onchange=e=>{STORE.unlockAll=e.target.checked;save();};
- $('#rst').onclick=()=>{if(confirm('Reset all progress?')){STORE={levels:{},unlockAll:false,seenIntro:true};save();$('#modalRoot').innerHTML='';showMap();}};}
+ $('#rst').onclick=()=>{if(confirm('Reset all progress?')){STORE={levels:{},cases:{},unlockAll:false,seenIntro:true};save();$('#modalRoot').innerHTML='';showMap();}};}
