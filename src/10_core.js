@@ -2,8 +2,9 @@
 /* ================= Utilities ================= */
 const $=s=>document.querySelector(s);
 function el(tag,attrs,html){const e=document.createElement(tag);if(attrs)for(const k in attrs){if(k==='style')e.style.cssText=attrs[k];else if(k.startsWith('on'))e.addEventListener(k.slice(2),attrs[k]);else e.setAttribute(k,attrs[k]);}if(html!=null)e.innerHTML=html;return e;}
-const rnd=(a,b)=>a+Math.random()*(b-a);
-const rint=(a,b)=>Math.floor(rnd(a,b+1));
+let NICE_NUM=false;/* Learner mode: case scenario numbers rounded to 2 significant digits */
+function rnd(a,b){const v=a+Math.random()*(b-a);if(!NICE_NUM)return v;const lo=Math.min(a,b),hi=Math.max(a,b);for(const n of[2,3]){const r=sig(v,n);if(r>=lo&&r<=hi)return r;}return v;}
+const rint=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
 const pick=a=>a[Math.floor(Math.random()*a.length)];
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
@@ -87,9 +88,9 @@ function slider(parent,label,min,max,step,val,onInput,fmtFn){
 
 /* ================= Persistence ================= */
 const SKEY='stressQuest_v1';
-let STORE={levels:{},cases:{},unlockAll:false,seenIntro:false};
+let STORE={levels:{},cases:{},unlockAll:false,seenIntro:false,mode:'learner',skills:{},lessons:{}};
 try{const s=JSON.parse(localStorage.getItem(SKEY)||'null');if(s&&s.levels)STORE=Object.assign(STORE,s);}catch(e){}
-if(!STORE.cases)STORE.cases={};
+if(!STORE.cases)STORE.cases={};if(!STORE.skills)STORE.skills={};if(!STORE.lessons)STORE.lessons={};if(!STORE.mode)STORE.mode='learner';
 function save(){try{localStorage.setItem(SKEY,JSON.stringify(STORE));}catch(e){}}
 function starsFor(score){return score>=90?3:score>=70?2:score>=40?1:0;}
 function starHTML(n,max){max=max||3;let s='';for(let i=0;i<max;i++)s+=i<n?'★':'<span class="off">★</span>';return`<span class="stars">${s}</span>`;}
@@ -103,7 +104,7 @@ const WORLDS=[
 const LEVELS=[];
 function defLevel(o){LEVELS.push(o);}
 function isUnlocked(lv){if(STORE.unlockAll)return true;
- if(lv.id==='boss'){return Object.values(STORE.levels).filter(l=>l.stars>0).length>=8;}
+ if(lv.id==='boss'){return Object.values(STORE.levels).filter(l=>l.stars>0).length>=8||Object.values(STORE.cases).filter(c=>c.best!=null).length>=4||Object.values(STORE.lessons).filter(l=>l.done).length>=6;}
  const ws=LEVELS.filter(l=>l.world===lv.world);const i=ws.indexOf(lv);if(i<=0)return true;const prev=STORE.levels[ws[i-1].id];return !!(prev&&prev.stars>0);}
 
 /* ================= Modal & toast ================= */
@@ -113,46 +114,60 @@ function modal(html,buttons){const root=$('#modalRoot');root.innerHTML='';const 
 function toast(s){const t=el('div',{class:'toast'},s);document.body.appendChild(t);setTimeout(()=>t.remove(),2200);}
 
 /* ================= Task runner ================= */
-// task types: num {q, ans()/ans, tol (rel), abs, unit, explain}, choice {q, opts:[{t,ok,why}]}, action {q, btn, check()->{ok,msg,partial}}
+// task types: num {q, ans()/ans, tol (rel), abs, unit, explain, hint, sk}, choice {q, opts:[{t,ok,why}]}, action {q, btn, check()->{ok,msg,partial}}
 function numTask(q,ans,o){o=o||{};return Object.assign({type:'num',q,ans},o);}
-function runTasks(box,tasks,onFinish){
+let CUR_LEVEL=null;
+function showConcept(){if(CUR_LEVEL)modal(`<h2>📖 ${CUR_LEVEL.title}</h2>${CUR_LEVEL.concept}`);}
+function runTasks(box,tasks,onFinish,opt){opt=opt||{};
  let i=0;const res=[];
  const val=v=>typeof v==='function'?v():v;
  function bar(){const b=el('div',{class:'tprog'});tasks.forEach((t,k)=>{const s=k<res.length?(res[k]>=0.99?'done':res[k]>0?'half':'miss'):k===i?'cur':'';b.appendChild(el('i',{class:s}));});return b;}
  function render(){
   const t=tasks[i];box.innerHTML='';if(t.onShow)t.onShow();
+  const sk=t.sk||opt.sk||((CUR_LEVEL&&typeof LEVEL_SKILLS!=='undefined'&&LEVEL_SKILLS[CUR_LEVEL.id])||[])[0];const SK=typeof SKILLS!=='undefined'?SKILLS[sk]:null;
   box.appendChild(bar());const tk=el('div',{class:'task'});box.appendChild(tk);
   tk.appendChild(el('div',{class:'q'},`<span class="tag">Task ${i+1}/${tasks.length}</span> `+val(t.q)));
   const area=el('div');tk.appendChild(area);const fb=el('div',{class:'fb'});tk.appendChild(fb);
+  const hb=el('div');tk.appendChild(hb);
   const nx=el('div',{class:'row'});tk.appendChild(nx);
-  let attempts=0,finished=false;const tries=t.tries||2;
+  let attempts=0,finished=false;const tries=isExpert()?1:(t.tries||(isLearner()&&t.type==='action'?3:2));let hl=null;
   const explain=()=>t.explain?'<div style="margin-top:6px" class="small">💡 '+val(t.explain)+'</div>':'';
-  function done(score,cls,msg){finished=true;res.push(score);fb.className='fb '+cls;fb.innerHTML=msg+explain();
-   area.querySelectorAll('button,input').forEach(b=>b.disabled=true);if(t.onDone)t.onDone(score);
-   nx.appendChild(el('button',{class:'btn pri',onclick:()=>{i++;if(i<tasks.length)render();else finish();}},i<tasks.length-1?'Next task ▶':'Finish level ✔'));
+  function done(score,cls,msg){finished=true;score*=hintFactor(hl?hl.used():0);res.push(score);fb.className='fb '+cls;fb.innerHTML=msg+explain();
+   area.querySelectorAll('button,input').forEach(b=>b.disabled=true);if(hl&&hl.disable)hl.disable();if(t.onDone)t.onDone(score);if(sk)addMastery(sk,score);
+   nx.appendChild(el('button',{class:'btn pri',onclick:()=>{i++;if(i<tasks.length)render();else finish();}},i<tasks.length-1?'Next task ▶':(opt.finishLabel||'Finish level ✔')));
    box.replaceChild(bar(),box.firstChild);}
   function grade(r){if(finished)return;attempts++;
    if(r.ok){const sc=(attempts===1?1:0.5)*(r.partial==null?1:r.partial);done(sc,'ok','✅ <b>Correct!</b> '+(r.msg||'')+(attempts>1?' <span class="mut">(half credit – 2nd try)</span>':''));}
-   else if(attempts<tries){fb.className='fb bad';fb.innerHTML='❌ '+(r.msg||'Not quite.')+' <span class="mut">Try once more (half credit).</span>';}
+   else if(attempts<tries){fb.className='fb bad';fb.innerHTML='❌ '+(r.msg||'Not quite.')+' <span class="mut">Try once more'+(isLearner()?'':' (half credit)')+'.</span>';if(r.after)r.after();}
    else done(0,'bad','❌ '+(r.msg||'Not quite.')+(t.type!=='choice'&&t.ans!=null?` <br>The answer is <b>${fmt(val(t.ans),t.dec==null?3:t.dec)}${t.unit?' '+t.unit:''}</b>.`:'')+(t.reveal?' '+val(t.reveal):''));}
+  const formulaTier=()=>(SK?`<div class="formula">📐 ${SK.formula}</div><div class="small">${SK.why}</div>`:'')+(CUR_LEVEL?' <button class="btn sm" onclick="showConcept()">📖 Open the concept card</button>':'');
   if(t.type==='num'){
-   const r=el('div',{class:'ansrow'});const inp=el('input',{type:'text',inputmode:'decimal',placeholder:'your answer'});const b=el('button',{class:'btn pri'},'Check');
-   r.append(inp);if(t.unit)r.append(el('span',{class:'mut'},t.unit));r.append(b);area.appendChild(r);
-   const go=()=>{const v=parseFloat(inp.value.replace(',','.'));if(!isFinite(v)){fb.className='fb info';fb.textContent='Please enter a number.';return;}
-    const a=val(t.ans);const tol=Math.max((t.tol==null?0.03:t.tol)*Math.abs(a),t.abs||0);const err=Math.abs(v-a);
-    if(t.logtol){const ok=Math.abs(Math.log10(Math.abs(v)/Math.abs(a)))<=t.logtol&&v*a>0;grade({ok,msg:ok?`Exact value ≈ ${fmt(a,3)}${t.unit?' '+t.unit:''}.`:`Your value is off by a factor of ${fmt(Math.max(v/a,a/v),2)}.`});return;}
-    if(err<=tol)grade({ok:true,msg:`Exact value: ${fmt(a,t.dec==null?3:t.dec)}${t.unit?' '+t.unit:''}.`});
-    else{let m='Not quite.';if(Math.abs(v+a)<=tol)m='Check the sign!';else if(a!==0&&[1e3,1e-3,1e6,1e-6].some(f=>Math.abs(v*f-a)<=tol))m='Magnitude off by a power of 1000 – check your units!';else if(err<=3*tol)m='Close, but outside the tolerance (±'+fmt(tol,3)+').';else m+=v>a?' Your value is too high.':' Your value is too low.';
-     if(t.hint)m+=' <i>Hint: '+val(t.hint)+'</i>';grade({ok:false,msg:m});}};
+   const r=el('div',{class:'ansrow'});const inp=el('input',{type:'text',inputmode:'decimal',placeholder:isLearner()?'number or expression, e.g. 5000/78.5':'your answer'});const b=el('button',{class:'btn pri'},'Check');
+   r.append(inp);if(t.unit)r.append(el('span',{class:'mut'},t.unit));r.append(b);if(!isExpert())r.append(el('button',{class:'btn sm',title:'Calculator',onclick:()=>calcOpen(inp)},'🧮'));area.appendChild(r);
+   const mcBox=el('div');area.appendChild(mcBox);
+   const showMC=()=>{if(!isLearner()||finished||mcBox.childNodes.length)return;const a=val(t.ans);mcBox.appendChild(el('div',{class:'small mut',style:'margin-top:8px'},'🛟 Stuck? Type a new answer – or pick one of these:'));const row=el('div',{class:'mcrow'});
+    mcOptions(a,t.dec).forEach(o=>{const bb=el('button',{class:'btn sm'},o.t+(t.unit?' '+t.unit:''));bb.onclick=()=>{bb.classList.add(o.ok?'right':'wrong');grade({ok:o.ok,msg:o.ok?'Good pick!':'That was not it.'});};row.appendChild(bb);});mcBox.appendChild(row);};
+   const go=()=>{const v=parseAnswer(inp.value);if(!isFinite(v)){fb.className='fb info';fb.style.display='block';fb.textContent='Please enter a number (or an expression like 2*3.5).';return;}
+    const a=val(t.ans);const j=judgeSmart(v,a,t);
+    if(j.ok)grade({ok:true,msg:`Exact value: ${fmt(a,t.dec==null?3:t.dec)}${t.unit?' '+t.unit:''}.`});
+    else grade({ok:false,msg:j.msg+(t.hint&&!isLearner()?' <i>Hint: '+val(t.hint)+'</i>':''),after:showMC});};
    b.onclick=go;inp.addEventListener('keydown',e=>{if(e.key==='Enter')go();});setTimeout(()=>inp.focus({preventScroll:true}),30);
+   hl=hintLadder(hb,[()=>t.hint?val(t.hint):`Write down what is given (with units) and what is asked${t.unit?' – the answer is in <b>'+t.unit+'</b>':''}. Which relation from the concept card connects them?`,
+    formulaTier,()=>t.explain?'Worked solution path: '+maskAnswer(val(t.explain),val(t.ans),t.dec)+' <span class="mut">– finish the last step yourself.</span>':`The answer is roughly ${fmt(sig(val(t.ans),1),3)}${t.unit?' '+t.unit:''} – now compute it precisely.`]);
   }else if(t.type==='choice'){
-   const c=el('div',{class:'choices'});area.appendChild(c);const opts=t.noShuffle?t.opts:shuffle(t.opts);
-   opts.forEach(o=>{const b=el('button',{class:'btn'},o.t);c.appendChild(b);b.onclick=()=>{if(finished)return;
+   const c=el('div',{class:'choices'});area.appendChild(c);const opts=t.noShuffle?t.opts:shuffle(t.opts);const btns=[];
+   opts.forEach(o=>{const b=el('button',{class:'btn'},o.t);btns.push(b);c.appendChild(b);b.onclick=()=>{if(finished)return;
     if(o.ok){b.classList.add('right');grade({ok:true,msg:o.why||''});}
     else{b.classList.add('wrong');b.disabled=true;grade({ok:false,msg:o.why||'That is not right.'});if(finished){[...c.children].forEach((bb,k)=>{if(opts[k].ok)bb.classList.add('right');});fb.innerHTML+='<br>Correct answer: <b>'+opts.find(x=>x.ok).t+'</b>';}}};});
+   const strike=n=>{let k=0;const out=[];opts.forEach((o,j)=>{if(!o.ok&&k<n&&!btns[j].disabled){btns[j].disabled=true;btns[j].classList.add('struck');k++;out.push(o);}});return out;};
+   hl=hintLadder(hb,[()=>t.hint?val(t.hint):'Read each option and ask: does it agree with the concept card? Eliminate options that contradict it.',
+    ()=>{const g=strike(1);return 'One option is out: <i>'+(g[0]?g[0].t:'')+'</i>'+(g[0]&&g[0].why?' – '+g[0].why:'')+'<br>'+formulaTier();},
+    ()=>{const left=opts.filter((o,j)=>!btns[j].disabled).length;strike(Math.max(0,left-2));return 'Only two options remain – one of them is right.';}]);
   }else if(t.type==='action'){
    const b=el('button',{class:'btn pri'},t.btn||'Submit');area.appendChild(b);b.onclick=()=>grade(t.check());
    if(t.extra)area.appendChild(t.extra);
+   hl=hintLadder(hb,[()=>t.hint?val(t.hint):'Use the interactive picture on the left: move the controls until the condition in the question is met, then submit.',formulaTier,
+    ()=>t.explain?maskAnswer(val(t.explain),t.ans!=null?val(t.ans):NaN,t.dec):'Compare your picture with the worked example in the concept card (📖) – the key relation is there.']);
   }
  }
  function finish(){const score=Math.round(100*res.reduce((a,b)=>a+b,0)/tasks.length);onFinish(score);}
@@ -162,11 +177,12 @@ function runTasks(box,tasks,onFinish){
 /* ================= Screens ================= */
 let CURRENT=null;
 function cleanup(){if(CURRENT&&CURRENT.stop)CURRENT.stop();CURRENT=null;}
-function updHeader(){const cs=typeof CASES!=='undefined'?CASES.filter(k=>(STORE.cases[k.id]||{}).best!=null).length:0;$('#hdrStars').innerHTML='📁 '+cs+'/'+(typeof CASES!=='undefined'?CASES.length:0)+' cases &nbsp; ★ '+totalStars()+' / '+(LEVELS.length*3);}
-function showMap(){cleanup();updHeader();const app=$('#app');app.innerHTML='';window.scrollTo(0,0);
+function updHeader(){const cs=typeof CASES!=='undefined'?CASES.filter(k=>(STORE.cases[k.id]||{}).best!=null).length:0;const nl=typeof SKILL_ORDER!=='undefined'?SKILL_ORDER.filter(k=>(STORE.lessons[k]||{}).done).length:0;$('#hdrStars').innerHTML='📗 '+nl+'/'+(typeof SKILL_ORDER!=='undefined'?SKILL_ORDER.length:0)+' &nbsp; 📁 '+cs+'/'+(typeof CASES!=='undefined'?CASES.length:0)+' &nbsp; ★ '+totalStars()+'/'+(LEVELS.length*3);}
+function showMap(){cleanup();CUR_LEVEL=null;updHeader();updModeBadge();const app=$('#app');app.innerHTML='';window.scrollTo(0,0);
+ if(typeof renderHome==='function')renderHome(app);else renderTraining(app);}
+function renderTraining(app){
  const done=LEVELS.filter(l=>(STORE.levels[l.id]||{}).stars>0).length;
- if(typeof renderCaseHome==='function')renderCaseHome(app);
- app.appendChild(el('div',{class:'hero',style:'margin-top:26px'},`<div style="flex:1;min-width:260px"><h2 style="margin:0 0 4px">🎯 Training grounds</h2><p>Drill the individual tools in three worlds. Each level starts with a concept card, then hands-on tasks with tolerance-checked answers and explanations. Case Files link back here whenever a concept needs a refresher.</p></div>
+ app.appendChild(el('div',{class:'hero',id:'training',style:'margin-top:26px'},`<div style="flex:1;min-width:260px"><h2 style="margin:0 0 4px">🎯 Training grounds</h2><p>Drill the individual tools in three worlds. Each level starts with a concept card, then hands-on tasks with tolerance-checked answers and explanations. Case Files link back here whenever a concept needs a refresher.</p></div>
   <div><div class="small mut">Training progress: ${done}/${LEVELS.length} levels</div><div class="prog"><i style="width:${100*done/LEVELS.length}%"></i></div></div>`));
  const ws=el('div',{class:'worlds'});app.appendChild(ws);
  WORLDS.forEach(w=>{const c=el('div',{class:'world',style:`border-top:4px solid ${w.col}`});
@@ -177,12 +193,12 @@ function showMap(){cleanup();updHeader();const app=$('#app');app.innerHTML='';wi
   ws.appendChild(c);});
  const boss=LEVELS.find(l=>l.id==='boss');
  if(boss){const un=isUnlocked(boss);const st=STORE.levels.boss||{};
-  const b=el('div',{class:'boss'},`<div style="font-size:40px">🐉</div><div style="flex:1;min-width:220px"><h2>Final Boss: The Failure Review Board</h2><div class="mut small">${boss.short} ${un?'':'<br>🔒 Unlocks after earning stars in 8 levels (or enable "unlock all" in ⚙).'}</div></div><div>${starHTML(st.stars||0)}</div>`);
+  const b=el('div',{class:'boss',id:'bossCard'},`<div style="font-size:40px">🐉</div><div style="flex:1;min-width:220px"><h2>Optional challenge: The Failure Review Board</h2><div class="mut small">${boss.short} ${un?'':'<br>🔒 Unlocks after 6 lessons, 4 cases or stars in 8 levels (or enable "unlock all" in ⚙).'}</div></div><div>${starHTML(st.stars||0)}</div>`);
   const bt=el('button',{class:'btn pri'},un?'Fight!':'Locked');bt.disabled=!un;bt.onclick=()=>openLevel('boss');b.appendChild(bt);app.appendChild(b);}
 }
-function openLevel(id){const lv=LEVELS.find(l=>l.id===id);
- modal(`<div class="tag">${lv.world?WORLDS[lv.world-1].name:'Final challenge'}</div><h2>📖 ${lv.title}</h2>${lv.concept}`,[{t:'Back to map',fn:()=>{}},{t:'Start level ▶',pri:true,fn:()=>startLevel(lv)}]);}
-function startLevel(lv){cleanup();const app=$('#app');app.innerHTML='';window.scrollTo(0,0);
+function openLevel(id){const lv=LEVELS.find(l=>l.id===id);const intro=(isLearner()&&typeof levelMentor==='function')?levelMentor(lv):'';
+ modal(`<div class="tag">${lv.world?WORLDS[lv.world-1].name:'Optional challenge'}</div><h2>📖 ${lv.title}</h2>${intro}${lv.concept}`,[{t:'Back to map',fn:()=>{}},{t:'Start level ▶',pri:true,fn:()=>startLevel(lv)}]);}
+function startLevel(lv){cleanup();CUR_LEVEL=lv;const app=$('#app');app.innerHTML='';window.scrollTo(0,0);
  const head=el('div',{class:'lvhead'});head.appendChild(el('button',{class:'btn sm',onclick:showMap},'◀ Map'));
  head.appendChild(el('h2',null,lv.title));head.appendChild(el('span',{class:'tag'},lv.world?WORLDS[lv.world-1].name:'Boss'));
  head.appendChild(el('button',{class:'btn sm',onclick:()=>modal(`<h2>📖 ${lv.title}</h2>${lv.concept}`)},'📖 Concept'));
@@ -197,7 +213,8 @@ function startLevel(lv){cleanup();const app=$('#app');app.innerHTML='';window.sc
 }
 function showGlossary(){cleanup();const app=$('#app');app.innerHTML='';window.scrollTo(0,0);
  app.appendChild(el('div',{class:'lvhead'},'<h2>📘 Cheat sheet – formulas &amp; concepts</h2>'));app.appendChild(el('div',null,GLOSSARY));}
-function settings(){modal(`<h2>Settings</h2><label><input type="checkbox" id="ua" ${STORE.unlockAll?'checked':''}> Unlock all levels (practice mode)</label><p class="mut small">Progress is stored in your browser's localStorage under "${SKEY}".</p><button class="btn" id="rst">🗑 Reset all progress</button>`,
+function settings(){modal(`<h2>Settings</h2><h4 style="margin:6px 0">Difficulty mode</h4><div id="modeSlot"></div><div class="small mut" id="modeDesc" style="margin:6px 0 14px">${MODES[MODE()].desc}</div><label><input type="checkbox" id="ua" ${STORE.unlockAll?'checked':''}> Unlock everything (all lessons, cases and levels)</label><p class="mut small">Progress is stored in your browser's localStorage under "${SKEY}".</p><button class="btn" id="rst">🗑 Reset all progress</button>`,
  [{t:'Close',pri:true,fn:()=>{STORE.unlockAll=$('#ua')?STORE.unlockAll:STORE.unlockAll;save();showMap();}}]);
  $('#ua').onchange=e=>{STORE.unlockAll=e.target.checked;save();};
- $('#rst').onclick=()=>{if(confirm('Reset all progress?')){STORE={levels:{},cases:{},unlockAll:false,seenIntro:true};save();$('#modalRoot').innerHTML='';showMap();}};}
+ const slot=$('#modeSlot');const fill=()=>{slot.innerHTML='';slot.appendChild(modePicker(fill));$('#modeDesc').textContent=MODES[MODE()].desc;};fill();
+ $('#rst').onclick=()=>{if(confirm('Reset all progress?')){STORE={levels:{},cases:{},unlockAll:false,seenIntro:true,mode:MODE(),skills:{},lessons:{}};save();$('#modalRoot').innerHTML='';showMap();}};}

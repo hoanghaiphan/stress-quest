@@ -121,6 +121,62 @@ select{background:#0c111b;color:var(--txt);border:1px solid var(--line);border-r
 .outcome.g{background:#16301f;border-color:#2f6a3a}.outcome.m{background:#33291a;border-color:#7a5f2f}.outcome.b{background:#33191b;border-color:#7a3236}
 .history{background:#1a2133;border:1px solid #3a4560;border-left:4px solid var(--acc2);border-radius:10px;padding:12px}
 .steptitle{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--acc2);margin-bottom:4px}
+
+/* ===== Learning layer ===== */
+.mentor{display:flex;gap:12px;align-items:flex-start;background:linear-gradient(135deg,#15273d,#1a2236);border:1px solid #2f4d6e;border-radius:14px;padding:12px 14px;margin:8px 0}
+.mentor .av{font-size:42px;line-height:1}
+.mentor .name{font-size:12px;color:var(--acc);letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px}
+.mentor .say{font-size:14.5px}
+.lsec{margin:10px 0;padding:10px 12px;border-radius:10px;background:var(--panel2);border:1px solid var(--line)}
+.lsec h4{margin:0 0 4px;font-size:13px;color:var(--acc2);text-transform:uppercase;letter-spacing:.6px}
+.formula{background:#122033;border-left:3px solid var(--acc);padding:7px 10px;border-radius:8px;margin:6px 0;font-size:14px}
+.focus{background:#2a2412;border-left:3px solid var(--acc2);padding:6px 10px;border-radius:8px;margin:6px 0;font-size:13.5px}
+.hints{margin-top:10px}
+.hints .hint{background:#1d2a1d;border:1px solid #35603a;border-radius:10px;padding:8px 10px;margin-top:6px;font-size:13.5px}
+.hints .hint b.blank{display:inline-block;min-width:28px;text-align:center;background:#35603a;border-radius:5px}
+.hintbtn{border-color:#35603a!important;color:#a5d6a7!important}
+.mcrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.btn.struck{text-decoration:line-through;opacity:.45}
+.btn.glow{box-shadow:0 0 0 2px var(--ok)}
+.req label.glow{outline:2px solid var(--ok);border-radius:8px}
+.req label.struck span{text-decoration:line-through;opacity:.5}
+.term{border-bottom:1px dotted var(--acc);cursor:help}
+#tip{position:fixed;z-index:90;max-width:330px;background:#0b1422;border:1px solid var(--acc);border-radius:10px;padding:8px 11px;font-size:13px;display:none;box-shadow:0 6px 24px rgba(0,0,0,.5);color:var(--txt)}
+#tip b{color:var(--acc)}
+#calc{position:fixed;right:16px;bottom:16px;z-index:60;width:300px;background:var(--panel);border:1px solid var(--acc);border-radius:14px;padding:12px;display:none;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+#calc input{width:100%;box-sizing:border-box;background:#0d1422;border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:7px;font:15px ui-monospace,monospace}
+#calc .res{font:18px ui-monospace,monospace;margin:8px 0;color:var(--ok);min-height:22px}
+#calc .keys{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+#calc .keys button{padding:5px 0;font-size:13px}
+.modes{display:flex;gap:6px;flex-wrap:wrap}
+.modes .btn.on{border-color:var(--acc);background:#16324a}
+.path{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:10px;counter-reset:pn}
+.pnode{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px 10px 44px;cursor:pointer;min-height:58px;transition:.15s}
+.pnode:hover{border-color:var(--acc)}
+.pnode .pi{position:absolute;left:10px;top:10px;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;background:#26304a}
+.pnode.lesson .pi{background:#1e3a2a}.pnode.case .pi{background:#3a2e17}.pnode.boss .pi{background:#3a1e2e}
+.pnode.done{border-color:#2f6a3a}.pnode.done .pi{background:var(--ok);color:#08130a}
+.pnode.locked{opacity:.45;cursor:not-allowed}
+.pnode.next{border-color:var(--acc2);box-shadow:0 0 0 2px rgba(255,183,77,.35);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 5px rgba(255,183,77,.12)}}
+.pnode .k{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px}
+.pnode b{display:block;font-size:14px}
+.skillgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.skill{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px}
+.skill h3{margin:0;font-size:15px}
+.mbar{height:10px;border-radius:6px;background:#26304a;overflow:hidden;margin:6px 0 3px}
+.mbar i{display:block;height:100%;border-radius:6px}
+.lvlname{font-size:12px;color:var(--mut)}
+.welcome{display:flex;gap:16px;flex-wrap:wrap;align-items:center;background:linear-gradient(135deg,#17283d,#22203a);border:1px solid #33456a;border-radius:16px;padding:16px 18px;margin-bottom:16px}
+.sechead{display:flex;align-items:baseline;gap:10px;margin:22px 0 10px}.sechead h2{margin:0}
+details.dsheet{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:6px 10px;margin-top:8px}
+details.dsheet summary{cursor:pointer;color:var(--acc);font-size:14px}
+details.ev summary{cursor:pointer}
+.whyall{margin-top:8px;font-size:13px}.whyall li{margin:4px 0}
+.party{position:fixed;inset:0;pointer-events:none;z-index:95;overflow:hidden}
+.party i{position:absolute;top:-30px;font-style:normal;font-size:22px;animation:fall 1.8s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+.lockcase{opacity:.5}
 </style>
 </head>
 <body>
@@ -128,7 +184,10 @@ select{background:#0c111b;color:var(--txt);border:1px solid var(--line);border-r
   <h1 id="logo" title="Back to map">⚙ Stress <span>Quest</span></h1>
   <div class="sp"></div>
   <span id="hdrStars" class="stars"></span>
+  <span id="modeBadge" class="tag" style="cursor:pointer" title="Difficulty mode – click to change"></span>
   <button class="btn" id="bMap">🏠 Home</button>
+  <button class="btn" id="bSkills">🧠 Skills</button>
+  <button class="btn" id="bCalc" title="Calculator">🧮</button>
   <button class="btn" id="bGloss">📘 Cheat sheet</button>
   <button class="btn" id="bSet">⚙</button>
 </header>

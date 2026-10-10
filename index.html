@@ -121,6 +121,62 @@ select{background:#0c111b;color:var(--txt);border:1px solid var(--line);border-r
 .outcome.g{background:#16301f;border-color:#2f6a3a}.outcome.m{background:#33291a;border-color:#7a5f2f}.outcome.b{background:#33191b;border-color:#7a3236}
 .history{background:#1a2133;border:1px solid #3a4560;border-left:4px solid var(--acc2);border-radius:10px;padding:12px}
 .steptitle{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--acc2);margin-bottom:4px}
+
+/* ===== Learning layer ===== */
+.mentor{display:flex;gap:12px;align-items:flex-start;background:linear-gradient(135deg,#15273d,#1a2236);border:1px solid #2f4d6e;border-radius:14px;padding:12px 14px;margin:8px 0}
+.mentor .av{font-size:42px;line-height:1}
+.mentor .name{font-size:12px;color:var(--acc);letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px}
+.mentor .say{font-size:14.5px}
+.lsec{margin:10px 0;padding:10px 12px;border-radius:10px;background:var(--panel2);border:1px solid var(--line)}
+.lsec h4{margin:0 0 4px;font-size:13px;color:var(--acc2);text-transform:uppercase;letter-spacing:.6px}
+.formula{background:#122033;border-left:3px solid var(--acc);padding:7px 10px;border-radius:8px;margin:6px 0;font-size:14px}
+.focus{background:#2a2412;border-left:3px solid var(--acc2);padding:6px 10px;border-radius:8px;margin:6px 0;font-size:13.5px}
+.hints{margin-top:10px}
+.hints .hint{background:#1d2a1d;border:1px solid #35603a;border-radius:10px;padding:8px 10px;margin-top:6px;font-size:13.5px}
+.hints .hint b.blank{display:inline-block;min-width:28px;text-align:center;background:#35603a;border-radius:5px}
+.hintbtn{border-color:#35603a!important;color:#a5d6a7!important}
+.mcrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.btn.struck{text-decoration:line-through;opacity:.45}
+.btn.glow{box-shadow:0 0 0 2px var(--ok)}
+.req label.glow{outline:2px solid var(--ok);border-radius:8px}
+.req label.struck span{text-decoration:line-through;opacity:.5}
+.term{border-bottom:1px dotted var(--acc);cursor:help}
+#tip{position:fixed;z-index:90;max-width:330px;background:#0b1422;border:1px solid var(--acc);border-radius:10px;padding:8px 11px;font-size:13px;display:none;box-shadow:0 6px 24px rgba(0,0,0,.5);color:var(--txt)}
+#tip b{color:var(--acc)}
+#calc{position:fixed;right:16px;bottom:16px;z-index:60;width:300px;background:var(--panel);border:1px solid var(--acc);border-radius:14px;padding:12px;display:none;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+#calc input{width:100%;box-sizing:border-box;background:#0d1422;border:1px solid var(--line);color:var(--txt);border-radius:8px;padding:7px;font:15px ui-monospace,monospace}
+#calc .res{font:18px ui-monospace,monospace;margin:8px 0;color:var(--ok);min-height:22px}
+#calc .keys{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+#calc .keys button{padding:5px 0;font-size:13px}
+.modes{display:flex;gap:6px;flex-wrap:wrap}
+.modes .btn.on{border-color:var(--acc);background:#16324a}
+.path{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:10px;counter-reset:pn}
+.pnode{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px 10px 44px;cursor:pointer;min-height:58px;transition:.15s}
+.pnode:hover{border-color:var(--acc)}
+.pnode .pi{position:absolute;left:10px;top:10px;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;background:#26304a}
+.pnode.lesson .pi{background:#1e3a2a}.pnode.case .pi{background:#3a2e17}.pnode.boss .pi{background:#3a1e2e}
+.pnode.done{border-color:#2f6a3a}.pnode.done .pi{background:var(--ok);color:#08130a}
+.pnode.locked{opacity:.45;cursor:not-allowed}
+.pnode.next{border-color:var(--acc2);box-shadow:0 0 0 2px rgba(255,183,77,.35);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 5px rgba(255,183,77,.12)}}
+.pnode .k{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px}
+.pnode b{display:block;font-size:14px}
+.skillgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.skill{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px}
+.skill h3{margin:0;font-size:15px}
+.mbar{height:10px;border-radius:6px;background:#26304a;overflow:hidden;margin:6px 0 3px}
+.mbar i{display:block;height:100%;border-radius:6px}
+.lvlname{font-size:12px;color:var(--mut)}
+.welcome{display:flex;gap:16px;flex-wrap:wrap;align-items:center;background:linear-gradient(135deg,#17283d,#22203a);border:1px solid #33456a;border-radius:16px;padding:16px 18px;margin-bottom:16px}
+.sechead{display:flex;align-items:baseline;gap:10px;margin:22px 0 10px}.sechead h2{margin:0}
+details.dsheet{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:6px 10px;margin-top:8px}
+details.dsheet summary{cursor:pointer;color:var(--acc);font-size:14px}
+details.ev summary{cursor:pointer}
+.whyall{margin-top:8px;font-size:13px}.whyall li{margin:4px 0}
+.party{position:fixed;inset:0;pointer-events:none;z-index:95;overflow:hidden}
+.party i{position:absolute;top:-30px;font-style:normal;font-size:22px;animation:fall 1.8s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+.lockcase{opacity:.5}
 </style>
 </head>
 <body>
@@ -128,7 +184,10 @@ select{background:#0c111b;color:var(--txt);border:1px solid var(--line);border-r
   <h1 id="logo" title="Back to map">⚙ Stress <span>Quest</span></h1>
   <div class="sp"></div>
   <span id="hdrStars" class="stars"></span>
+  <span id="modeBadge" class="tag" style="cursor:pointer" title="Difficulty mode – click to change"></span>
   <button class="btn" id="bMap">🏠 Home</button>
+  <button class="btn" id="bSkills">🧠 Skills</button>
+  <button class="btn" id="bCalc" title="Calculator">🧮</button>
   <button class="btn" id="bGloss">📘 Cheat sheet</button>
   <button class="btn" id="bSet">⚙</button>
 </header>
@@ -139,8 +198,9 @@ select{background:#0c111b;color:var(--txt);border:1px solid var(--line);border-r
 /* ================= Utilities ================= */
 const $=s=>document.querySelector(s);
 function el(tag,attrs,html){const e=document.createElement(tag);if(attrs)for(const k in attrs){if(k==='style')e.style.cssText=attrs[k];else if(k.startsWith('on'))e.addEventListener(k.slice(2),attrs[k]);else e.setAttribute(k,attrs[k]);}if(html!=null)e.innerHTML=html;return e;}
-const rnd=(a,b)=>a+Math.random()*(b-a);
-const rint=(a,b)=>Math.floor(rnd(a,b+1));
+let NICE_NUM=false;/* Learner mode: case scenario numbers rounded to 2 significant digits */
+function rnd(a,b){const v=a+Math.random()*(b-a);if(!NICE_NUM)return v;const lo=Math.min(a,b),hi=Math.max(a,b);for(const n of[2,3]){const r=sig(v,n);if(r>=lo&&r<=hi)return r;}return v;}
+const rint=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
 const pick=a=>a[Math.floor(Math.random()*a.length)];
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
@@ -224,9 +284,9 @@ function slider(parent,label,min,max,step,val,onInput,fmtFn){
 
 /* ================= Persistence ================= */
 const SKEY='stressQuest_v1';
-let STORE={levels:{},cases:{},unlockAll:false,seenIntro:false};
+let STORE={levels:{},cases:{},unlockAll:false,seenIntro:false,mode:'learner',skills:{},lessons:{}};
 try{const s=JSON.parse(localStorage.getItem(SKEY)||'null');if(s&&s.levels)STORE=Object.assign(STORE,s);}catch(e){}
-if(!STORE.cases)STORE.cases={};
+if(!STORE.cases)STORE.cases={};if(!STORE.skills)STORE.skills={};if(!STORE.lessons)STORE.lessons={};if(!STORE.mode)STORE.mode='learner';
 function save(){try{localStorage.setItem(SKEY,JSON.stringify(STORE));}catch(e){}}
 function starsFor(score){return score>=90?3:score>=70?2:score>=40?1:0;}
 function starHTML(n,max){max=max||3;let s='';for(let i=0;i<max;i++)s+=i<n?'★':'<span class="off">★</span>';return`<span class="stars">${s}</span>`;}
@@ -240,7 +300,7 @@ const WORLDS=[
 const LEVELS=[];
 function defLevel(o){LEVELS.push(o);}
 function isUnlocked(lv){if(STORE.unlockAll)return true;
- if(lv.id==='boss'){return Object.values(STORE.levels).filter(l=>l.stars>0).length>=8;}
+ if(lv.id==='boss'){return Object.values(STORE.levels).filter(l=>l.stars>0).length>=8||Object.values(STORE.cases).filter(c=>c.best!=null).length>=4||Object.values(STORE.lessons).filter(l=>l.done).length>=6;}
  const ws=LEVELS.filter(l=>l.world===lv.world);const i=ws.indexOf(lv);if(i<=0)return true;const prev=STORE.levels[ws[i-1].id];return !!(prev&&prev.stars>0);}
 
 /* ================= Modal & toast ================= */
@@ -250,46 +310,60 @@ function modal(html,buttons){const root=$('#modalRoot');root.innerHTML='';const 
 function toast(s){const t=el('div',{class:'toast'},s);document.body.appendChild(t);setTimeout(()=>t.remove(),2200);}
 
 /* ================= Task runner ================= */
-// task types: num {q, ans()/ans, tol (rel), abs, unit, explain}, choice {q, opts:[{t,ok,why}]}, action {q, btn, check()->{ok,msg,partial}}
+// task types: num {q, ans()/ans, tol (rel), abs, unit, explain, hint, sk}, choice {q, opts:[{t,ok,why}]}, action {q, btn, check()->{ok,msg,partial}}
 function numTask(q,ans,o){o=o||{};return Object.assign({type:'num',q,ans},o);}
-function runTasks(box,tasks,onFinish){
+let CUR_LEVEL=null;
+function showConcept(){if(CUR_LEVEL)modal(`<h2>📖 ${CUR_LEVEL.title}</h2>${CUR_LEVEL.concept}`);}
+function runTasks(box,tasks,onFinish,opt){opt=opt||{};
  let i=0;const res=[];
  const val=v=>typeof v==='function'?v():v;
  function bar(){const b=el('div',{class:'tprog'});tasks.forEach((t,k)=>{const s=k<res.length?(res[k]>=0.99?'done':res[k]>0?'half':'miss'):k===i?'cur':'';b.appendChild(el('i',{class:s}));});return b;}
  function render(){
   const t=tasks[i];box.innerHTML='';if(t.onShow)t.onShow();
+  const sk=t.sk||opt.sk||((CUR_LEVEL&&typeof LEVEL_SKILLS!=='undefined'&&LEVEL_SKILLS[CUR_LEVEL.id])||[])[0];const SK=typeof SKILLS!=='undefined'?SKILLS[sk]:null;
   box.appendChild(bar());const tk=el('div',{class:'task'});box.appendChild(tk);
   tk.appendChild(el('div',{class:'q'},`<span class="tag">Task ${i+1}/${tasks.length}</span> `+val(t.q)));
   const area=el('div');tk.appendChild(area);const fb=el('div',{class:'fb'});tk.appendChild(fb);
+  const hb=el('div');tk.appendChild(hb);
   const nx=el('div',{class:'row'});tk.appendChild(nx);
-  let attempts=0,finished=false;const tries=t.tries||2;
+  let attempts=0,finished=false;const tries=isExpert()?1:(t.tries||(isLearner()&&t.type==='action'?3:2));let hl=null;
   const explain=()=>t.explain?'<div style="margin-top:6px" class="small">💡 '+val(t.explain)+'</div>':'';
-  function done(score,cls,msg){finished=true;res.push(score);fb.className='fb '+cls;fb.innerHTML=msg+explain();
-   area.querySelectorAll('button,input').forEach(b=>b.disabled=true);if(t.onDone)t.onDone(score);
-   nx.appendChild(el('button',{class:'btn pri',onclick:()=>{i++;if(i<tasks.length)render();else finish();}},i<tasks.length-1?'Next task ▶':'Finish level ✔'));
+  function done(score,cls,msg){finished=true;score*=hintFactor(hl?hl.used():0);res.push(score);fb.className='fb '+cls;fb.innerHTML=msg+explain();
+   area.querySelectorAll('button,input').forEach(b=>b.disabled=true);if(hl&&hl.disable)hl.disable();if(t.onDone)t.onDone(score);if(sk)addMastery(sk,score);
+   nx.appendChild(el('button',{class:'btn pri',onclick:()=>{i++;if(i<tasks.length)render();else finish();}},i<tasks.length-1?'Next task ▶':(opt.finishLabel||'Finish level ✔')));
    box.replaceChild(bar(),box.firstChild);}
   function grade(r){if(finished)return;attempts++;
    if(r.ok){const sc=(attempts===1?1:0.5)*(r.partial==null?1:r.partial);done(sc,'ok','✅ <b>Correct!</b> '+(r.msg||'')+(attempts>1?' <span class="mut">(half credit – 2nd try)</span>':''));}
-   else if(attempts<tries){fb.className='fb bad';fb.innerHTML='❌ '+(r.msg||'Not quite.')+' <span class="mut">Try once more (half credit).</span>';}
+   else if(attempts<tries){fb.className='fb bad';fb.innerHTML='❌ '+(r.msg||'Not quite.')+' <span class="mut">Try once more'+(isLearner()?'':' (half credit)')+'.</span>';if(r.after)r.after();}
    else done(0,'bad','❌ '+(r.msg||'Not quite.')+(t.type!=='choice'&&t.ans!=null?` <br>The answer is <b>${fmt(val(t.ans),t.dec==null?3:t.dec)}${t.unit?' '+t.unit:''}</b>.`:'')+(t.reveal?' '+val(t.reveal):''));}
+  const formulaTier=()=>(SK?`<div class="formula">📐 ${SK.formula}</div><div class="small">${SK.why}</div>`:'')+(CUR_LEVEL?' <button class="btn sm" onclick="showConcept()">📖 Open the concept card</button>':'');
   if(t.type==='num'){
-   const r=el('div',{class:'ansrow'});const inp=el('input',{type:'text',inputmode:'decimal',placeholder:'your answer'});const b=el('button',{class:'btn pri'},'Check');
-   r.append(inp);if(t.unit)r.append(el('span',{class:'mut'},t.unit));r.append(b);area.appendChild(r);
-   const go=()=>{const v=parseFloat(inp.value.replace(',','.'));if(!isFinite(v)){fb.className='fb info';fb.textContent='Please enter a number.';return;}
-    const a=val(t.ans);const tol=Math.max((t.tol==null?0.03:t.tol)*Math.abs(a),t.abs||0);const err=Math.abs(v-a);
-    if(t.logtol){const ok=Math.abs(Math.log10(Math.abs(v)/Math.abs(a)))<=t.logtol&&v*a>0;grade({ok,msg:ok?`Exact value ≈ ${fmt(a,3)}${t.unit?' '+t.unit:''}.`:`Your value is off by a factor of ${fmt(Math.max(v/a,a/v),2)}.`});return;}
-    if(err<=tol)grade({ok:true,msg:`Exact value: ${fmt(a,t.dec==null?3:t.dec)}${t.unit?' '+t.unit:''}.`});
-    else{let m='Not quite.';if(Math.abs(v+a)<=tol)m='Check the sign!';else if(a!==0&&[1e3,1e-3,1e6,1e-6].some(f=>Math.abs(v*f-a)<=tol))m='Magnitude off by a power of 1000 – check your units!';else if(err<=3*tol)m='Close, but outside the tolerance (±'+fmt(tol,3)+').';else m+=v>a?' Your value is too high.':' Your value is too low.';
-     if(t.hint)m+=' <i>Hint: '+val(t.hint)+'</i>';grade({ok:false,msg:m});}};
+   const r=el('div',{class:'ansrow'});const inp=el('input',{type:'text',inputmode:'decimal',placeholder:isLearner()?'number or expression, e.g. 5000/78.5':'your answer'});const b=el('button',{class:'btn pri'},'Check');
+   r.append(inp);if(t.unit)r.append(el('span',{class:'mut'},t.unit));r.append(b);if(!isExpert())r.append(el('button',{class:'btn sm',title:'Calculator',onclick:()=>calcOpen(inp)},'🧮'));area.appendChild(r);
+   const mcBox=el('div');area.appendChild(mcBox);
+   const showMC=()=>{if(!isLearner()||finished||mcBox.childNodes.length)return;const a=val(t.ans);mcBox.appendChild(el('div',{class:'small mut',style:'margin-top:8px'},'🛟 Stuck? Type a new answer – or pick one of these:'));const row=el('div',{class:'mcrow'});
+    mcOptions(a,t.dec).forEach(o=>{const bb=el('button',{class:'btn sm'},o.t+(t.unit?' '+t.unit:''));bb.onclick=()=>{bb.classList.add(o.ok?'right':'wrong');grade({ok:o.ok,msg:o.ok?'Good pick!':'That was not it.'});};row.appendChild(bb);});mcBox.appendChild(row);};
+   const go=()=>{const v=parseAnswer(inp.value);if(!isFinite(v)){fb.className='fb info';fb.style.display='block';fb.textContent='Please enter a number (or an expression like 2*3.5).';return;}
+    const a=val(t.ans);const j=judgeSmart(v,a,t);
+    if(j.ok)grade({ok:true,msg:`Exact value: ${fmt(a,t.dec==null?3:t.dec)}${t.unit?' '+t.unit:''}.`});
+    else grade({ok:false,msg:j.msg+(t.hint&&!isLearner()?' <i>Hint: '+val(t.hint)+'</i>':''),after:showMC});};
    b.onclick=go;inp.addEventListener('keydown',e=>{if(e.key==='Enter')go();});setTimeout(()=>inp.focus({preventScroll:true}),30);
+   hl=hintLadder(hb,[()=>t.hint?val(t.hint):`Write down what is given (with units) and what is asked${t.unit?' – the answer is in <b>'+t.unit+'</b>':''}. Which relation from the concept card connects them?`,
+    formulaTier,()=>t.explain?'Worked solution path: '+maskAnswer(val(t.explain),val(t.ans),t.dec)+' <span class="mut">– finish the last step yourself.</span>':`The answer is roughly ${fmt(sig(val(t.ans),1),3)}${t.unit?' '+t.unit:''} – now compute it precisely.`]);
   }else if(t.type==='choice'){
-   const c=el('div',{class:'choices'});area.appendChild(c);const opts=t.noShuffle?t.opts:shuffle(t.opts);
-   opts.forEach(o=>{const b=el('button',{class:'btn'},o.t);c.appendChild(b);b.onclick=()=>{if(finished)return;
+   const c=el('div',{class:'choices'});area.appendChild(c);const opts=t.noShuffle?t.opts:shuffle(t.opts);const btns=[];
+   opts.forEach(o=>{const b=el('button',{class:'btn'},o.t);btns.push(b);c.appendChild(b);b.onclick=()=>{if(finished)return;
     if(o.ok){b.classList.add('right');grade({ok:true,msg:o.why||''});}
     else{b.classList.add('wrong');b.disabled=true;grade({ok:false,msg:o.why||'That is not right.'});if(finished){[...c.children].forEach((bb,k)=>{if(opts[k].ok)bb.classList.add('right');});fb.innerHTML+='<br>Correct answer: <b>'+opts.find(x=>x.ok).t+'</b>';}}};});
+   const strike=n=>{let k=0;const out=[];opts.forEach((o,j)=>{if(!o.ok&&k<n&&!btns[j].disabled){btns[j].disabled=true;btns[j].classList.add('struck');k++;out.push(o);}});return out;};
+   hl=hintLadder(hb,[()=>t.hint?val(t.hint):'Read each option and ask: does it agree with the concept card? Eliminate options that contradict it.',
+    ()=>{const g=strike(1);return 'One option is out: <i>'+(g[0]?g[0].t:'')+'</i>'+(g[0]&&g[0].why?' – '+g[0].why:'')+'<br>'+formulaTier();},
+    ()=>{const left=opts.filter((o,j)=>!btns[j].disabled).length;strike(Math.max(0,left-2));return 'Only two options remain – one of them is right.';}]);
   }else if(t.type==='action'){
    const b=el('button',{class:'btn pri'},t.btn||'Submit');area.appendChild(b);b.onclick=()=>grade(t.check());
    if(t.extra)area.appendChild(t.extra);
+   hl=hintLadder(hb,[()=>t.hint?val(t.hint):'Use the interactive picture on the left: move the controls until the condition in the question is met, then submit.',formulaTier,
+    ()=>t.explain?maskAnswer(val(t.explain),t.ans!=null?val(t.ans):NaN,t.dec):'Compare your picture with the worked example in the concept card (📖) – the key relation is there.']);
   }
  }
  function finish(){const score=Math.round(100*res.reduce((a,b)=>a+b,0)/tasks.length);onFinish(score);}
@@ -299,11 +373,12 @@ function runTasks(box,tasks,onFinish){
 /* ================= Screens ================= */
 let CURRENT=null;
 function cleanup(){if(CURRENT&&CURRENT.stop)CURRENT.stop();CURRENT=null;}
-function updHeader(){const cs=typeof CASES!=='undefined'?CASES.filter(k=>(STORE.cases[k.id]||{}).best!=null).length:0;$('#hdrStars').innerHTML='📁 '+cs+'/'+(typeof CASES!=='undefined'?CASES.length:0)+' cases &nbsp; ★ '+totalStars()+' / '+(LEVELS.length*3);}
-function showMap(){cleanup();updHeader();const app=$('#app');app.innerHTML='';window.scrollTo(0,0);
+function updHeader(){const cs=typeof CASES!=='undefined'?CASES.filter(k=>(STORE.cases[k.id]||{}).best!=null).length:0;const nl=typeof SKILL_ORDER!=='undefined'?SKILL_ORDER.filter(k=>(STORE.lessons[k]||{}).done).length:0;$('#hdrStars').innerHTML='📗 '+nl+'/'+(typeof SKILL_ORDER!=='undefined'?SKILL_ORDER.length:0)+' &nbsp; 📁 '+cs+'/'+(typeof CASES!=='undefined'?CASES.length:0)+' &nbsp; ★ '+totalStars()+'/'+(LEVELS.length*3);}
+function showMap(){cleanup();CUR_LEVEL=null;updHeader();updModeBadge();const app=$('#app');app.innerHTML='';window.scrollTo(0,0);
+ if(typeof renderHome==='function')renderHome(app);else renderTraining(app);}
+function renderTraining(app){
  const done=LEVELS.filter(l=>(STORE.levels[l.id]||{}).stars>0).length;
- if(typeof renderCaseHome==='function')renderCaseHome(app);
- app.appendChild(el('div',{class:'hero',style:'margin-top:26px'},`<div style="flex:1;min-width:260px"><h2 style="margin:0 0 4px">🎯 Training grounds</h2><p>Drill the individual tools in three worlds. Each level starts with a concept card, then hands-on tasks with tolerance-checked answers and explanations. Case Files link back here whenever a concept needs a refresher.</p></div>
+ app.appendChild(el('div',{class:'hero',id:'training',style:'margin-top:26px'},`<div style="flex:1;min-width:260px"><h2 style="margin:0 0 4px">🎯 Training grounds</h2><p>Drill the individual tools in three worlds. Each level starts with a concept card, then hands-on tasks with tolerance-checked answers and explanations. Case Files link back here whenever a concept needs a refresher.</p></div>
   <div><div class="small mut">Training progress: ${done}/${LEVELS.length} levels</div><div class="prog"><i style="width:${100*done/LEVELS.length}%"></i></div></div>`));
  const ws=el('div',{class:'worlds'});app.appendChild(ws);
  WORLDS.forEach(w=>{const c=el('div',{class:'world',style:`border-top:4px solid ${w.col}`});
@@ -314,12 +389,12 @@ function showMap(){cleanup();updHeader();const app=$('#app');app.innerHTML='';wi
   ws.appendChild(c);});
  const boss=LEVELS.find(l=>l.id==='boss');
  if(boss){const un=isUnlocked(boss);const st=STORE.levels.boss||{};
-  const b=el('div',{class:'boss'},`<div style="font-size:40px">🐉</div><div style="flex:1;min-width:220px"><h2>Final Boss: The Failure Review Board</h2><div class="mut small">${boss.short} ${un?'':'<br>🔒 Unlocks after earning stars in 8 levels (or enable "unlock all" in ⚙).'}</div></div><div>${starHTML(st.stars||0)}</div>`);
+  const b=el('div',{class:'boss',id:'bossCard'},`<div style="font-size:40px">🐉</div><div style="flex:1;min-width:220px"><h2>Optional challenge: The Failure Review Board</h2><div class="mut small">${boss.short} ${un?'':'<br>🔒 Unlocks after 6 lessons, 4 cases or stars in 8 levels (or enable "unlock all" in ⚙).'}</div></div><div>${starHTML(st.stars||0)}</div>`);
   const bt=el('button',{class:'btn pri'},un?'Fight!':'Locked');bt.disabled=!un;bt.onclick=()=>openLevel('boss');b.appendChild(bt);app.appendChild(b);}
 }
-function openLevel(id){const lv=LEVELS.find(l=>l.id===id);
- modal(`<div class="tag">${lv.world?WORLDS[lv.world-1].name:'Final challenge'}</div><h2>📖 ${lv.title}</h2>${lv.concept}`,[{t:'Back to map',fn:()=>{}},{t:'Start level ▶',pri:true,fn:()=>startLevel(lv)}]);}
-function startLevel(lv){cleanup();const app=$('#app');app.innerHTML='';window.scrollTo(0,0);
+function openLevel(id){const lv=LEVELS.find(l=>l.id===id);const intro=(isLearner()&&typeof levelMentor==='function')?levelMentor(lv):'';
+ modal(`<div class="tag">${lv.world?WORLDS[lv.world-1].name:'Optional challenge'}</div><h2>📖 ${lv.title}</h2>${intro}${lv.concept}`,[{t:'Back to map',fn:()=>{}},{t:'Start level ▶',pri:true,fn:()=>startLevel(lv)}]);}
+function startLevel(lv){cleanup();CUR_LEVEL=lv;const app=$('#app');app.innerHTML='';window.scrollTo(0,0);
  const head=el('div',{class:'lvhead'});head.appendChild(el('button',{class:'btn sm',onclick:showMap},'◀ Map'));
  head.appendChild(el('h2',null,lv.title));head.appendChild(el('span',{class:'tag'},lv.world?WORLDS[lv.world-1].name:'Boss'));
  head.appendChild(el('button',{class:'btn sm',onclick:()=>modal(`<h2>📖 ${lv.title}</h2>${lv.concept}`)},'📖 Concept'));
@@ -334,10 +409,334 @@ function startLevel(lv){cleanup();const app=$('#app');app.innerHTML='';window.sc
 }
 function showGlossary(){cleanup();const app=$('#app');app.innerHTML='';window.scrollTo(0,0);
  app.appendChild(el('div',{class:'lvhead'},'<h2>📘 Cheat sheet – formulas &amp; concepts</h2>'));app.appendChild(el('div',null,GLOSSARY));}
-function settings(){modal(`<h2>Settings</h2><label><input type="checkbox" id="ua" ${STORE.unlockAll?'checked':''}> Unlock all levels (practice mode)</label><p class="mut small">Progress is stored in your browser's localStorage under "${SKEY}".</p><button class="btn" id="rst">🗑 Reset all progress</button>`,
+function settings(){modal(`<h2>Settings</h2><h4 style="margin:6px 0">Difficulty mode</h4><div id="modeSlot"></div><div class="small mut" id="modeDesc" style="margin:6px 0 14px">${MODES[MODE()].desc}</div><label><input type="checkbox" id="ua" ${STORE.unlockAll?'checked':''}> Unlock everything (all lessons, cases and levels)</label><p class="mut small">Progress is stored in your browser's localStorage under "${SKEY}".</p><button class="btn" id="rst">🗑 Reset all progress</button>`,
  [{t:'Close',pri:true,fn:()=>{STORE.unlockAll=$('#ua')?STORE.unlockAll:STORE.unlockAll;save();showMap();}}]);
  $('#ua').onchange=e=>{STORE.unlockAll=e.target.checked;save();};
- $('#rst').onclick=()=>{if(confirm('Reset all progress?')){STORE={levels:{},cases:{},unlockAll:false,seenIntro:true};save();$('#modalRoot').innerHTML='';showMap();}};}
+ const slot=$('#modeSlot');const fill=()=>{slot.innerHTML='';slot.appendChild(modePicker(fill));$('#modeDesc').textContent=MODES[MODE()].desc;};fill();
+ $('#rst').onclick=()=>{if(confirm('Reset all progress?')){STORE={levels:{},cases:{},unlockAll:false,seenIntro:true,mode:MODE(),skills:{},lessons:{}};save();$('#modalRoot').innerHTML='';showMap();}};}
+/* ===================== LEARNING LAYER: modes, judge, calculator, hints, glossary tooltips, mastery ===================== */
+const MODES={learner:{icon:'🌱',name:'Learner',desc:'Mentor explanations, free hints, formula helpers, generous tolerance (±5 %), multiple-choice rescue after a miss, rounded numbers in cases, guided steps.'},
+ engineer:{icon:'🛠',name:'Engineer',desc:'The full investigations. Hints available but they cost a little score; engineering tolerances; two tries.'},
+ expert:{icon:'🔥',name:'Expert',desc:'No hints, no formula helpers, one try per calculation. For the confident.'}};
+function MODE(){return MODES[STORE.mode]?STORE.mode:'learner';}
+const isLearner=()=>MODE()==='learner',isExpert=()=>MODE()==='expert';
+function setMode(m){STORE.mode=m;save();updModeBadge();}
+function updModeBadge(){const b=$('#modeBadge');if(b){const M=MODES[MODE()];b.textContent=M.icon+' '+M.name;}}
+function modePicker(after){const d=el('div',{class:'modes'});Object.keys(MODES).forEach(k=>{const M=MODES[k];const b=el('button',{class:'btn sm'+(MODE()===k?' on':''),title:M.desc,'data-mode':k},M.icon+' '+M.name);b.onclick=()=>{setMode(k);toast(M.icon+' '+M.name+' mode');if(after)after();};d.appendChild(b);});return d;}
+
+/* ---------- safe expression parser (answer boxes + calculator) ---------- */
+function evalExpr(src){let s=String(src).toLowerCase().replace(/\s+/g,'').replace(/,/g,'.').replace(/[×·]/g,'*').replace(/÷/g,'/').replace(/[−–]/g,'-').replace(/²/g,'^2').replace(/³/g,'^3').replace(/√/g,'sqrt').replace(/π/g,'pi');
+ let i=0;const err=()=>{throw new Error('parse');};
+ const F={sqrt:Math.sqrt,ln:Math.log,log:Math.log10,exp:Math.exp,abs:Math.abs,sin:x=>Math.sin(x*Math.PI/180),cos:x=>Math.cos(x*Math.PI/180),tan:x=>Math.tan(x*Math.PI/180)};
+ function expr(){let v=term();while(s[i]==='+'||s[i]==='-'){const o=s[i++];const w=term();v=o==='+'?v+w:v-w;}return v;}
+ function term(){let v=unary();while(s[i]==='*'||s[i]==='/'){const o=s[i++];const w=unary();v=o==='*'?v*w:v/w;}return v;}
+ function unary(){if(s[i]==='-'){i++;return -unary();}if(s[i]==='+'){i++;return unary();}return power();}
+ function power(){const b=atom();if(s[i]==='^'){i++;return Math.pow(b,unary());}return b;}
+ function atom(){if(s[i]==='('){i++;const v=expr();if(s[i]!==')')err();i++;return v;}
+  const m=/^(\d+\.?\d*|\.\d+)(e[+-]?\d+)?/.exec(s.slice(i));if(m){i+=m[0].length;return parseFloat(m[0]);}
+  const f=/^(sqrt|ln|log|exp|abs|sin|cos|tan)\(/.exec(s.slice(i));if(f){i+=f[1].length;return F[f[1]](atom());}
+  if(s.slice(i,i+2)==='pi'){i+=2;return Math.PI;}err();}
+ const v=expr();if(i!==s.length)err();return v;}
+function parseAnswer(str){const t=String(str||'').trim();if(!t)return NaN;if(/^[-+]?\d*[.,]?\d+(e[-+]?\d+)?$/i.test(t))return parseFloat(t.replace(',','.'));try{return evalExpr(t);}catch(e){return NaN;}}
+
+/* ---------- smart numeric judging with unit-mistake detection ---------- */
+function judgeSmart(v,a,o){o=o||{};const L=isLearner(),exact=(o.tol===0&&!o.abs&&!o.logtol);
+ let tol=Math.max((o.tol==null?0.03:o.tol)*Math.abs(a),o.abs||0);if(L&&!exact)tol=Math.max(tol,0.05*Math.abs(a),(o.abs||0)*1.5);
+ let ok;if(o.logtol){const lt=L?Math.max(o.logtol,0.05):o.logtol;ok=v*a>0&&Math.abs(Math.log10(v/a))<=lt;}else ok=Math.abs(v-a)<=tol+1e-12;
+ if(ok)return{ok:true,msg:''};const m=mistakeMsg(v,a,o.unit,tol);return{ok:false,msg:m.msg,unit:m.unit};}
+function mistakeMsg(v,a,unit,tol){const u=String(unit||'').replace(/<[^>]+>/g,'');if(!a||!isFinite(v))return{msg:'Not quite.'};const r=v/a;const near=(f,e)=>Math.abs(r/f-1)<=(e||0.06);
+ const U=(msg)=>({msg:'🔎 <b>Unit check:</b> '+msg,unit:true});
+ if(near(-1))return{msg:'Check the sign! The size is right but the sign is flipped (tension +, compression −).'};
+ if(/MPa/.test(u)){if(near(1e6))return U('your value is 1,000,000× too big – it looks like <b>Pa</b> (N/m²). 1 MPa = 10⁶ Pa = 1 N/mm².');
+  if(near(1e-6))return U('your value is 1,000,000× too small – did you mix <b>m² and mm²</b>? (1 m² = 10⁶ mm²). With N and mm you get MPa directly.');
+  if(near(1e3))return U('1000× too big – <b>kPa instead of MPa</b>, or a length in mm where m was needed (N·mm vs N·m)?');
+  if(near(1e-3))return U('1000× too small – did you use <b>kN instead of N</b> (1 kN = 1000 N), or GPa / m instead of mm?');}
+ if(/^mm/.test(u)){if(near(1e-3))return U('looks like <b>metres</b> – the answer is asked in mm (1 m = 1000 mm).');if(near(0.1))return U('looks like <b>cm</b> – the answer is asked in mm (1 cm = 10 mm).');if(near(1e3))return U('1000× too big – µm instead of mm, or a stress in Pa somewhere?');}
+ if(/kN/.test(u)){if(near(1e3))return U('looks like <b>N</b> – the answer is asked in kN (divide by 1000).');if(near(1/9.81,0.03)||near(1e3/9.81,0.03))return U('looks like a <b>mass</b>. Force = mass × g (9.81 m/s²).');}
+ if(u==='N'){if(near(1/9.81,0.03))return U('that is the <b>mass in kg</b>. Weight force F = m·g = m × 9.81 m/s² (in N).');if(near(1e-3))return U('looks like <b>kN</b> – the answer is asked in N (× 1000).');}
+ if(/N·mm/.test(u)&&near(1e-3))return U('looks like <b>N·m</b> – the answer is asked in N·mm (× 1000).');
+ if(/N·m$/.test(u)&&near(1e3))return U('looks like <b>N·mm</b> – the answer is asked in N·m (÷ 1000).');
+ if(u==='%'){if(near(0.01))return U('you entered a <b>fraction</b> – multiply by 100 to get %.');}
+ else if(!u&&near(100))return U('that looks like a <b>percentage</b> – enter it as a plain ratio (e.g. 0.25, not 25).');
+ if(near(1e3)||near(1e-3))return U('off by a factor of 1000 – check unit prefixes (k, M) and mm vs m.');
+ if(near(1e6)||near(1e-6))return U('off by 10⁶ – check mm² vs m² or Pa vs MPa.');
+ if(near(9.81,0.03)||near(1/9.81,0.03))return U('off by g = 9.81 – mixing up mass (kg) and force (N)? F = m·g.');
+ if(near(2,0.04)||near(0.5,0.04))return{msg:'Off by exactly a factor of 2 – diameter vs radius? one side vs both? amplitude vs range?'};
+ if(near(4,0.04)||near(0.25,0.04))return{msg:'Off by a factor of 4 – did you use r instead of d in A = πd²/4 (or the other way round)?'};
+ if(near(100,0.03)||near(0.01,0.03))return{msg:'Off by 100 – percent vs fraction?'};
+ if(near(10,0.03)||near(0.1,0.03))return{msg:'Off by a factor of 10 – a decimal slip or cm vs mm?'};
+ if(Math.abs(v-a)<=3*tol)return{msg:'Very close! Just outside the tolerance – check your rounding of intermediate values.'};
+ return{msg:'Not quite – your value is '+(v>a?'too high':'too low')+'.'};}
+
+/* multiple-choice rescue values */
+function mcOptions(a,dec){const fs=shuffle([0.5,2,0.7,1.4,4,0.25,10,0.1]).slice(0,3);const opts=[a,...fs.map(f=>a*f)];const d=dec==null?3:dec;
+ const lab=x=>{const s=fmt(x,Math.abs(x)>=100?Math.max(0,Math.min(d,1)):Math.max(d,2));return s;};
+ const seen=new Set();return shuffle(opts.map((x,k)=>({v:x,ok:k===0,t:lab(x)})).filter(o=>{if(seen.has(o.t))return false;seen.add(o.t);return true;}));}
+
+/* ---------- calculator ---------- */
+let CALC_TARGET=null;
+function calcInit(){if($('#calc'))return;const c=el('div',{id:'calc'},`<div class="row" style="justify-content:space-between;margin-bottom:6px"><b>🧮 Calculator</b><button class="btn sm" id="calcX">✕</button></div>
+ <input id="calcIn" placeholder="e.g. 5000/(pi*10^2/4)" autocomplete="off"><div class="res" id="calcRes"></div>
+ <div class="keys">${['7','8','9','/','(','4','5','6','*',')','1','2','3','-','^','0','.','pi','+','sqrt(','ln(','log(','sin(','cos(','⌫'].map(k=>`<button class="btn sm" data-k="${k}">${k}</button>`).join('')}</div>
+ <div class="row" style="margin-top:8px"><button class="btn sm" id="calcC">Clear</button><button class="btn sm pri" id="calcUse">Use result ↵</button></div>
+ <div class="small mut" style="margin-top:6px">sin/cos/tan use degrees · log = log₁₀ · ln = natural log · 2e5 = 2·10⁵</div>`);document.body.appendChild(c);
+ const inp=$('#calcIn'),res=$('#calcRes');const upd=()=>{const v=parseAnswer(inp.value);res.textContent=inp.value?(isFinite(v)?'= '+(+v.toPrecision(8)):'…'):'';};
+ inp.addEventListener('input',upd);c.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{const k=b.dataset.k;if(k==='⌫')inp.value=inp.value.slice(0,-1);else inp.value+=k;upd();inp.focus();});
+ $('#calcX').onclick=()=>c.style.display='none';$('#calcC').onclick=()=>{inp.value='';upd();};
+ $('#calcUse').onclick=()=>{const v=parseAnswer(inp.value);if(isFinite(v)&&CALC_TARGET&&document.body.contains(CALC_TARGET)&&!CALC_TARGET.disabled){CALC_TARGET.value=String(+v.toPrecision(6));CALC_TARGET.focus();toast('Copied into the answer box');}else toast(isFinite(v)?'Result: '+(+v.toPrecision(6)):'Cannot evaluate');};}
+function calcOpen(target){calcInit();if(target)CALC_TARGET=target;$('#calc').style.display='block';$('#calcIn').focus();}
+
+/* ---------- mastery & spaced repetition ---------- */
+const SR_INT=[0,10*60e3,24*3600e3,3*24*3600e3,7*24*3600e3,21*24*3600e3];
+function skillState(id){if(!STORE.skills[id])STORE.skills[id]={m:0,n:0,box:0,due:0,last:0};return STORE.skills[id];}
+function masteryName(m){return m>=90?'Mastered 🏆':m>=70?'Proficient':m>=40?'Practising':m>0?'Learning':'New';}
+function masteryCol(m){return m>=90?'#ffd54f':m>=70?'#66bb6a':m>=40?'#4fc3f7':m>0?'#ffb74d':'#3a4560';}
+function addMastery(id,q){if(!id||typeof SKILLS==='undefined')return;const ids=Array.isArray(id)?id:[id];ids.forEach(k=>{if(!SKILLS[k])return;const s=skillState(k);const before=masteryName(s.m);
+ const target=100*clamp(q,0,1);s.m=Math.round(clamp(s.m+(target>=s.m?0.3:0.15)*(target-s.m),0,100));s.n++;s.last=Date.now();
+ s.box=q>=0.8?Math.min(5,s.box+1):q>=0.4?s.box:Math.max(0,s.box-1);s.due=Date.now()+SR_INT[s.box];
+ const after=masteryName(s.m);if(after!==before&&s.m>=40){toast(`🎉 Skill up! ${SKILLS[k].icon} ${SKILLS[k].name} → ${after}`);if(s.m>=70)celebrate();}});save();}
+function celebrate(){const p=el('div',{class:'party'});for(let i=0;i<26;i++){const e=el('i',{style:`left:${Math.random()*100}%;animation-delay:${Math.random()*0.6}s`},pick(['🎉','⭐','✨','🔧','📐','🏆']));p.appendChild(e);}document.body.appendChild(p);setTimeout(()=>p.remove(),2600);}
+
+/* ---------- hint ladder ---------- */
+// tiers: array of 3 functions returning html (they may also act on the UI, e.g. strike options)
+function hintLadder(parent,tiers,onUse){const box=el('div',{class:'hints'});parent.appendChild(box);let used=0;
+ if(isExpert()){box.appendChild(el('div',{class:'small mut'},'🔥 Expert mode – no hints.'));return{used:()=>0,box};}
+ const cost=MODE()==='engineer'?[' ',' (−10 %)',' (−20 %)']:['','',''];
+ const lbl=['💡 Hint 1/3: a nudge','💡 Hint 2/3: formula & why','💡 Hint 3/3: worked substitution'];
+ const b=el('button',{class:'btn sm hintbtn'},lbl[0]+cost[0]);box.appendChild(b);
+ b.onclick=()=>{if(used>=tiers.length)return;const h=tiers[used]();used++;box.insertBefore(el('div',{class:'hint'},`<b>Hint ${used}:</b> ${h}`),b);if(onUse)onUse(used);
+  if(used>=tiers.length)b.remove();else b.textContent=lbl[used]+cost[used];};
+ return{used:()=>used,box,disable(){b.remove();}};}
+function hintFactor(used){if(MODE()!=='engineer')return 1;return 1-0.1*Math.max(0,used-1);}
+function maskAnswer(html,a,dec){if(!html)return '';const ds=[dec,0,1,2,3,4].filter(x=>x!=null);for(const d of ds){const s=fmt(a,d);if(s.length>=2&&html.includes(s)){return html.split(s).join('<b class="blank">?</b>');}}return html;}
+function mentorHTML(say,name){return `<div class="mentor"><div class="av">🦉</div><div><div class="name">${name||'Ada · your mentor'}</div><div class="say">${say}</div></div></div>`;}
+
+/* ---------- glossary tooltips ---------- */
+const TERMS=[
+ ['von Mises','An "equivalent stress": it combines several stresses (pull, push, shear) into one number you can compare with the yield strength of a ductile metal. σ<sub>vM</sub> = √(σ² + 3τ²) for one normal and one shear stress.'],
+ ['Tresca','A yield criterion based on the largest shear stress. Slightly more conservative than von Mises.'],
+ ['Kt','Stress concentration factor: how many times higher the peak stress at a hole, notch or corner is than the average ("nominal") stress. σ<sub>max</sub> = K<sub>t</sub>·σ<sub>nom</sub>.'],
+ ['Kf','Fatigue notch factor: the "effective" Kt for fatigue, a bit lower than Kt for small, sharp notches.'],
+ ['stress concentration','A local rise in stress at holes, notches, sharp corners or cracks – the force "crowds" around the obstacle.'],
+ ['endurance limit','For steels: the stress amplitude below which a part can survive (practically) unlimited load cycles. Symbol S<sub>e</sub>.'],
+ ['fatigue','Failure caused by many repeated load cycles, at stresses below the static strength. Think of bending a paperclip back and forth.'],
+ ['Goodman','A straight-line rule that combines alternating and mean stress for fatigue: σ<sub>a</sub>/S<sub>e</sub> + σ<sub>m</sub>/S<sub>ut</sub> = 1/n.'],
+ ['S–N curve','Stress amplitude (S) versus number of cycles to failure (N), usually on log scales. Lower stress → longer life.'],
+ ['B10','The time (or number of cycles) by which 10 % of a population has failed. A common reliability target for bearings and products.'],
+ ['B-basis','A conservative "design allowable": a value that 90 % of the population exceeds, with 95 % confidence.'],
+ ['Weibull','A statistical distribution for lifetimes: F(t) = 1 − exp[−(t/η)<sup>β</sup>]. Its shape β tells you HOW things fail.'],
+ ['β','Weibull shape parameter (beta): β < 1 early failures, β ≈ 1 random failures, β > 1 wear-out.'],
+ ['η','Weibull characteristic life (eta): the time by which 63.2 % have failed.'],
+ ['suspension','A unit that has NOT failed yet when the data were collected ("censored" data). It still carries information: it survived at least that long.'],
+ ['mesh','The pattern of small elements an FE model is divided into. Finer mesh → more detail, but more computing time.'],
+ ['element','A small piece of an FE model (like a brick in a wall). Elements are connected at nodes.'],
+ ['node','A point where FE elements connect. The computer solves for the displacement of every node.'],
+ ['boundary condition','How an FE model is held (supports) and loaded. Wrong boundary conditions = wrong answer, no matter how fine the mesh.'],
+ ['singularity','A point (e.g. a perfectly sharp inner corner) where the computed stress grows without limit as the mesh is refined. The number is not physical.'],
+ ['convergence','The FE result stops changing (much) when the mesh is refined further – then you can trust the number.'],
+ ['FEA','Finite element analysis: a computer method that splits a part into many small elements to compute stresses and deflections.'],
+ ['safety factor','Strength divided by the actual stress (n = S/σ). n = 2 means the part could carry twice the load before failing.'],
+ ['yield strength','The stress at which a metal starts to deform permanently (it does not spring back). Symbol S<sub>y</sub>.'],
+ ['tensile strength','The highest stress a material can carry in a tensile test before it breaks. Symbol S<sub>ut</sub> or R<sub>m</sub>.'],
+ ['MPa','Megapascal: 1 MPa = 1 N/mm² = 10⁶ Pa. The everyday unit for stresses in engineering.'],
+ ['bending moment','Force × lever arm (N·mm). It is what makes a beam bend; the stress is σ = M/W.'],
+ ['section modulus','W – how well a cross-section resists bending stress. For a rectangle W = b·h²/6 (height counts twice!).'],
+ ['moment of inertia','I – how stiff a cross-section is in bending. For a rectangle I = b·h³/12 (height counts three times!).'],
+ ['Young\'s modulus','E – the stiffness of a material: stress per unit strain. Steel ≈ 210 000 MPa, aluminium ≈ 70 000 MPa.'],
+ ['strain','Relative stretch: change in length ÷ original length (no unit). ε = σ/E in the elastic range.'],
+ ['preload','The tension built into a bolt when you tighten it. It clamps the joint and protects the bolt from fatigue.'],
+ ['Charpy','A pendulum impact test on a notched bar. The absorbed energy (J) shows how tough (not brittle) a steel is at a given temperature.'],
+ ['Paris law','Crack growth per cycle: da/dN = C·(ΔK)<sup>m</sup>. Bigger stress range or longer crack → faster growth.'],
+ ['fracture toughness','K<sub>c</sub> – the resistance of a material to an existing crack. When K = Yσ√(πa) reaches K<sub>c</sub>, the crack runs.'],
+ ['hoop stress','The "around" stress in the wall of a pressurised pipe or cylinder: σ = pR/t for thin walls.'],
+ ['FMEA','Failure Mode and Effects Analysis: list what can go wrong, rate Severity, Occurrence and Detection (1–10), and act on the worst first.'],
+ ['RPN','Risk priority number in FMEA: S × O × D. Always look at high Severity too, not only the RPN.'],
+ ['Pareto','The 80/20 idea: a few causes produce most of the problems. Sort categories by count and attack the biggest first.'],
+ ['standard deviation','A measure of scatter: how far values typically are from the mean. Small = consistent, large = unpredictable.'],
+ ['reliability','The probability that a part survives (does not fail) for a given time under given conditions. R = 1 − F.'],
+ ['interference','Stress–strength interference: failures happen where the "load" and "strength" distributions overlap.'],
+ ['median rank','An estimate of the fraction failed for the i-th failure in a sample: F ≈ (i − 0.3)/(n + 0.4).'],
+ ['Lamé','Exact formulas for stresses in thick-walled cylinders; the hoop stress is highest at the inner surface.'],
+ ['joint constant','C = k<sub>b</sub>/(k<sub>b</sub> + k<sub>m</sub>): the share of an external load change that the bolt "feels" while the joint stays clamped.']];
+[['suspensions','suspension'],['elements','element'],['nodes','node'],['boundary conditions','boundary condition'],['singularities','singularity'],['stress concentrations','stress concentration'],['safety factors','safety factor']].forEach(([a,b])=>{const d=TERMS.find(x=>x[0]===b);if(d)TERMS.push([a,d[1]]);});
+const TERM_MAP={};TERMS.forEach(([t,d])=>TERM_MAP[t.toLowerCase()]=d);
+const TERM_RE=new RegExp('(^|[^\\wα-ω])('+TERMS.map(([t])=>t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).sort((a,b)=>b.length-a.length).join('|')+')(?=$|[^\\wα-ω])','i');
+function annotate(root){if(!root||!root.querySelectorAll)return;const used=new Set([...root.querySelectorAll('.term')].map(x=>x.dataset.term));
+ const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(n){const p=n.parentElement;if(!p||p.closest('button,input,textarea,select,option,canvas,script,style,.term,h1,h2,h3,#tip,#calc,summary,.tprog,header,.pnode,.casecard,.lvl,.mcrow'))return NodeFilter.FILTER_REJECT;return TERM_RE.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;}});
+ const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+ nodes.forEach(n=>{const m=TERM_RE.exec(n.nodeValue);if(!m)return;const term=m[2],key=term.toLowerCase();if(used.has(key))return;used.add(key);
+  const start=m.index+m[1].length;const after=n.splitText(start);after.nodeValue.length>term.length&&after.splitText(term.length);
+  const sp=document.createElement('span');sp.className='term';sp.dataset.term=key;sp.tabIndex=0;after.parentNode.replaceChild(sp,after);sp.textContent=term;});}
+function tipInit(){if($('#tip'))return;const t=el('div',{id:'tip'});document.body.appendChild(t);
+ const show=(sp)=>{const d=TERM_MAP[sp.dataset.term];if(!d)return;t.innerHTML=`<b>${sp.textContent}</b> – ${d}`;t.style.display='block';const r=sp.getBoundingClientRect();
+  let x=Math.min(window.innerWidth-345,Math.max(8,r.left));let y=r.bottom+6;if(y+120>window.innerHeight)y=Math.max(8,r.top-t.offsetHeight-6);t.style.left=x+'px';t.style.top=y+'px';};
+ document.addEventListener('mouseover',e=>{const sp=e.target.closest&&e.target.closest('.term');if(sp)show(sp);});
+ document.addEventListener('mouseout',e=>{if(e.target.closest&&e.target.closest('.term'))t.style.display='none';});
+ document.addEventListener('click',e=>{const sp=e.target.closest&&e.target.closest('.term');if(sp)show(sp);else t.style.display='none';},true);
+ document.addEventListener('focusin',e=>{if(e.target.classList&&e.target.classList.contains('term'))show(e.target);});
+ let pending=false;const obs=new MutationObserver(()=>{if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;obs.disconnect();try{annotate($('#app'));annotate($('#modalRoot'));}finally{watch();}});});
+ const watch=()=>{obs.observe($('#app'),{childList:true,subtree:true});obs.observe($('#modalRoot'),{childList:true,subtree:true});};watch();}
+/* ===================== SKILLS, LESSONS & PRACTICE QUESTIONS ===================== */
+const SKILLS={};const SKILL_ORDER=[];
+function defSkill(o){SKILLS[o.id]=o;SKILL_ORDER.push(o.id);}
+const g9=9.81;
+const ch=(q,opts,hint)=>({type:'choice',q,opts,hint});
+
+defSkill({id:'stress',icon:'🧱',name:'Force, stress & units',short:'σ = F/A, N and mm → MPa',levels:['w1l1'],
+ plain:'<b>Force</b> is how hard something pulls or pushes (newtons, N). <b>Stress</b> is how concentrated that force is inside the material: the force divided by the cross-section area that carries it, <b>σ = F/A</b>. Engineers usually work in N and mm, so stress comes out in N/mm², which is the same as <b>MPa</b> (megapascal). A weight of <i>m</i> kg pulls with a force F = m·g = m × 9.81 N.',
+ analogy:'Walk on deep snow in boots and you sink; on skis you don\'t. Same body weight (force), but the skis spread it over a much bigger area, so the "stress" on the snow is lower. A thin rod is the boot, a thick rod is the ski.',
+ example:'A Ø10 mm steel rod holds a 50 kg bag. Force F = 50 × 9.81 = 490.5 N. Area A = π·10²/4 = 78.5 mm². Stress σ = 490.5 / 78.5 = <b>6.2 MPa</b>.',
+ formula:'σ = F / A  · F = m·g · A<sub>round</sub> = π·d²/4 · 1 N/mm² = 1 MPa',why:'The material does not care about the total force – only about how much force each square millimetre has to carry.',
+ check:{q:'A bar with a cross-section of 100 mm² carries a force of 2000 N. What is the stress?',opts:[{t:'20 MPa',ok:true,why:'σ = 2000 N / 100 mm² = 20 N/mm² = 20 MPa.'},{t:'200 000 MPa',why:'That multiplies instead of divides.'},{t:'0.05 MPa',why:'That is A/F – upside down.'}]},
+ gens:[()=>{const b=rint(2,8)*5,h=rint(2,6)*5,F=rint(2,30)*500;return numTask(`A flat steel bar ${b} mm × ${h} mm is pulled with <b>F = ${F} N</b>. What is the tensile stress?`,F/(b*h),{unit:'MPa',tol:0.02,dec:1,sk:'stress',hint:'Area of a rectangle = width × thickness (in mm²). Then divide the force (N) by it.',explain:`A = ${b}·${h} = ${b*h} mm² → σ = ${F}/${b*h} = ${fmt(F/(b*h),1)} MPa.`});},
+  ()=>{const d=pick([6,8,10,12,16,20]),F=rint(2,20);const A=Math.PI*d*d/4;return numTask(`A round rod Ø${d} mm carries <b>${F} kN</b>. Stress in MPa?`,F*1000/A,{unit:'MPa',tol:0.02,dec:1,sk:'stress',hint:'Convert kN to N first (× 1000). Round area A = π·d²/4.',explain:`A = π·${d}²/4 = ${fmt(A,1)} mm²; F = ${F*1000} N → σ = ${fmt(F*1000/A,1)} MPa.`});},
+  ()=>{const m=rint(4,40)*5;return numTask(`A crate of <b>${m} kg</b> hangs on a hook. What force (weight) does it pull with? (g = 9.81 m/s²)`,m*g9,{unit:'N',tol:0.01,dec:0,sk:'stress',hint:'Weight force F = m · g.',explain:`F = ${m}·9.81 = ${fmt(m*g9,0)} N.`});}]});
+
+defSkill({id:'sf',icon:'🛡',name:'Safety factor',short:'n = strength / stress',levels:['w1l3'],
+ plain:'A <b>safety factor</b> compares what a part <i>can</i> carry with what it <i>does</i> carry: <b>n = strength / stress</b>. n = 1 means it is exactly at its limit; n = 2 means it could carry twice the load. We need n &gt; 1 because loads, materials and calculations all have uncertainty. Rules (codes, company standards) say which n is required – e.g. higher for loads hanging over people.',
+ analogy:'A lift says "max 8 persons" although the cables could hold far more. The difference is the safety margin for the day somebody brings a piano.',
+ example:'Steel with yield strength S<sub>y</sub> = 235 MPa, stress σ = 94 MPa → n = 235/94 = <b>2.5</b>. If the rule demands n ≥ 3, the part is not good enough – make it bigger.',
+ formula:'n = S / σ  (S = yield strength S<sub>y</sub> for "no permanent bending", S<sub>ut</sub> for "no breaking") · required area A = n·F/S',why:'A margin covers what we don\'t know exactly: real loads, weak spots in the material, wear and our own simplifications.',
+ check:{q:'Strength 300 MPa, stress 100 MPa. Safety factor?',opts:[{t:'3',ok:true,why:'n = 300/100 = 3.'},{t:'0.33',why:'Upside down: strength goes on top.'},{t:'200',why:'Subtracting is not a factor – divide.'}]},
+ gens:[()=>{const Sy=pick([235,275,355,460]),s=rint(5,30)*5;return numTask(`Yield strength S<sub>y</sub> = ${Sy} MPa, working stress σ = ${s} MPa. Safety factor against yielding?`,Sy/s,{tol:0.02,dec:2,sk:'sf',hint:'Divide strength by stress.',explain:`n = ${Sy}/${s} = ${fmt(Sy/s,2)}.`});},
+  ()=>{const Sy=pick([235,355]),F=rint(5,40)*1000,n=pick([2,3,4]);return numTask(`A tie rod (S<sub>y</sub> = ${Sy} MPa) must carry F = ${F/1000} kN with a safety factor of ${n}. Minimum cross-section area?`,n*F/Sy,{unit:'mm²',tol:0.02,dec:0,sk:'sf',hint:'Allowed stress = S<sub>y</sub>/n. Then A = F / allowed stress.',explain:`σ<sub>allow</sub> = ${Sy}/${n} = ${fmt(Sy/n,1)} MPa → A = ${F}/${fmt(Sy/n,1)} = ${fmt(n*F/Sy,0)} mm².`});},
+  ()=>ch('A calculation gives a safety factor n = 0.8. What does it mean?',[{t:'The stress is higher than the strength – the part is expected to fail',ok:true,why:'n < 1: demand exceeds capacity.'},{t:'The part is 80 % safe – acceptable',why:'n < 1 is never acceptable: the stress already exceeds the strength.'},{t:'It is fine because real materials are stronger',why:'Relying on luck is not engineering.'}])]});
+
+defSkill({id:'mat',icon:'🧪',name:'Material behaviour',short:'stiffness E, yield, toughness, brittle vs ductile',levels:['w1l1'],
+ plain:'Pull a steel bar and measure: at first it stretches a tiny bit and springs back (<b>elastic</b>, strain ε = σ/E, where <b>E</b> is Young\'s modulus = stiffness). Above the <b>yield strength</b> it stays bent. At the <b>tensile strength</b> it breaks. <b>Stiffness</b> (how much it deflects) and <b>strength</b> (when it fails) are different things. <b>Toughness</b> is the ability to absorb energy with a crack or notch present – some steels become <b>brittle</b> when cold.',
+ analogy:'A rubber band is not stiff but stretchy; a glass rod is stiff but brittle; a paperclip bends (yields) before it breaks. Chocolate snaps cleanly when cold from the fridge but bends when warm – steel can do the same thing with temperature.',
+ example:'Steel E = 210 000 MPa, stress 105 MPa → strain ε = 105/210 000 = 0.0005. A 2 m (2000 mm) bar stretches 0.0005 × 2000 = <b>1 mm</b>.',
+ formula:'ε = σ / E · ΔL = ε·L · E<sub>steel</sub> ≈ 210 000 MPa, E<sub>alu</sub> ≈ 70 000 MPa',why:'Stiffness decides deflection and sag, strength decides failure, toughness decides whether a crack is dangerous.',
+ check:{q:'A shelf sags a lot but does not break. Which property is too low?',opts:[{t:'Stiffness (E·I)',ok:true,why:'Sag = deflection = a stiffness problem.'},{t:'Tensile strength',why:'Strength is about breaking, not sagging.'},{t:'Toughness',why:'Toughness matters for cracks and impacts.'}]},
+ gens:[()=>{const E=pick([210000,70000]),s=rint(4,30)*5,L=rint(5,30)*100;return numTask(`A bar (E = ${E} MPa) of length ${L} mm carries σ = ${s} MPa. How much does it stretch?`,s/E*L,{unit:'mm',tol:0.02,dec:3,sk:'mat',hint:'Strain first: ε = σ/E (no unit). Then ΔL = ε·L.',explain:`ε = ${s}/${E} = ${(s/E).toFixed(6)} → ΔL = ${fmt(s/E*L,3)} mm.`});},
+  ()=>ch('Charpy impact energy of a steel drops from 120 J at +20 °C to 6 J at −30 °C. What does that mean?',[{t:'The steel becomes brittle when cold – cracks can run without warning',ok:true,why:'Low impact energy = low toughness = brittle behaviour.'},{t:'The steel gets weaker in tension by 95 %',why:'Yield strength barely changes; toughness collapses.'},{t:'Nothing – Charpy is only a quality test',why:'It is exactly the warning sign for low-temperature use.'}]),
+  ()=>{const E=pick([210000,70000]),eps=rint(2,9)/10000;return numTask(`A strain gauge reads ε = ${eps.toFixed(4)} on a part with E = ${E} MPa. Stress?`,E*eps,{unit:'MPa',tol:0.02,dec:1,sk:'mat',hint:'Hooke\'s law: σ = E·ε.',explain:`σ = ${E}·${eps.toFixed(4)} = ${fmt(E*eps,1)} MPa.`});}]});
+
+defSkill({id:'bend',icon:'📏',name:'Bending',short:'M = F·L, σ = M/W, W = bh²/6',levels:['w1l4'],
+ plain:'A load on a beam creates a <b>bending moment</b> M (force × lever arm, N·mm). The top and bottom surfaces carry the highest stress: <b>σ = M/W</b>, where W is the <b>section modulus</b>. For a rectangle b wide and h high, W = b·h²/6 – the height counts squared. A cantilever with end load: M = F·L at the wall. A simply supported beam with a centre load: M = F·L/4; with an evenly spread load w (N/mm): M = w·L²/8.',
+ analogy:'A plastic ruler lying flat bends easily; turn it on its edge and it is very hard to bend. Same material, same area – the height in the bending direction makes the difference.',
+ example:'Cantilever, F = 200 N at L = 500 mm → M = 100 000 N·mm. Section 20 × 10 mm (h = 10): W = 20·10²/6 = 333 mm³ → σ = 100 000/333 = <b>300 MPa</b>. On edge (h = 20): W = 10·20²/6 = 667 mm³ → 150 MPa.',
+ formula:'σ = M / W · W<sub>rect</sub> = b·h²/6 · M<sub>cantilever</sub> = F·L · M<sub>centre load</sub> = F·L/4 · M<sub>spread load</sub> = w·L²/8',why:'Bending puts the outer fibres in tension and compression – the further from the middle, the higher the stress.',
+ check:{q:'You double the height h of a rectangular beam (same load). The bending stress becomes…',opts:[{t:'¼ of before',ok:true,why:'W ∝ h², so 2× height → 4× W → ¼ stress.'},{t:'½ of before',why:'That would be true for doubling the width b.'},{t:'the same',why:'Height matters a lot in bending.'}]},
+ gens:[()=>{const F=rint(2,20)*50,L=rint(2,10)*100,b=rint(2,6)*10,h=rint(2,6)*10;const M=F*L,W=b*h*h/6;return numTask(`Cantilever: F = ${F} N at L = ${L} mm, rectangle b = ${b} mm, h = ${h} mm. Bending stress at the wall?`,M/W,{unit:'MPa',tol:0.02,dec:1,sk:'bend',hint:'M = F·L (N·mm); W = b·h²/6 (mm³); σ = M/W.',explain:`M = ${F}·${L} = ${M} N·mm; W = ${b}·${h}²/6 = ${fmt(W,0)} mm³ → σ = ${fmt(M/W,1)} MPa.`});},
+  ()=>{const F=rint(1,10)*1000,L=rint(5,20)*100;return numTask(`Simply supported beam, span ${L} mm, F = ${F} N in the middle. Maximum bending moment?`,F*L/4,{unit:'N·mm',tol:0.02,dec:0,sk:'bend',hint:'Centre load on a simply supported beam: M = F·L/4.',explain:`M = ${F}·${L}/4 = ${fmt(F*L/4,0)} N·mm.`});},
+  ()=>{const b=rint(2,10)*10,h=rint(2,10)*5;return numTask(`Section modulus W of a rectangle b = ${b} mm, h = ${h} mm (bending about the wide side)?`,b*h*h/6,{unit:'mm³',tol:0.02,dec:0,sk:'bend',hint:'W = b·h²/6.',explain:`W = ${b}·${h}²/6 = ${fmt(b*h*h/6,0)} mm³.`});}]});
+
+defSkill({id:'crit',icon:'⚖',name:'Combined stress (von Mises)',short:'σ<sub>vM</sub> = √(σ² + 3τ²)',levels:['w1l2','w1l3'],
+ plain:'Real parts often see several stresses at once – e.g. bending (normal stress σ) and twisting or shear (shear stress τ). A <b>failure criterion</b> turns them into one <b>equivalent stress</b> to compare with the yield strength. For ductile metals we use <b>von Mises</b>: with one normal and one shear stress, σ<sub>vM</sub> = √(σ² + 3τ²).',
+ analogy:'Like a decathlon total score: ten different events combined into one number that can be compared with a record.',
+ example:'σ = 120 MPa, τ = 50 MPa → σ<sub>vM</sub> = √(120² + 3·50²) = √(14 400 + 7 500) = <b>148 MPa</b>. With S<sub>y</sub> = 355 MPa: n = 355/148 = 2.4.',
+ formula:'σ<sub>vM</sub> = √(σ² + 3τ²) (one normal + one shear stress) · general plane stress: √(σ₁² − σ₁σ₂ + σ₂²) · n = S<sub>y</sub>/σ<sub>vM</sub>',why:'Shear stresses also cause yielding; von Mises weights them by √3 compared with normal stress.',
+ check:{q:'Pure tension σ = 100 MPa, no shear. What is σ<sub>vM</sub>?',opts:[{t:'100 MPa',ok:true,why:'With τ = 0 the equivalent stress equals σ.'},{t:'173 MPa',why:'That would be √3·100 – only for shear.'},{t:'50 MPa',why:'No halving here.'}]},
+ gens:[()=>{const s=rint(4,30)*5,t=rint(2,15)*5;const v=Math.sqrt(s*s+3*t*t);return numTask(`Normal stress σ = ${s} MPa and shear stress τ = ${t} MPa act together. von Mises equivalent stress?`,v,{unit:'MPa',tol:0.02,dec:1,sk:'crit',hint:'σ<sub>vM</sub> = √(σ² + 3τ²).',explain:`√(${s}² + 3·${t}²) = ${fmt(v,1)} MPa.`});},
+  ()=>{const s=rint(6,30)*5,t=rint(2,12)*5,Sy=pick([235,355,460]);const v=Math.sqrt(s*s+3*t*t);return numTask(`σ = ${s} MPa, τ = ${t} MPa, S<sub>y</sub> = ${Sy} MPa. Safety factor against yielding (von Mises)?`,Sy/v,{tol:0.02,dec:2,sk:'crit',hint:'First σ<sub>vM</sub> = √(σ² + 3τ²), then n = S<sub>y</sub>/σ<sub>vM</sub>.',explain:`σ<sub>vM</sub> = ${fmt(v,1)} MPa → n = ${fmt(Sy/v,2)}.`});},
+  ()=>ch('Why do we need an "equivalent stress" at all?',[{t:'Because the yield strength comes from a simple tension test, but real parts see several stresses at once',ok:true,why:'The criterion maps a combined state onto the tension test.'},{t:'Because FEA cannot show normal stresses',why:'FEA shows all components; the criterion is about comparing with material data.'},{t:'To make the stress smaller',why:'It is not a trick to reduce stress.'}])]});
+
+defSkill({id:'kt',icon:'🕳',name:'Stress concentration',short:'σ<sub>max</sub> = K<sub>t</sub>·σ<sub>nom</sub>',levels:['w1l5'],
+ plain:'Holes, grooves, keyways and sharp corners disturb the smooth flow of force. Right at the edge the stress is much higher than the average ("nominal") stress: <b>σ<sub>max</sub> = K<sub>t</sub>·σ<sub>nom</sub></b>. K<sub>t</sub> (stress concentration factor) is read from charts: a small round hole in a wide plate gives K<sub>t</sub> ≈ 3; a sharp corner can give 4 or more; a generous radius brings it down towards 1.5.',
+ analogy:'A river flowing around a rock speeds up at its sides. Force "flows" through a part the same way and crowds at the edges of a hole or notch.',
+ example:'Plate with a small hole, nominal stress 50 MPa, K<sub>t</sub> = 3 → peak stress at the hole edge = <b>150 MPa</b>. That peak is where fatigue cracks start.',
+ formula:'σ<sub>max</sub> = K<sub>t</sub> · σ<sub>nom</sub> · bigger radius → smaller K<sub>t</sub>',why:'Ductile parts under one static load can yield locally and survive a peak – but under repeated loads the peak starts cracks.',
+ check:{q:'Which inside corner gives the LOWEST K<sub>t</sub>?',opts:[{t:'A generous rounded radius',ok:true,why:'Larger radius = smoother force flow.'},{t:'A sharp 90° corner',why:'Sharp corners give the highest concentration.'},{t:'A small saw cut at the corner',why:'That acts like a crack – very high K<sub>t</sub>.'}]},
+ gens:[()=>{const s=rint(4,20)*5,K=pick([1.8,2.2,2.5,3,3.5]);return numTask(`Nominal stress ${s} MPa, K<sub>t</sub> = ${K}. Peak stress at the notch?`,K*s,{unit:'MPa',tol:0.02,dec:1,sk:'kt',hint:'Multiply the nominal stress by K<sub>t</sub>.',explain:`σ<sub>max</sub> = ${K}·${s} = ${fmt(K*s,1)} MPa.`});},
+  ()=>{const F=rint(5,30)*1000,w=rint(4,10)*10,d=rint(1,3)*5,t=rint(2,4)*5,K=pick([2.3,2.5,2.7]);const sn=F/((w-d)*t);return numTask(`A plate ${w} mm wide, ${t} mm thick with a Ø${d} mm hole carries F = ${F/1000} kN. Use the net section (w − d)·t for the nominal stress and K<sub>t</sub> = ${K}. Peak stress?`,K*sn,{unit:'MPa',tol:0.03,dec:1,sk:'kt',hint:'σ<sub>nom</sub> = F/((w − d)·t), then × K<sub>t</sub>.',explain:`σ<sub>nom</sub> = ${F}/((${w}−${d})·${t}) = ${fmt(sn,1)} MPa → σ<sub>max</sub> = ${fmt(K*sn,1)} MPa.`});},
+  ()=>ch('Fatigue cracks in shafts very often start…',[{t:'at keyways, shoulders and grooves – where K<sub>t</sub> is high',ok:true,why:'Stress raisers are the classic crack origins.'},{t:'in the middle of smooth sections',why:'Smooth sections have the lowest local stress.'},{t:'at the centre line of the shaft',why:'Bending stress is zero on the centre line.'}])]});
+
+defSkill({id:'fat',icon:'🔁',name:'Fatigue',short:'S–N curve, endurance limit, Goodman',levels:['w1l5'],
+ plain:'Loads that go up and down many times can crack a part at stresses far below its static strength – this is <b>fatigue</b>. The <b>S–N curve</b> tells how many cycles N a stress amplitude S survives. Steels have an <b>endurance limit</b> S<sub>e</sub> (roughly 0.4–0.5 × tensile strength for polished samples, lower for real parts): below it they last practically forever. A <b>mean stress</b> makes things worse; the <b>Goodman</b> rule combines both: 1/n = σ<sub>a</sub>/S<sub>e</sub> + σ<sub>m</sub>/S<sub>ut</sub>.',
+ analogy:'Bend a paperclip back and forth: it breaks after a few dozen bends although you never pulled hard. Each cycle adds a tiny bit of damage.',
+ example:'Stress cycles between 50 and 250 MPa: amplitude σ<sub>a</sub> = (250−50)/2 = 100, mean σ<sub>m</sub> = (250+50)/2 = 150 MPa. With S<sub>e</sub> = 250, S<sub>ut</sub> = 600: 1/n = 100/250 + 150/600 = 0.65 → <b>n = 1.54</b>.',
+ formula:'σ<sub>a</sub> = (σ<sub>max</sub> − σ<sub>min</sub>)/2 · σ<sub>m</sub> = (σ<sub>max</sub> + σ<sub>min</sub>)/2 · Goodman: 1/n = σ<sub>a</sub>/S<sub>e</sub> + σ<sub>m</sub>/S<sub>ut</sub>',why:'Each load cycle grows microscopic damage at the most stressed spot; the endurance limit is the level where it stops growing (for steels).',
+ check:{q:'A steel part sees ±80 MPa (no mean stress); its endurance limit is 200 MPa. Will it fail by fatigue?',opts:[{t:'No – the amplitude is well below the endurance limit',ok:true,why:'σ<sub>a</sub> = 80 < S<sub>e</sub> = 200 → n = 2.5.'},{t:'Yes – every cycled part fails eventually',why:'Steels below S<sub>e</sub> practically don\'t.'},{t:'Only if 80 MPa exceeds the yield strength',why:'Fatigue happens below yield.'}]},
+ gens:[()=>{const mn=rint(0,10)*10,mx=mn+rint(4,20)*10;return numTask(`Stress cycles between ${mn} and ${mx} MPa. Stress amplitude σ<sub>a</sub>?`,(mx-mn)/2,{unit:'MPa',tol:0.01,dec:1,sk:'fat',hint:'Amplitude = half the range: (max − min)/2.',explain:`σ<sub>a</sub> = (${mx} − ${mn})/2 = ${(mx-mn)/2} MPa; mean σ<sub>m</sub> = ${(mx+mn)/2} MPa.`});},
+  ()=>{const Sut=rint(10,18)*50,Se=Math.round(Sut*0.4/5)*5,sa=rint(6,20)*5,sm=rint(4,30)*5;const n=1/(sa/Se+sm/Sut);return numTask(`σ<sub>a</sub> = ${sa} MPa, σ<sub>m</sub> = ${sm} MPa, S<sub>e</sub> = ${Se} MPa, S<sub>ut</sub> = ${Sut} MPa. Goodman safety factor?`,n,{tol:0.03,dec:2,sk:'fat',hint:'1/n = σ<sub>a</sub>/S<sub>e</sub> + σ<sub>m</sub>/S<sub>ut</sub> – add the two fractions, then take the reciprocal.',explain:`1/n = ${sa}/${Se} + ${sm}/${Sut} = ${fmt(sa/Se+sm/Sut,3)} → n = ${fmt(n,2)}.`});},
+  ()=>ch('A fracture surface shows curved "beach marks" spreading from one point at a notch, and a small rough zone at the end. What happened?',[{t:'Fatigue: a crack grew cycle by cycle, then the rest broke suddenly',ok:true,why:'Beach marks = progressive crack growth.'},{t:'A single overload',why:'Overloads show no beach marks.'},{t:'Corrosion only',why:'Corrosion may help, but beach marks are the fatigue signature.'}])]});
+
+defSkill({id:'fea',icon:'🔷',name:'FEA basics',short:'elements, nodes, K·u = F',levels:['w2l1','w2l3','w2l5'],
+ plain:'<b>Finite element analysis</b> splits a part into many small <b>elements</b> connected at <b>nodes</b>. Each element behaves like a little spring (a bar has stiffness k = E·A/L). The computer assembles all springs into one big system <b>K·u = F</b>, solves for the node <b>displacements u</b>, and only then computes strains and stresses. Units must be consistent: with N and mm, E must be in MPa (N/mm²).',
+ analogy:'Think of a mattress modelled as hundreds of small springs: push on it, and each spring takes its share. FEA does the same with your part.',
+ example:'Steel bar E = 210 000 MPa, A = 100 mm², L = 1000 mm → k = 210 000·100/1000 = 21 000 N/mm. A force of 2100 N stretches it u = F/k = <b>0.1 mm</b>.',
+ formula:'k = E·A/L · u = F/k · springs in series: u = F/k₁ + F/k₂',why:'Displacements are what FEA solves; stresses are derived from them – so stiffness, units and supports must be right first.',
+ check:{q:'What does an FE solver compute FIRST?',opts:[{t:'The displacements of the nodes',ok:true,why:'K·u = F is solved for u; stresses follow from u.'},{t:'The safety factor',why:'That is your job afterwards.'},{t:'The stresses directly',why:'Stresses are post-processed from displacements.'}]},
+ gens:[()=>{const E=pick([70000,210000]),A=rint(5,40)*10,L=rint(2,10)*100;return numTask(`Bar element: E = ${E} MPa, A = ${A} mm², L = ${L} mm. Stiffness k = EA/L?`,E*A/L,{unit:'N/mm',tol:0.02,dec:0,sk:'fea',hint:'k = E·A/L.',explain:`k = ${E}·${A}/${L} = ${fmt(E*A/L,0)} N/mm.`});},
+  ()=>{const k=rint(2,20)*1000,F=rint(1,10)*500;return numTask(`A spring element with k = ${k} N/mm is loaded with F = ${F} N. Displacement?`,F/k,{unit:'mm',tol:0.02,dec:3,sk:'fea',hint:'u = F/k.',explain:`u = ${F}/${k} = ${fmt(F/k,3)} mm.`});},
+  ()=>ch('Your FE model is in mm and N. Which Young\'s modulus for steel is consistent?',[{t:'210 000',ok:true,why:'N/mm² = MPa.'},{t:'210e9',why:'That is Pa – for a model in metres.'},{t:'210',why:'That is GPa – inconsistent with N and mm.'}])]});
+
+defSkill({id:'mesh',icon:'🕸',name:'Mesh & convergence',short:'refine until results stop changing; spot singularities',levels:['w2l2'],
+ plain:'A coarse <b>mesh</b> (big elements) gives rough answers. Make the elements smaller and the stress changes less and less – the result <b>converges</b>. Rule of thumb: when the change between two refinements is below ~2–5 %, the value is trustworthy. Exception: at a <b>perfectly sharp inner corner</b> the stress keeps rising with every refinement – a <b>singularity</b>. That number is not physical; model the real fillet radius or evaluate away from the corner.',
+ analogy:'Pixels in a photo: more pixels show more detail, until you can no longer see a difference. But if you zoom into a drawn "infinitely sharp" point, it never gets smoother.',
+ example:'Peak stress with 4, 2, 1 mm elements: 210, 228, 232 MPa. Last change = (232−228)/228 = <b>1.8 %</b> → converged. Versus 247, 338, 464 MPa: +37 % each time → singularity.',
+ formula:'change = (σ<sub>fine</sub> − σ<sub>coarse</sub>)/σ<sub>coarse</sub> · converged if change < ~2–5 % · constant growth ratio = singularity',why:'An FE number is only a result once you know it does not depend on the mesh.',
+ check:{q:'At a sharp inner corner the peak stress rises by ~37 % every time you halve the element size. This means…',opts:[{t:'A singularity – the peak value is meaningless',ok:true,why:'Constant growth per refinement is the fingerprint of a singularity.'},{t:'The model is converging nicely',why:'Converging values change less and less.'},{t:'The material is yielding',why:'A linear FE model knows nothing about yielding.'}]},
+ gens:[()=>{const a=rint(180,260),b=a+rint(5,25),c=b+rint(1,8);return numTask(`Peak stresses for three meshes: ${a}, ${b}, ${c} MPa. What is the change (in %) between the last two?`,100*(c-b)/b,{unit:'%',abs:0.2,tol:0,dec:2,sk:'mesh',hint:'(newest − previous)/previous × 100.',explain:`(${c} − ${b})/${b} = ${fmt(100*(c-b)/b,2)} % ${(c-b)/b<0.03?'→ converged.':'→ refine once more.'}`});},
+  ()=>ch('How do you get a meaningful stress at a corner that is perfectly sharp in the FE model?',[{t:'Model the real fillet radius from the drawing and refine there',ok:true,why:'With the real radius the stress converges.'},{t:'Use the finest possible mesh at the sharp corner',why:'At a singularity a finer mesh just gives a higher, still meaningless number.'},{t:'Take the average of all mesh results',why:'Averaging meaningless numbers gives a meaningless number.'}]),
+  ()=>ch('Which mesh result can you trust?',[{t:'One that changes less than ~2–5 % on further refinement',ok:true,why:'That is convergence.'},{t:'The one from the finest mesh, always',why:'Not at singularities, and fine alone is not proof.'},{t:'The one that gives the lowest stress',why:'Wishful thinking.'}])]});
+
+defSkill({id:'bc',icon:'📌',name:'Boundary conditions',short:'supports & loads decide the answer',levels:['w2l4'],
+ plain:'<b>Boundary conditions</b> tell the FE model how the part is held and loaded. If nothing holds the part, it can move as a rigid body and the solver fails. If you hold it <i>too</i> rigidly (e.g. fixing a whole face that can really slide), you create false stresses. A point load on a single node gives an artificial stress peak. Always check: do the reaction forces equal the applied load?',
+ analogy:'A shelf resting on pins and a shelf cast solid into concrete look the same in CAD – but they bend completely differently. The model only knows what you tell it.',
+ example:'A beam fixed at the wall with 500 N at the tip: the wall reaction must be 500 N (and a moment F·L). If your model reports 350 N, a load or support is wrong.',
+ formula:'Σ reactions = Σ applied loads · simply supported beam, load F at distance a from the left: R<sub>right</sub> = F·a/L, R<sub>left</sub> = F − R<sub>right</sub>',why:'Wrong supports or loads give wrong stresses – no matter how fine the mesh.',
+ check:{q:'An FE model has loads but no supports at all. What happens?',opts:[{t:'The solver fails or gives nonsense – the part can move as a rigid body',ok:true,why:'Rigid-body motion makes K singular.'},{t:'It solves normally',why:'Without supports the equilibrium cannot be found.'},{t:'The stresses are just a bit higher',why:'It is not a matter of degree – it cannot be solved.'}]},
+ gens:[()=>{const F=rint(2,20)*100,L=rint(5,20)*100,a=rint(1,4)*L/5;return numTask(`Simply supported beam, span ${L} mm, load F = ${F} N at a = ${a} mm from the left support. Reaction at the RIGHT support?`,F*a/L,{unit:'N',tol:0.02,dec:0,sk:'bc',hint:'Moments about the left support: R<sub>right</sub>·L = F·a.',explain:`R<sub>right</sub> = ${F}·${a}/${L} = ${fmt(F*a/L,0)} N; left = ${fmt(F-F*a/L,0)} N.`});},
+  ()=>ch('Your FE model of a bracket fixes the complete bolted face (all nodes, all directions). Typical consequence?',[{t:'Too stiff: artificial stress peaks at the edge of the fixed face',ok:true,why:'Over-constraint creates stresses that the real joint does not have.'},{t:'No effect – fixed is fixed',why:'The real face can slide and lift a little.'},{t:'The model becomes unstable',why:'Too many constraints don\'t cause rigid-body motion.'}]),
+  ()=>ch('What is the quickest sanity check of loads and supports in any FE run?',[{t:'Compare the sum of reaction forces with the applied load',ok:true,why:'Equilibrium must hold.'},{t:'Look at the colour plot',why:'Colours look plausible even when loads are wrong.'},{t:'Refine the mesh',why:'Mesh refinement does not fix wrong loads.'}])]});
+
+defSkill({id:'stat',icon:'📊',name:'Statistics basics',short:'mean, scatter, why the weakest matters',levels:['w3l4'],
+ plain:'Nominally identical parts are never exactly the same. The <b>mean</b> (average) tells you the typical value, the <b>standard deviation</b> s tells you the scatter. Failures happen in the weak <b>tail</b>, so a product with a high mean but large scatter can be worse than one with a lower mean and small scatter. Also, look at <b>all</b> the data – including the cases where nothing happened.',
+ analogy:'The average height of a class says nothing about whether the shortest child can reach the top shelf. For safety, you care about the shortest one.',
+ example:'Strengths 290, 300, 310 MPa: mean 300, s = 10 MPa. Strengths 260, 300, 340 MPa: same mean, but s = 40 MPa – the second batch contains much weaker parts.',
+ formula:'mean x̄ = Σx/n · s = √(Σ(x − x̄)²/(n − 1)) · fraction = count/total',why:'Engineering decisions must account for scatter, not only averages.',
+ check:{q:'Two batches both average 300 MPa. Batch A has s = 5 MPa, batch B has s = 30 MPa. Which is more likely to contain weak parts?',opts:[{t:'Batch B',ok:true,why:'Larger scatter → more parts far below the mean.'},{t:'Batch A',why:'A is very consistent.'},{t:'Both equally',why:'Same mean, different spread – not equal.'}]},
+ gens:[()=>{const xs=[...Array(5)].map(()=>rint(20,40)*10);return numTask(`Test lives (hours): ${xs.join(', ')}. Mean life?`,mean(xs),{unit:'h',tol:0.01,dec:1,sk:'stat',hint:'Add all values and divide by how many there are.',explain:`(${xs.join(' + ')})/5 = ${fmt(mean(xs),1)} h.`});},
+  ()=>{const n=rint(10,30),k=rint(1,n-2);return numTask(`${k} of ${n} tested parts failed before the service interval. What fraction is that (in %)?`,100*k/n,{unit:'%',abs:0.5,tol:0,dec:1,sk:'stat',hint:'fraction = count / total × 100.',explain:`${k}/${n} = ${fmt(100*k/n,1)} %.`});},
+  ()=>{const m=rint(25,35)*10;const xs=[m-10,m,m+10];return numTask(`Three tests: ${xs.join(', ')} MPa. Sample standard deviation s?`,10,{unit:'MPa',tol:0.02,dec:1,sk:'stat',hint:'Mean is the middle value; deviations are −10, 0, +10. s = √(Σd²/(n − 1)).',explain:`s = √((100 + 0 + 100)/2) = 10 MPa.`});}]});
+
+defSkill({id:'rel',icon:'✅',name:'Reliability',short:'R = 1 − F, interference z, B10',levels:['w3l2','w3l3'],
+ plain:'<b>Reliability</b> R is the probability that a part survives; F = 1 − R is the probability that it has failed. <b>B10</b> is the time at which 10 % of parts have failed. When both the load and the strength scatter, failures happen where the two distributions overlap (<b>interference</b>). The safety index z = (μ<sub>S</sub> − μ<sub>L</sub>)/√(s<sub>S</sub>² + s<sub>L</sub>²) measures how far apart they are; bigger z = fewer failures (z = 3 ≈ 1 in 740, z = 4.27 ≈ 10 ppm).',
+ analogy:'A weather forecast of "90 % no rain" is a reliability of 0.9. Interference: tall people (strength) and low door frames (load) – trouble only for the rare tall person meeting the rare low door.',
+ example:'Strength N(400, 30), load N(250, 20) MPa → z = 150/√(30² + 20²) = 150/36.1 = <b>4.16</b> → about 16 failures per million.',
+ formula:'R = 1 − F · z = (μ<sub>S</sub> − μ<sub>L</sub>)/√(s<sub>S</sub>² + s<sub>L</sub>²) · B10: 10 % failed',why:'Turning scatter into a probability lets you compare designs and costs honestly.',
+ check:{q:'"B10 life = 5000 h" means…',opts:[{t:'10 % of the parts have failed by 5000 h',ok:true,why:'B10 = 10 % failed.'},{t:'Parts last 10 × 5000 h',why:'No.'},{t:'90 % have failed by 5000 h',why:'That would be B90.'}]},
+ gens:[()=>{const mL=rint(20,35)*10,sL=rint(2,6)*5,mS=mL+rint(6,20)*10,sS=rint(2,6)*5;const z=(mS-mL)/Math.hypot(sS,sL);return numTask(`Load N(${mL}, ${sL}) MPa, strength N(${mS}, ${sS}) MPa. Safety index z?`,z,{tol:0.02,dec:2,sk:'rel',hint:'z = (μ<sub>S</sub> − μ<sub>L</sub>)/√(s<sub>S</sub>² + s<sub>L</sub>²).',explain:`z = ${mS-mL}/√(${sS}² + ${sL}²) = ${fmt(z,2)}.`});},
+  ()=>{const F=rint(1,30);return numTask(`${F} % of a product population has failed by 2 years. Reliability at 2 years (as a ratio, e.g. 0.9)?`,1-F/100,{abs:0.005,tol:0,dec:2,sk:'rel',hint:'R = 1 − F, with F as a fraction.',explain:`R = 1 − ${F/100} = ${fmt(1-F/100,2)}.`});},
+  ()=>ch('Two designs: z = 2 and z = 4. Which statement is right?',[{t:'z = 4 has far fewer failures (ppm level) than z = 2 (≈ 2 %)',ok:true,why:'The tail probability falls extremely fast with z.'},{t:'z = 4 is twice as reliable',why:'It is thousands of times fewer failures, not "twice".'},{t:'They are equal if the means are equal',why:'z includes the scatter.'}])]});
+
+defSkill({id:'weib',icon:'📉',name:'Weibull analysis',short:'F(t) = 1 − exp[−(t/η)<sup>β</sup>], β tells how things fail',levels:['w3l1','w3l2'],
+ plain:'The <b>Weibull</b> distribution describes lifetimes: F(t) = 1 − exp[−(t/η)<sup>β</sup>]. <b>η</b> (eta) is the characteristic life: 63.2 % have failed by then. <b>β</b> (beta) is the shape and tells you HOW things fail: β &lt; 1 early failures (defects, assembly), β ≈ 1 random (accidents), β &gt; 1 wear-out (fatigue, wear). Units that have not failed yet (<b>suspensions</b>) must be included in the analysis – they survived at least that long.',
+ analogy:'A "personality" of how products die: babies (early defects), accidents (random) or old age (wear-out). The fix is different for each: better quality control for babies, protection for accidents, better design or maintenance for old age.',
+ example:'β = 2, η = 1000 h. Probability to survive 500 h: R = exp[−(500/1000)²] = exp(−0.25) = <b>0.78</b>. B10 = η·(−ln 0.9)<sup>1/β</sup> = 1000·0.325 = 325 h.',
+ formula:'R(t) = exp[−(t/η)<sup>β</sup>] · F = 1 − R · B10 = η·(−ln 0.9)<sup>1/β</sup>',why:'With β you diagnose the failure type, with η and β you predict how many will fail by a given time.',
+ check:{q:'A Weibull fit gives β = 3. What kind of failures are these?',opts:[{t:'Wear-out (e.g. fatigue)',ok:true,why:'β > 1 → increasing failure rate with age.'},{t:'Early failures from defects',why:'That is β < 1.'},{t:'Purely random',why:'That is β ≈ 1.'}]},
+ gens:[()=>{const b=pick([1.5,2,2.5,3]),eta=rint(10,60)*100,t=rint(2,8)*100;const R=Math.exp(-Math.pow(t/eta,b));return numTask(`Weibull β = ${b}, η = ${eta} h. Reliability at t = ${t} h?`,R,{abs:0.005,tol:0,dec:3,sk:'weib',hint:'R = exp[−(t/η)<sup>β</sup>]. Compute t/η, raise to β, change sign, take exp.',explain:`R = exp[−(${t}/${eta})<sup>${b}</sup>] = ${fmt(R,3)}.`});},
+  ()=>{const b=pick([1.5,2,2.5,3]),eta=rint(10,60)*100;const B=eta*Math.pow(-Math.log(0.9),1/b);return numTask(`Weibull β = ${b}, η = ${eta} h. B10 life?`,B,{unit:'h',tol:0.02,dec:0,sk:'weib',hint:'B10 = η·(−ln 0.9)<sup>1/β</sup>; −ln 0.9 = 0.1054.',explain:`B10 = ${eta}·0.1054<sup>1/${b}</sup> = ${fmt(B,0)} h.`});},
+  ()=>ch('In field data, 3 units failed and 17 are still running. How do you treat the 17?',[{t:'As suspensions – they survived at least their current age',ok:true,why:'Censored data carry information.'},{t:'Ignore them',why:'Ignoring survivors makes the product look far worse than it is.'},{t:'Count them as failures',why:'They have not failed.'}])]});
+
+defSkill({id:'rca',icon:'🔍',name:'Root-cause tools',short:'Pareto, 5 whys, fishbone, FMEA',levels:['w3l5'],
+ plain:'When things fail, find the <b>root cause</b>, not just the symptom. <b>Pareto</b>: sort problems by count – a few causes usually make most of the trouble. <b>5 whys</b> and the <b>fishbone</b> diagram help you dig from symptom to cause. <b>FMEA</b> rates each possible failure by Severity, Occurrence and Detection (1–10); RPN = S×O×D, but high-severity items always deserve attention first. And: every change to a design must be reviewed – "small" changes have caused big disasters.',
+ analogy:'A doctor doesn\'t just hand out painkillers: symptoms → tests → diagnosis → treat the cause.',
+ example:'Returns: 50 weld cracks, 15 porosity, 8 paint, 4 transport = 77. Weld cracks = 50/77 = <b>65 %</b> → attack them first.',
+ formula:'share = count/total · RPN = S × O × D (severity first!)',why:'Limited time and money must go to the causes that matter most – and to the ones that can hurt people.',
+ check:{q:'FMEA item A: S = 9, O = 3, D = 3 (RPN 81). Item B: S = 3, O = 6, D = 6 (RPN 108). Which needs action first?',opts:[{t:'A – severity 9 (safety) comes first',ok:true,why:'High severity must be addressed regardless of RPN.'},{t:'B – it has the higher RPN',why:'RPN alone can hide safety-critical items.'},{t:'Neither',why:'S = 9 needs action.'}]},
+ gens:[()=>{const S=rint(2,10),O=rint(2,9),D=rint(2,9);return numTask(`FMEA: S = ${S}, O = ${O}, D = ${D}. RPN?`,S*O*D,{tol:0,abs:0,dec:0,sk:'rca',hint:'Multiply the three ratings.',explain:`RPN = ${S}·${O}·${D} = ${S*O*D}.`});},
+  ()=>{const a=rint(30,60),b=rint(8,20),c=rint(3,10),d=rint(1,5);const t=a+b+c+d;return numTask(`Defect counts: cracks ${a}, porosity ${b}, paint ${c}, other ${d}. Share of cracks in %?`,100*a/t,{unit:'%',abs:0.5,tol:0,dec:1,sk:'rca',hint:'share = count / total × 100.',explain:`${a}/${t} = ${fmt(100*a/t,1)} %.`});},
+  ()=>ch('Production proposes a "small" change to a welded load-carrying detail to save time. What do you do?',[{t:'Treat it as a design change: check the load path and fatigue before approving',ok:true,why:'Changes to load paths need engineering review.'},{t:'Approve – production knows best',why:'Unreviewed changes have caused major disasters.'},{t:'Reject all changes forever',why:'Changes can be good – they just need review.'}])]});
+
+defSkill({id:'frac',icon:'⚡',name:'Cracks & fracture',short:'K = Yσ√(πa), critical crack, Paris law',levels:['w1l5'],
+ plain:'Assume cracks exist. A crack of length a under stress σ has a <b>stress intensity</b> K = Y·σ·√(π·a). When K reaches the material\'s <b>fracture toughness</b> K<sub>c</sub>, the crack runs: critical length a<sub>c</sub> = (1/π)·(K<sub>c</sub>/(Yσ))². Under repeated loads a crack grows a little each cycle (<b>Paris law</b>: da/dN = C·ΔK<sup>m</sup>). Inspect often enough to find cracks before they reach a<sub>c</sub> – typically at half the crack-growth life.',
+ analogy:'A chip in a car windscreen: it grows a little with each bump on the road, and one day it suddenly runs across the whole screen. Fix it while it is small.',
+ example:'σ = 150 MPa, Y = 1.12, K<sub>c</sub> = 50 MPa√m → a<sub>c</sub> = (1/π)(50/(1.12·150))² = (1/π)(0.298)² = 0.0282 m = <b>28 mm</b>. Double the stress → a<sub>c</sub> becomes 4× smaller (7 mm).',
+ formula:'K = Y·σ·√(πa) (a in m!) · a<sub>c</sub> = (1/π)·(K<sub>c</sub>/(Y·σ))² · da/dN = C·ΔK<sup>m</sup>',why:'Damage tolerance: you cannot prevent every crack, but you can make sure none becomes critical between inspections.',
+ check:{q:'If the stress doubles, the critical crack length becomes…',opts:[{t:'4 times smaller',ok:true,why:'a<sub>c</sub> ∝ 1/σ².'},{t:'2 times smaller',why:'It goes with the square.'},{t:'unchanged',why:'σ appears in the formula.'}]},
+ gens:[()=>{const s=rint(8,25)*10,Kc=rint(4,12)*10,Y=1.12;const ac=Math.pow(Kc/(Y*s),2)/Math.PI;return numTask(`σ = ${s} MPa, Y = 1.12, K<sub>c</sub> = ${Kc} MPa√m. Critical crack length a<sub>c</sub> in mm?`,ac*1000,{unit:'mm',tol:0.03,dec:1,sk:'frac',hint:'a<sub>c</sub> = (1/π)(K<sub>c</sub>/(Yσ))² gives metres – multiply by 1000 for mm.',explain:`a<sub>c</sub> = (1/π)(${Kc}/(1.12·${s}))² = ${fmt(ac,5)} m = ${fmt(ac*1000,1)} mm.`});},
+  ()=>{const s=rint(5,20)*10,a=rint(1,10);const K=1.12*s*Math.sqrt(Math.PI*a/1000);return numTask(`Edge crack a = ${a} mm, σ = ${s} MPa, Y = 1.12. Stress intensity K in MPa√m?`,K,{unit:'MPa√m',tol:0.03,dec:2,sk:'frac',hint:'K = Y·σ·√(π·a) with a in METRES.',explain:`K = 1.12·${s}·√(π·${a/1000}) = ${fmt(K,2)} MPa√m.`});},
+  ()=>ch('Why is the inspection interval usually about HALF the crack-growth life?',[{t:'So there are at least two chances to find a crack before it becomes critical',ok:true,why:'Inspections can miss cracks; scatter in growth rates.'},{t:'Because cracks grow twice as fast as calculated',why:'It is about detection chances.'},{t:'It is a legal rule without technical reason',why:'There is a clear technical reason.'}])]});
+
+/* Training level → skills */
+const LEVEL_SKILLS={w1l1:['mat','stress'],w1l2:['crit'],w1l3:['crit','sf'],w1l4:['bend'],w1l5:['kt','fat'],w2l1:['fea'],w2l2:['mesh'],w2l3:['fea'],w2l4:['bc'],w2l5:['fea','mesh'],w3l1:['weib'],w3l2:['rel','weib'],w3l3:['rel','stat'],w3l4:['stat'],w3l5:['rca'],boss:[]};
+function skillTasks(id,n){const S=SKILLS[id];const out=[];const gs=shuffle(S.gens);for(let k=0;k<n;k++){const t=gs[k%gs.length]();t.sk=id;out.push(t);}return out;}
+function levelMentor(lv){const ids=(LEVEL_SKILLS[lv.id]||[]).filter(k=>!(STORE.lessons[k]||{}).done);if(!ids.length)return '';const S=SKILLS[ids[0]];
+ return mentorHTML(`New to <b>${S.name}</b>? In short: ${S.plain} <div style="margin-top:6px"><button class="btn sm" onclick="document.getElementById('modalRoot').innerHTML='';openLesson('${S.id}')">🦉 Take the 3-minute lesson first</button></div>`);}
 /* ===================== WORLD 1 ===================== */
 defLevel({id:'w1l1',world:1,title:'Stress–Strain Explorer',short:'Pull a tensile bar to fracture; read E, yield and UTS',
 concept:`<p>In a tensile test a bar of initial area A₀ and gauge length L₀ is pulled. We plot <b>engineering stress</b> vs <b>engineering strain</b>:</p>
@@ -1226,15 +1625,18 @@ const BOSSGEN=[
  ()=>({type:'choice',q:'[Weibull] A Weibull fit of field failures gives β = 0.6. Most likely cause?',opts:[{t:'Early failures from manufacturing/assembly defects (infant mortality)',ok:true,why:'β < 1 → decreasing hazard.'},{t:'Fatigue wear-out',why:'Wear-out gives β > 1.'},{t:'Purely random external events',why:'Random events give β ≈ 1.'}]}),
  ()=>({type:'choice',q:'[FEA] Model in mm and N. Which Young\'s modulus input for steel is consistent?',opts:[{t:'210 000',ok:true,why:'N/mm² = MPa.'},{t:'210e9',why:'That is Pa (N/m²) – for metres.'},{t:'210',why:'That is GPa – not consistent with N and mm.'}]}),
  ()=>({type:'choice',q:'[Fatigue] Which mean-stress line is the most conservative in the Haigh diagram?',opts:[{t:'Soderberg (Se → Sy)',ok:true,why:'It intercepts at Sy < Sut.'},{t:'Goodman',why:'Goodman uses Sut – less conservative than Soderberg.'},{t:'Gerber',why:'The Gerber parabola is the least conservative.'}]})];
-defLevel({id:'boss',world:0,title:'Final Boss: Failure Review Board',short:'10 mixed questions from all worlds – no concept card hints!',
-concept:`<p>The Failure Review Board wants answers. You face <b>10 random questions</b> drawn from all three worlds: strength calculations, FEA know-how and reliability statistics. Each correct answer hits the dragon; first-try answers hit hardest.</p><p class="mut small">The cheat sheet (📘) may be consulted – real engineers look things up too.</p>`,
+const BOSS_SK=['crit','crit','bend','fat','fea','fea','weib','weib','rel','rca','mesh','crit','weib','fea','fat'];
+defLevel({id:'boss',world:0,title:'Final Boss: Failure Review Board',short:'Optional: mixed questions from all worlds. Adapts to your mode (6 / 10 / 12 questions) and, in Learner mode, to the skills you have practised.',
+concept:`<p>The Failure Review Board wants answers. You face random questions (<b>6 in Learner, 10 in Engineer, 12 in Expert mode</b>) drawn from all three worlds. In Learner mode the board prefers topics you have already practised, and hints are allowed: strength calculations, FEA know-how and reliability statistics. Each correct answer hits the dragon; first-try answers hit hardest.</p><p class="mut small">The cheat sheet (📘) may be consulted – real engineers look things up too.</p>`,
 takeaway:'You have mastered the toolchain: strength theory → FEA → statistics of failure.',
-build(sim){const tasks=shuffle(BOSSGEN).slice(0,10).map(g=>g());let hp=100;
+build(sim){const nQ={learner:6,engineer:10,expert:12}[MODE()];const idx=BOSSGEN.map((g,k)=>k);const ms=k=>((STORE.skills[BOSS_SK[k]]||{}).m||0);
+ const order=isLearner()?idx.sort((a,b)=>(ms(b)+rnd(0,35))-(ms(a)+rnd(0,35))):shuffle(idx);
+ const tasks=order.slice(0,nQ).map(k=>{const t=BOSSGEN[k]();t.sk=BOSS_SK[k];return t;});let hp=100;const dmg=100/nQ;
  const C=makeCanvas(sim,680,320),ctx=C.ctx;
  function draw(hit){C.clear();ctx.font='120px serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.globalAlpha=0.3+0.7*hp/100;ctx.fillText(hp>0?'🐉':'💀',340,140);ctx.globalAlpha=1;
   ctx.fillStyle='#26304a';ctx.fillRect(140,260,400,20);ctx.fillStyle=hp>50?'#66bb6a':hp>25?'#ffb74d':'#ef5350';ctx.fillRect(140,260,4*hp,20);ctx.strokeStyle='#9aa6bf';ctx.strokeRect(140,260,400,20);
   txt(ctx,`Review Board HP: ${Math.round(hp)}`,340,300,'#e6ebf5','bold 13px system-ui','center');if(hit)txt(ctx,hit,340,40,'#ffd54f','bold 20px system-ui','center');}
- tasks.forEach(t=>{t.onDone=sc=>{hp=Math.max(0,hp-10*sc);draw(sc>=1?'CRITICAL HIT! −10':sc>0?'Hit −5':'Miss…');};});draw();
+ tasks.forEach(t=>{t.onDone=sc=>{hp=Math.max(0,hp-dmg*sc);draw(sc>=1?'CRITICAL HIT! −'+Math.round(dmg):sc>0?'Hit −'+Math.round(dmg*sc):'Miss…');};});draw();
  sim.appendChild(el('div',{class:'legend'},'Questions are freshly randomized every fight.'));
  return{tasks};}});
 
@@ -1268,67 +1670,117 @@ function numJudge(v,t,a){const tol=Math.max((t.tol==null?0.03:t.tol)*Math.abs(a)
  if(Math.abs(v-a)<=tol)return{ok:true,msg:''};let m='Not quite.';if(Math.abs(v+a)<=tol)m='Check the sign!';else if(a!==0&&[1e3,1e-3,1e6,1e-6].some(f=>Math.abs(v*f-a)<=tol))m='Off by a power of 1000 – check units!';else if(Math.abs(v-a)<=3*tol)m='Close, but outside the tolerance.';else m+=v>a?' Too high.':' Too low.';return{ok:false,msg:m};}
 function renderCaseHome(app){
  const solved=CASES.filter(c=>(STORE.cases[c.id]||{}).best!=null).length;
- app.appendChild(el('div',{class:'casehero'},`<div style="font-size:54px">📁</div><div style="flex:1;min-width:260px"><h2>Case Files <span class="tag" style="font-size:12px;vertical-align:middle">Problem-based learning</span></h2><p>Real-world engineering problems. You are the engineer: read the brief, talk to the stakeholder, decide which data to request and which analysis to run, crunch the numbers, and make the call. Decisions move the <b>🛡 safety</b>, <b>💰 budget</b> and <b>⏱ schedule</b> meters – and some lead to field returns months later. Every case ends with a debrief linking back to the Training levels and to the real incidents that inspired it.</p></div><div><div class="small mut">Cases closed: ${solved}/${CASES.length}</div><div class="prog"><i style="width:${100*solved/Math.max(1,CASES.length)}%"></i></div></div>`));
+ app.appendChild(el('div',{class:'casehero',id:'caseFiles',style:'margin-top:26px'},`<div style="font-size:54px">📁</div><div style="flex:1;min-width:260px"><h2>Case Files <span class="tag" style="font-size:12px;vertical-align:middle">Problem-based learning</span></h2><p>Real-world engineering problems. You are the engineer: read the brief, talk to the stakeholder, decide which data to request and which analysis to run, crunch the numbers, and make the call. Decisions move the <b>🛡 safety</b>, <b>💰 budget</b> and <b>⏱ schedule</b> meters – and some lead to field returns months later. Every case ends with a debrief linking back to the lessons, Training levels and the real incidents that inspired it. The three <b>intro cases</b> need no prior knowledge.</p></div><div><div class="small mut">Cases closed: ${solved}/${CASES.length}</div><div class="prog"><i style="width:${100*solved/Math.max(1,CASES.length)}%"></i></div></div>`));
  const g=el('div',{class:'cases'});app.appendChild(g);
- CASES.forEach((c,k)=>{const s=STORE.cases[c.id]||{};const d=el('div',{class:'casecard','data-case':c.id},`<div class="ct"><div class="ic">${c.icon}</div><div style="flex:1"><div class="small mut">CASE ${String(k+1).padStart(2,'0')} · ${'●'.repeat(c.level)}${'○'.repeat(3-c.level)}</div><h3>${c.title}</h3></div><div>${starHTML(s.stars||0)}</div></div><p>${c.teaser}</p><div class="row" style="margin-top:2px">${c.domains.map(x=>`<span class="dtag ${x}">${DOMNAME[x]}</span>`).join(' ')}${c.inspired?`<span class="small mut" style="margin-left:auto">inspired by: ${c.inspired}</span>`:''}</div>${s.best!=null?`<div class="small mut">best ${s.best}% · ${s.rank||''}</div>`:''}`);
-  d.onclick=()=>startCase(c);g.appendChild(d);});}
+ CASES.forEach((c,k)=>{const s=STORE.cases[c.id]||{};const un=typeof caseUnlocked!=='function'||caseUnlocked(c.id);
+  const d=el('div',{class:'casecard'+(un?'':' lockcase'),'data-case':c.id},`<div class="ct"><div class="ic">${un?c.icon:'🔒'}</div><div style="flex:1"><div class="small mut">${c.intro?'INTRO CASE':'CASE '+String(k+1).padStart(2,'0')} · ${'●'.repeat(c.level)}${'○'.repeat(3-c.level)}</div><h3>${c.title}</h3></div><div>${starHTML(s.stars||0)}</div></div><p>${c.teaser}</p><div class="row" style="margin-top:2px">${c.domains.map(x=>`<span class="dtag ${x}">${DOMNAME[x]}</span>`).join(' ')}${c.inspired?`<span class="small mut" style="margin-left:auto">inspired by: ${c.inspired}</span>`:''}</div>${s.best!=null?`<div class="small mut">best ${s.best}% · ${s.rank||''}</div>`:''}${un?'':`<div class="small mut">🔒 ${lockReason(PATH.find(n=>n.id===c.id))}</div>`}`);
+  d.onclick=()=>{if(un)startCase(c);else toast('🔒 '+lockReason(PATH.find(n=>n.id===c.id)));};g.appendChild(d);});}
 const DOMNAME={s:'Strength',f:'FEA',t:'Statistics'};
 function caseRank(sc){return sc>=90?'Principal Engineer':sc>=75?'Senior Engineer':sc>=55?'Engineer':'Junior – needs review';}
-function startCase(cs){cleanup();const app=$('#app');app.innerHTML='';window.scrollTo(0,0);
- const K=cs.build();const st={f:{},m:{s:100,c:100,t:100},log:[],J:[],A:[],final:null,idx:0,K};CASE_CUR={cs,K,st};CURRENT={stop(){CASE_CUR=null;}};
+function startCase(cs){cleanup();const app=$('#app');app.innerHTML='';window.scrollTo(0,0);CUR_LEVEL=null;
+ NICE_NUM=isLearner();let K;try{K=cs.build();}finally{NICE_NUM=false;}
+ if(typeof applyCaseMeta==='function')applyCaseMeta(cs.id,K);
+ const st={f:{},m:{s:100,c:100,t:100},log:[],J:[],A:[],final:null,idx:0,K,hints:0,sks:new Set()};CASE_CUR={cs,K,st};CURRENT={stop(){CASE_CUR=null;}};
  const head=el('div',{class:'lvhead'});head.appendChild(el('button',{class:'btn sm',onclick:()=>{if(st.idx===0||confirm('Abandon this case? Progress in this case will be lost.'))showMap();}},'◀ Home'));
  head.appendChild(el('h2',null,cs.icon+' '+cs.title));cs.domains.forEach(x=>head.appendChild(el('span',{class:'dtag '+x},DOMNAME[x])));
- head.appendChild(el('button',{class:'btn sm',onclick:()=>modal('<h2>📘 Cheat sheet</h2>'+GLOSSARY)},'📘 Formulas'));app.appendChild(head);
+ head.appendChild(el('button',{class:'btn sm',onclick:()=>modal('<h2>📘 Cheat sheet</h2>'+GLOSSARY)},'📘 Formulas'));
+ head.appendChild(el('span',{class:'tag',style:'cursor:pointer',title:'Change difficulty (applies from the next case)',onclick:settings},MODES[MODE()].icon+' '+MODES[MODE()].name));app.appendChild(head);
  const wrap=el('div',{class:'levelwrap'});const file=el('div',{class:'card'}),side=el('div',{class:'card',id:'caseSide'});wrap.append(file,side);app.appendChild(wrap);
  const B=Object.assign({},K.brief);if(!B.sketch&&K.sketch){B.sketch=K.sketch;B.sh=K.sh;}file.appendChild(el('div',{class:'steptitle'},'Case file · brief'));
  file.appendChild(el('div',{class:'stake'},`<div class="av">${B.avatar}</div><div><div class="who"><b style="color:#e6ebf5">${B.who}</b> · ${B.role}</div><div class="quote">“${B.quote}”</div></div>`));
  file.appendChild(el('div',{style:'font-size:14.5px'},B.story));
  if(B.sketch){const C=makeCanvas(file,640,B.sh||250);B.sketch(C.ctx,640,B.sh||250);}
- if(B.data)file.appendChild(el('div',{style:'margin-top:8px'},B.data));
- const log=el('div',{class:'evlog'});file.appendChild(log);st.addEv=ev=>{if(!ev)return;const d=el('div',{class:'ev'},`<h4>📎 ${ev.h}</h4>${ev.html||''}`);if(ev.draw){const C=makeCanvas(d,640,ev.H||240);ev.draw(C.ctx,640,ev.H||240);}log.appendChild(d);};
+ if(B.data){if(isLearner()){const d=el('details',{class:'dsheet',id:'dataSheet'},`<summary>📊 Data sheet – tap to open (you will need it for the calculations)</summary><div style="margin-top:6px">${B.data}</div>`);file.appendChild(d);}else file.appendChild(el('div',{style:'margin-top:8px'},B.data));}
+ const log=el('div',{class:'evlog'});file.appendChild(log);
+ st.addEv=ev=>{if(!ev)return;let d;if(isLearner()){log.querySelectorAll('details.ev').forEach(x=>x.open=false);d=el('details',{class:'ev',open:'open'},`<summary><h4 style="display:inline">📎 ${ev.h}</h4> <span class="small mut">(new)</span></summary>${ev.html||''}`);}else d=el('div',{class:'ev'},`<h4>📎 ${ev.h}</h4>${ev.html||''}`);
+  if(ev.draw){const C=makeCanvas(d,640,ev.H||240);ev.draw(C.ctx,640,ev.H||240);}log.appendChild(d);};
  renderCaseStep();}
 function caseMeters(st){const m=st.m;const bar=(l,v)=>`<span>${l}</span><div class="meter"><i style="width:${clamp(v,0,100)}%;background:${v>66?'#66bb6a':v>33?'#ffb74d':'#ef5350'}"></i></div><span>${Math.round(clamp(v,0,100))}</span>`;
  return el('div',{class:'meters'},bar('🛡 Safety',m.s)+bar('💰 Budget',m.c)+bar('⏱ Schedule',m.t));}
 function applyFx(st,fx){if(!fx)return'';let s=[];for(const k of['s','c','t'])if(fx[k]){st.m[k]=clamp(st.m[k]+fx[k],0,100);s.push(({s:'🛡',c:'💰',t:'⏱'})[k]+(fx[k]>0?'+':'')+fx[k]);}return s.length?`<div class="small mut" style="margin-top:4px">Meters: ${s.join(' · ')}</div>`:'';}
 function qualTag(q){return q>=0.8?'<span class="qual g">✅ Strong call</span>':q>=0.4?'<span class="qual m">⚠ Acceptable, but not best</span>':'<span class="qual b">❌ Poor call</span>';}
+function caseScore(st,s,q,kind){const f=hintFactor(st.stepHints||0);const v=q*f;(kind==='A'?st.A:st.J).push(kind==='A'?v:[v,s.type==='final'?2:(s.w||1)]);[].concat(s.sk||[]).forEach(k=>{st.sks.add(k);addMastery(k,v);});return v;}
+function mentorBlock(box,S,onDone,opt){opt=opt||{};
+ box.appendChild(el('div',null,mentorHTML(opt.intro||`Before we go on – a new idea you will need here: <b>${S.icon} ${S.name}</b>. Let me explain it in two minutes.`)));
+ box.appendChild(el('div',{class:'lsec'},`<h4>In plain words</h4>${S.plain}`));
+ box.appendChild(el('div',{class:'lsec'},`<h4>Everyday analogy</h4>${S.analogy}`));
+ box.appendChild(el('div',{class:'lsec'},`<h4>Tiny worked example</h4>${S.example}`));
+ box.appendChild(el('div',{class:'formula'},`📐 ${S.formula}`));
+ const c=S.check;const ck=el('div',{class:'lsec'},`<h4>Quick check</h4><div class="q" style="margin-bottom:8px">${c.q}</div>`);box.appendChild(ck);
+ const ch=el('div',{class:'choices mentorcheck'});ck.appendChild(ch);const fb=el('div',{class:'fb'});ck.appendChild(fb);let answered=false;
+ shuffle(c.opts).forEach(o=>{const b=el('button',{class:'btn'},o.t);ch.appendChild(b);b.onclick=()=>{if(o.ok){[...ch.children].forEach(x=>x.disabled=true);b.classList.add('right');fb.className='fb ok';fb.innerHTML='✅ <b>Exactly!</b> '+o.why;
+   if(!answered){addMastery(S.id,0.6);}answered=true;STORE.lessons[S.id]=Object.assign(STORE.lessons[S.id]||{},{seen:true});save();
+   const nb=el('button',{class:'btn pri',style:'margin-top:10px'},opt.btn||'Got it – back to the case ▶');nb.onclick=onDone;ck.appendChild(nb);}
+  else{b.classList.add('wrong');b.disabled=true;answered=true;fb.className='fb info';fb.innerHTML='Not quite – '+o.why+' <span class="mut">Try another one.</span>';}};});}
 function renderCaseStep(){const{K,st,cs}=CASE_CUR;const side=$('#caseSide');
  let s=K.steps[st.idx];while(s&&s.skip&&s.skip(st)){st.idx++;s=K.steps[st.idx];}
  if(!s){finishCase();return;}
- side.innerHTML='';side.appendChild(caseMeters(st));
+ side.innerHTML='';side.appendChild(caseMeters(st));st.stepHints=0;
  const bar=el('div',{class:'tprog'});K.steps.forEach((x,k)=>bar.appendChild(el('i',{class:k<st.idx?'done':k===st.idx?'cur':''})));side.appendChild(bar);
+ const L=isLearner(),sks=[].concat(s.sk||[]).filter(k=>SKILLS[k]);
+ if(L){const fresh=sks.find(k=>!(STORE.lessons[k]||{}).seen);if(fresh){side.appendChild(el('div',{class:'steptitle'},`Step ${st.idx+1}/${K.steps.length} · Mentor`));mentorBlock(side,SKILLS[fresh],()=>{renderCaseStep();window.scrollTo({top:0,behavior:'smooth'});});return;}
+  if(st.idx===0&&!st.welcomed){st.welcomed=true;side.appendChild(el('div',null,mentorHTML(`Welcome to the case! Read the brief on the left, then take it one step at a time. Hints are free in Learner mode, words with a dotted underline explain themselves when you hover or tap them, and the 🧮 calculator is always there.`)));}}
  const lab={decide:'Decision',request:'Data request',compute:'Analysis',final:'Final recommendation',info:'Briefing'}[s.type];
  side.appendChild(el('div',{class:'steptitle'},`Step ${st.idx+1}/${K.steps.length} · ${lab}${s.title?' · '+s.title:''}`));
- if(s.onShow)s.onShow(st);
- side.appendChild(el('div',{class:'q',style:'font-size:15px;margin-bottom:10px'},VV(s.q,st)));
- if(s.ref){const lv=LEVELS.find(l=>l.id===s.ref);if(lv)side.appendChild(el('button',{class:'btn sm',style:'margin-bottom:10px',onclick:()=>modal(`<div class="tag">Training refresher</div><h2>📖 ${lv.title}</h2>${lv.concept}`)},'📖 Refresher: '+lv.title));}
- const area=el('div');side.appendChild(area);const fb=el('div',{class:'fb'});side.appendChild(fb);const nx=el('div',{class:'row'});side.appendChild(nx);
+ if(s.onShow&&!s._shown){s._shown=true;s.onShow(st);}
+ const area=el('div');const fb=el('div',{class:'fb'});const hb=el('div');const nx=el('div',{class:'row'});
  const next=()=>{nx.appendChild(el('button',{class:'btn pri',onclick:()=>{st.idx++;renderCaseStep();window.scrollTo({top:0,behavior:'smooth'});}},st.idx<K.steps.length-1?'Continue ▶':'Close the case → debrief'));
-  const m=side.querySelector('.meters');m.replaceWith(caseMeters(st));if(s.evidence)st.addEv(VV(s.evidence,st));};
- if(s.type==='decide'||s.type==='final'){const c=el('div',{class:'choices'});area.appendChild(c);const opts=s.noShuffle?VV(s.opts,st):shuffle(VV(s.opts,st));
-  opts.forEach(o=>{const b=el('button',{class:'btn'},VV(o.t,st));c.appendChild(b);b.onclick=()=>{[...c.children].forEach(x=>x.disabled=true);b.classList.add(o.q>=0.8?'right':'wrong');
-   const w=s.type==='final'?2:(s.w||1);st.J.push([o.q,w]);if(o.set)Object.assign(st.f,o.set);st.log.push({step:s.title||lab,choice:VV(o.t,st),q:o.q});
+  const m=side.querySelector('.meters');m.replaceWith(caseMeters(st));if(s.evidence)st.addEv(VV(s.evidence,st));if(hl&&hl.disable)hl.disable();};
+ let hl=null;const useHint=n=>{st.stepHints=n;st.hints++;};
+ // Learner: complex calculation steps are worked through together with the mentor
+ if(L&&s.adv&&s.type==='compute'){const a=VV(s.ans,st);if(s.store)st.f[s.store]=a;
+  side.appendChild(el('div',{class:'q',style:'font-size:15px;margin-bottom:10px'},VV(s.q,st)));
+  side.appendChild(el('div',null,mentorHTML(`This one is a bit advanced – let's work it out together. ${s.fm?'<div class="formula">📐 '+s.fm+'</div>':''}${VV(s.explain,st)}<div class="small mut" style="margin-top:6px">(Switch to Engineer mode to calculate it yourself.)</div>`)));
+  side.append(area,fb,nx);st.log.push({step:s.title||lab,choice:'worked through with the mentor',q:1,calc:true,info:true});next();return;}
+ side.appendChild(el('div',{class:'q',style:'font-size:15px;margin-bottom:10px'},VV(s.q,st)));
+ if(L&&s.look)side.appendChild(el('div',{class:'focus'},'👀 <b>Look at:</b> '+VV(s.look,st)));
+ if(s.type==='compute'&&!isExpert()){const fm=s.fm||(sks[0]?SKILLS[sks[0]].formula:'');if(fm&&L)side.appendChild(el('div',{class:'formula'},'📐 <b>Formula helper:</b> '+VV(fm,st)));}
+ if(L&&s.type==='compute'){const ds=$('#dataSheet');if(ds)ds.open=true;}
+ if(s.ref){const lv=LEVELS.find(l=>l.id===s.ref);if(lv)side.appendChild(el('button',{class:'btn sm',style:'margin-bottom:10px',onclick:()=>modal(`<div class="tag">Training refresher</div><h2>📖 ${lv.title}</h2>${lv.concept}`)},'📖 Refresher: '+lv.title));}
+ side.append(area,fb,hb,nx);
+ if(s.type==='decide'||s.type==='final'){const c=el('div',{class:'choices'});area.appendChild(c);const opts=s.noShuffle?VV(s.opts,st):shuffle(VV(s.opts,st));const btns=[];
+  opts.forEach(o=>{const b=el('button',{class:'btn'},VV(o.t,st));btns.push(b);c.appendChild(b);b.onclick=()=>{[...c.children].forEach(x=>x.disabled=true);b.classList.add(o.q>=0.8?'right':'wrong');
+   caseScore(st,s,o.q,'J');if(o.set)Object.assign(st.f,o.set);st.log.push({step:s.title||lab,choice:VV(o.t,st),q:o.q});
    if(s.type==='final')st.final=o;
    fb.className='fb '+(o.q>=0.8?'ok':o.q>=0.4?'info':'bad');fb.innerHTML=qualTag(o.q)+'<div style="margin-top:6px">'+VV(o.fb,st)+'</div>'+applyFx(st,o.fx)+(s.after?'<div class="small" style="margin-top:6px">💡 '+VV(s.after,st)+'</div>':'');
    if(o.q<0.8){const best=opts.reduce((a,b)=>b.q>a.q?b:a);fb.innerHTML+=`<div class="small" style="margin-top:6px">The strongest option was: <b>${VV(best.t,st)}</b></div>`;}
-   next();};});}
- else if(s.type==='request'){const box=el('div',{class:'req'});area.appendChild(box);const items=shuffle(s.items);const cbs=items.map(it=>{const l=el('label');const cb=el('input',{type:'checkbox'});l.append(cb,el('span',null,it.t+(it.cost?` <span class="mut small">(${it.cost})</span>`:'')));box.appendChild(l);return cb;});
+   if(L){const others=opts.filter(x=>x!==o&&VV(x.fb,st));if(others.length)fb.innerHTML+=`<details class="whyall"><summary>Why are the other options ${o.q>=0.8?'weaker':'better or worse'}? (tap)</summary><ul>${others.map(x=>`<li>${x.q>=0.8?'✅':x.q>=0.4?'⚠':'❌'} <b>${VV(x.t,st)}</b> – ${VV(x.fb,st)}</li>`).join('')}</ul></details>`;}
+   next();};});
+  const strike=keep=>{const live=opts.map((o,k)=>({o,b:btns[k]})).filter(x=>!x.b.disabled).sort((a,b)=>a.o.q-b.o.q);const out=[];while(live.length>keep){const x=live.shift();x.b.disabled=true;x.b.classList.add('struck');out.push(x.o);}return out;};
+  hl=hintLadder(hb,[()=>VV(s.h1,st)||'Ask yourself: which option is backed by evidence, protects people first, and fixes the cause rather than the symptom?',
+   ()=>{const g=strike(opts.length-1);return g.length?`Crossed out: <i>${VV(g[0].t,st)}</i>${g[0].fb?' – '+VV(g[0].fb,st):''}`:'';},
+   ()=>{strike(2);return 'Only two options are left – one is clearly stronger. Which one deals with the root of the problem?';}],useHint);}
+ else if(s.type==='request'){const box=el('div',{class:'req'});area.appendChild(box);const items=shuffle(s.items);const labs=[];const cbs=items.map(it=>{const l=el('label');const cb=el('input',{type:'checkbox'});l.append(cb,el('span',null,it.t+(it.cost?` <span class="mut small">(${it.cost})</span>`:'')));box.appendChild(l);labs.push(l);return cb;});
   const b=el('button',{class:'btn pri',style:'margin-top:6px'},'Send request');area.appendChild(b);
   b.onclick=()=>{cbs.forEach(c=>c.disabled=true);b.disabled=true;const ess=items.filter(i=>i.v===1).length;let got=0,bad=0,fx={c:0,t:0};const lines=[];
    items.forEach((it,k)=>{const on=cbs[k].checked;if(on){fx.c-=it.c||2;fx.t-=it.d||2;}if(it.v===1&&on)got++;if(it.v<=0&&on)bad++;
     lines.push(`<li>${on?(it.v===1?'✔':it.v>0?'➕':'✖'):(it.v===1?'⚠ <b>missed:</b>':'·')} ${it.t} – <span class="mut">${it.why}</span></li>`);});
-   const q=clamp((ess?got/ess:1)-0.25*bad,0,1);st.J.push([q,s.w||1]);st.log.push({step:s.title||lab,choice:`${got}/${ess} essential, ${bad} unnecessary`,q});
-   fb.className='fb '+(q>=0.8?'ok':q>=0.4?'info':'bad');fb.innerHTML=qualTag(q)+`<ul class="small" style="margin:6px 0 0;padding-left:18px">${lines.join('')}</ul>`+applyFx(st,fx)+(s.after?'<div class="small">💡 '+VV(s.after,st)+'</div>':'');next();};}
- else if(s.type==='compute'){const r=el('div',{class:'ansrow'});const inp=el('input',{type:'text',inputmode:'decimal',placeholder:'your answer'});const b=el('button',{class:'btn pri'},'Check');r.append(inp);if(s.unit)r.append(el('span',{class:'mut'},s.unit));r.append(b);area.appendChild(r);
-  let tries=0;const go=()=>{const v=parseFloat(inp.value.replace(',','.'));if(!isFinite(v)){fb.className='fb info';fb.textContent='Please enter a number.';return;}
-   const a=VV(s.ans,st);const res=numJudge(v,s,a);tries++;const ex='<div class="small" style="margin-top:6px">💡 '+VV(s.explain,st)+'</div>';
-   if(res.ok||tries>=2){inp.disabled=b.disabled=true;const sc=res.ok?(tries===1?1:0.5):0;st.A.push(sc);st.log.push({step:s.title||lab,choice:`${inp.value} ${s.unit||''} (exact ${fmt(a,s.dec==null?3:s.dec)})`,q:sc,calc:true});if(s.store)st.f[s.store]=res.ok?v:a;
-    fb.className='fb '+(res.ok?'ok':'bad');fb.innerHTML=(res.ok?'✅ <b>Correct.</b> ':'❌ '+res.msg+' ')+`Value: <b>${fmt(a,s.dec==null?3:s.dec)}${s.unit?' '+s.unit:''}</b>.`+ex+(res.ok?'':'<div class="small mut">The investigation continues with the correct value.</div>');next();}
-   else{fb.className='fb bad';fb.innerHTML='❌ '+res.msg+(s.hint?' <i>Hint: '+VV(s.hint,st)+'</i>':'')+' <span class="mut">One more try.</span>';}};
-  b.onclick=go;inp.addEventListener('keydown',e=>{if(e.key==='Enter')go();});}
+   const q=clamp((ess?got/ess:1)-0.25*bad,0,1);caseScore(st,s,q,'J');st.log.push({step:s.title||lab,choice:`${got}/${ess} essential, ${bad} unnecessary`,q});
+   fb.className='fb '+(q>=0.8?'ok':q>=0.4?'info':'bad');fb.innerHTML=qualTag(q)+`<ul class="small" style="margin:6px 0 0;padding-left:18px">${lines.join('')}</ul>`+applyFx(st,fx)+(s.after?'<div class="small">💡 '+VV(s.after,st)+'</div>':'');next();};
+  hl=hintLadder(hb,[()=>VV(s.h1,st)||'Request only what can confirm or rule out a cause. Every request costs time and money.',
+   ()=>{const k=items.findIndex(i=>i.v===1);if(k>=0)labs[k].classList.add('glow');return 'One essential item is highlighted: <i>'+items[k].t+'</i> – '+items[k].why;},
+   ()=>{items.forEach((it,k)=>{if(it.v===1)labs[k].classList.add('glow');else if(it.v<=0)labs[k].classList.add('struck');});return 'All essential items are highlighted; the irrelevant ones are crossed out.';}],useHint);}
+ else if(s.type==='compute'){const r=el('div',{class:'ansrow'});const inp=el('input',{type:'text',inputmode:'decimal',placeholder:L?'number or expression':'your answer'});const b=el('button',{class:'btn pri'},'Check');r.append(inp);if(s.unit)r.append(el('span',{class:'mut'},s.unit));r.append(b);if(!isExpert())r.append(el('button',{class:'btn sm',title:'Calculator',onclick:()=>calcOpen(inp)},'🧮'));area.appendChild(r);
+  const mcBox=el('div');area.appendChild(mcBox);
+  let tries=0,closed=false;const maxT=isExpert()?1:2;const a=VV(s.ans,st);
+  const close=(sc,msgHead,v)=>{closed=true;inp.disabled=b.disabled=true;mcBox.querySelectorAll('button').forEach(x=>x.disabled=true);const ex='<div class="small" style="margin-top:6px">💡 '+VV(s.explain,st)+'</div>';
+   caseScore(st,s,sc,'A');st.log.push({step:s.title||lab,choice:`${v==null?'(multiple choice)':inp.value} ${s.unit||''} (exact ${fmt(a,s.dec==null?3:s.dec)})`,q:sc,calc:true});if(s.store)st.f[s.store]=sc>0&&v!=null?v:a;
+   fb.className='fb '+(sc>0?'ok':'bad');fb.innerHTML=msgHead+` Value: <b>${fmt(a,s.dec==null?3:s.dec)}${s.unit?' '+s.unit:''}</b>.`+ex+(sc>0?'':'<div class="small mut">The investigation continues with the correct value.</div>');next();};
+  const showMC=()=>{if(!L||closed||mcBox.childNodes.length)return;mcBox.appendChild(el('div',{class:'small mut',style:'margin-top:8px'},'🛟 Type a new answer – or pick one of these:'));const row=el('div',{class:'mcrow'});
+   mcOptions(a,s.dec).forEach(o=>{const bb=el('button',{class:'btn sm mc'},o.t+(s.unit?' '+s.unit:''));bb.onclick=()=>{if(closed)return;bb.classList.add(o.ok?'right':'wrong');close(o.ok?0.6:0,o.ok?'✅ <b>Good pick.</b>':'❌ That was not it.',null);};row.appendChild(bb);});mcBox.appendChild(row);};
+  const go=()=>{if(closed)return;const v=parseAnswer(inp.value);if(!isFinite(v)){fb.className='fb info';fb.textContent='Please enter a number (or an expression like 2*3.5).';return;}
+   const res=judgeSmart(v,a,s);tries++;
+   if(res.ok)close(tries===1?1:(L?0.6:0.5),'✅ <b>Correct.</b>',v);
+   else if(tries>=maxT)close(0,'❌ '+res.msg,v);
+   else{fb.className='fb bad'+(res.unit?' unitmsg':'');fb.innerHTML='❌ '+res.msg+' <span class="mut">One more try.</span>';showMC();}};
+  b.onclick=go;inp.addEventListener('keydown',e=>{if(e.key==='Enter')go();});
+  hl=hintLadder(hb,[()=>VV(s.h1,st)||`Find the numbers you need in the case file${s.unit?' – the answer is in <b>'+s.unit+'</b>':''}. Keep units consistent: N and mm give MPa.`,
+   ()=>{const fm=VV(s.fm,st)||(sks[0]?SKILLS[sks[0]].formula:'');return (fm?`<div class="formula">📐 ${fm}</div>`:'')+(sks[0]?SKILLS[sks[0]].why:'');},
+   ()=>'Worked substitution: '+maskAnswer(VV(s.explain,st),a,s.dec)+' <span class="mut">– finish the last step yourself.</span>'],useHint);}
  else if(s.type==='info'){next();}
 }
 function finishCase(){const{K,st,cs}=CASE_CUR;const sw=st.J.reduce((a,x)=>a+x[1],0);const J=sw?st.J.reduce((a,x)=>a+x[0]*x[1],0)/sw:1;const A=st.A.length?mean(st.A):1;const M=(st.m.s+st.m.c+st.m.t)/300;
- const score=Math.round(100*(0.55*J+0.3*A+0.15*M));const stars=starsFor(score);const prev=STORE.cases[cs.id]||{};const rank=caseRank(score);
+ const score=Math.round(100*(0.55*J+0.3*A+0.15*M));const skl=[...st.sks].filter(k=>SKILLS[k]);const stars=starsFor(score);const prev=STORE.cases[cs.id]||{};const rank=caseRank(score);
  STORE.cases[cs.id]={best:Math.max(prev.best||0,score),stars:Math.max(prev.stars||0,stars),rank:score>=(prev.best||0)?rank:prev.rank};save();updHeader();
  const app=$('#app');app.innerHTML='';window.scrollTo(0,0);const D=K.debrief;const fo=st.final||{q:1};
  const head=el('div',{class:'lvhead'});head.appendChild(el('button',{class:'btn sm',onclick:showMap},'◀ Home'));head.appendChild(el('h2',null,`Debrief: ${cs.icon} ${cs.title}`));app.appendChild(head);
@@ -1338,11 +1790,12 @@ function finishCase(){const{K,st,cs}=CASE_CUR;const sw=st.J.reduce((a,x)=>a+x[1]
  d.appendChild(el('div',{class:'card'},`<div class="row" style="justify-content:space-between"><div><h3 style="margin:0">Case score: ${score}% <span class="stars" style="font-size:20px">${'★'.repeat(stars)}<span class="off">${'★'.repeat(3-stars)}</span></span></h3><div class="mut small">Rating: <b>${rank}</b>${prev.best!=null?' · previous best '+prev.best+'%':''}</div></div>
   <div class="dlist" style="min-width:300px"><span>🧠 Engineering judgment (55 %)</span><b>${Math.round(100*J)}%</b><span>🧮 Analysis accuracy (30 %)</span><b>${Math.round(100*A)}%</b><span>🛡💰⏱ Meters (15 %)</span><b>${Math.round(100*M)}%</b></div></div>
   <table class="dt" style="margin-top:10px"><tr><th style="text-align:left">Step</th><th style="text-align:left">Your choice</th><th>Quality</th></tr>${st.log.map(l=>`<tr><td style="text-align:left">${l.step}</td><td style="text-align:left">${l.choice}</td><td style="color:${l.q>=0.8?'#66bb6a':l.q>=0.4?'#ffb74d':'#ef5350'}">${Math.round(100*l.q)}%</td></tr>`).join('')}</table>`));
+ if(skl.length)d.appendChild(el('div',{class:'card'},`<h3>🧠 Skills you practised</h3><div class="skillgrid">${skl.map(k=>{const m=skillState(k).m;return `<div><b>${SKILLS[k].icon} ${SKILLS[k].name}</b><div class="mbar"><i style="width:${m}%;background:${masteryCol(m)}"></i></div><span class="lvlname">${masteryName(m)} · ${m}%</span></div>`;}).join('')}</div>${st.hints?`<div class="small mut" style="margin-top:6px">You used ${st.hints} hint${st.hints>1?'s':''} – that's how learning works.</div>`:''}<div class="small" style="margin-top:6px">${score>=75?'🎉 Great work – you think like an engineer!':score>=50?'👍 Solid investigation. Replay with new numbers to sharpen it.':'🌱 Every expert started here. Check the reasoning chain below and try again – the numbers change each time.'}</div>`));
  d.appendChild(el('div',{class:'card'},`<h3>🔗 The reasoning chain</h3><ol>${D.chain.map(x=>`<li>${x}</li>`).join('')}</ol>`));
  const cc=el('div',{class:'card'},'<h3>🎯 Concepts used – train them</h3>');const row=el('div',{class:'row'});D.concepts.forEach(([t,id])=>{const L=lv(id);row.appendChild(el('button',{class:'btn sm',title:L?L.title:'',onclick:()=>{if(L)openLevel(id);}},`${t} → <span class="mut">${L?L.title:''}</span>`));});cc.appendChild(row);d.appendChild(cc);
  d.appendChild(el('div',{class:'card'},`<h3>⚠ Real-world pitfalls</h3><ul>${D.pitfalls.map(x=>`<li>${x}</li>`).join('')}</ul>`));
  if(D.history)d.appendChild(el('div',{class:'history'},`<div class="steptitle">From the history books</div>${D.history}`));
- const r=el('div',{class:'row',style:'margin-top:14px'});r.appendChild(el('button',{class:'btn',onclick:()=>startCase(cs)},'↻ Replay case (new numbers)'));r.appendChild(el('button',{class:'btn pri',onclick:showMap},'Back to Case Files'));d.appendChild(r);
+ const r=el('div',{class:'row',style:'margin-top:14px'});r.appendChild(el('button',{class:'btn',onclick:()=>startCase(cs)},'↻ Replay case (new numbers)'));r.appendChild(el('button',{class:'btn pri',onclick:showMap},'Back to the learning path'));if(typeof nextPathNode==='function'){const nn=nextPathNode();if(nn)r.appendChild(el('button',{class:'btn pri',onclick:()=>openPathNode(nn)},'Next on your path: '+nn.title+' ▶'));}d.appendChild(r);
  CASE_CUR=null;}
 /* small option helper: O(text, quality, feedback, fx, set, outcome) */
 function O(t,q,fb,fx,set,outcome){return{t,q,fb,fx,set,outcome};}
@@ -1760,10 +2213,279 @@ build(){
   concepts:[['Pareto, fishbone & FMEA','w3l5'],['S–N curves & slope','w1l5'],['Hot-spot stresses in FE','w2l5']],
   pitfalls:['Approving "small" production-driven changes without checking the load path.','Stitch welds in fatigue-loaded structures.','Improving a detail without checking that the new life meets the requirement.','Ranking by RPN alone and ignoring severity.'],
   history:'<b>Hyatt Regency walkway collapse, Kansas City (1981):</b> the original design hung the walkways from continuous rods; during detailing this was changed to two offset rods, which doubled the load on the fourth-floor box-beam connection. The connection failed and 114 people died. The disaster is a standard lesson on reviewing design changes – especially ones proposed to simplify fabrication.'}};}});
+/* ---------- INTRO CASE i1: rod ---------- */
+defCase({id:'i1',icon:'🪝',title:'Will This Rod Hold?',level:1,domains:['s'],inspired:'Hyatt Regency 1981 (check the whole load path)',intro:true,
+teaser:'A workshop wants to hang a chain hoist from one threaded steel rod. Is the M8 rod they have good enough? Your first real calculation: force → stress → safety factor.',
+build(){
+ const m=rint(8,18)*25,F=m*g9,Sy=240,nReq=5;const rods=[['M6',20.1],['M8',36.6],['M10',58.0],['M12',84.3],['M16',157]].map(([n,A])=>({n,A,s:F/A,sf:Sy*A/F}));
+ const best=rods.find(r=>r.sf>=nReq);const p=rods[1];
+ return{brief:{avatar:'🧔',who:'Ben Okoye',role:'Owner of a small engine workshop',quote:`We want to lift engines of up to ${m} kg with a chain hoist hanging from a single threaded rod screwed into the ceiling beam. I have M8 rods lying around. Good enough?`,
+  story:`<p>The rod is steel of property class 4.6 – yield strength <b>S<sub>y</sub> = 240 MPa</b>. Because people work under the load, the workshop's rule is a <b>safety factor of at least ${nReq}</b> against yielding. For threaded rods the load-carrying area is the <b>stress area A<sub>s</sub></b> (a bit smaller than the nominal circle, because of the thread).</p>`,
+  data:tbl(rods.map(r=>[r.n,fmt(r.A,1)]),['Rod','Stress area A<sub>s</sub> (mm²)'])},
+  sh:200,sketch:(c)=>{c.fillStyle='#3c4a62';c.fillRect(200,18,240,22);txt(c,'ceiling beam',450,34,'#9aa6bf');c.strokeStyle='#cfd8dc';c.lineWidth=4;c.beginPath();c.moveTo(320,40);c.lineTo(320,110);c.stroke();txt(c,'threaded rod',332,80,'#4fc3f7');
+   c.fillStyle='#ffb74d';c.fillRect(300,110,40,26);txt(c,'hoist',350,128,'#ffb74d');c.strokeStyle='#9aa6bf';c.lineWidth=2;c.beginPath();c.moveTo(320,136);c.lineTo(320,160);c.stroke();c.fillStyle='#6d7a96';c.fillRect(280,160,80,32);txt(c,`engine ${m} kg`,370,182,'#e6ebf5');arrow(c,250,150,250,190,'#ef5350',2);txt(c,'F = m·g',190,175,'#ef5350');},
+ steps:[
+  {type:'decide',title:'What decides?',sk:'stress',h1:'Think of the snow and skis: what matters is how concentrated the force is.',q:'What decides whether the rod is strong enough?',opts:[
+   O('The stress in the rod (force divided by its stress area) compared with the steel\'s strength',1,'Exactly – the same force is harmless in a thick rod and dangerous in a thin one.'),
+   O('Only the weight – the hoist is rated for 500 kg, so it is fine',0.15,'The hoist rating says nothing about the rod that holds the hoist.'),
+   O('The length of the rod',0.1,'For a rod in tension the length changes the stretch, not the stress.'),
+   O('The colour of the zinc coating',0,'Coatings protect against rust, not overload.')]},
+  {type:'compute',title:'Force',sk:'stress',q:`What force does the ${m} kg engine pull on the rod? (g = 9.81 m/s²)`,ans:F,unit:'N',tol:0.02,dec:0,fm:'F = m·g',h1:'Mass (kg) is not a force. Multiply by g to get newtons.',explain:`F = ${m}·9.81 = ${fmt(F,0)} N (≈ ${fmt(F/1000,2)} kN).`},
+  {type:'compute',title:'Stress in M8',sk:'stress',q:'Compute the tensile stress in the M8 rod.',ans:p.s,unit:'MPa',tol:0.02,dec:1,fm:'σ = F / A<sub>s</sub>  (N / mm² = MPa)',look:'Data sheet: stress area of M8.',h1:'Divide the force (N) by the M8 stress area (mm²).',explain:`σ = ${fmt(F,0)} N / 36.6 mm² = ${fmt(p.s,1)} MPa.`},
+  {type:'compute',title:'Safety factor M8',sk:'sf',q:'Safety factor of the M8 rod against yielding?',ans:p.sf,tol:0.03,dec:2,fm:'n = S<sub>y</sub> / σ',h1:'Strength on top, stress below.',explain:`n = 240 / ${fmt(p.s,1)} = ${fmt(p.sf,2)}.`},
+  {type:'decide',title:'Is M8 OK?',sk:'sf',q:`The rule asks for n ≥ ${nReq}. Is the M8 rod acceptable?`,opts:[
+   O(`No – n = ${fmt(p.sf,2)} is below the required ${nReq}`,1,'The rod would probably hold the static weight, but the margin for jerks, wear and flaws is too small for a load above people.'),
+   O('Yes – n is above 1, so it holds',0.1,`n > 1 only means it holds on paper today. The rule (n ≥ ${nReq}) exists for jerks when the chain snaps tight, thread damage and corrosion.`,{s:-20}),
+   O('Cannot be decided without FEA',0.1,'A simple rod in tension is a textbook hand calculation – no FEA needed.',{t:-5})]},
+  {type:'decide',title:'Choose the rod',sk:'sf',h1:'Compute n = S<sub>y</sub>·A<sub>s</sub>/F for each size and take the smallest one with n ≥ 5.',q:'Which rod do you recommend? (smallest size that meets the rule)',noShuffle:true,opts:rods.map(r=>({t:`${r.n} (A<sub>s</sub> = ${fmt(r.A,1)} mm²)`,q:r===best?1:r.sf>=nReq?0.6:0.05,fb:`σ = ${fmt(r.s,1)} MPa → n = ${fmt(r.sf,2)} ${r.sf>=nReq?'≥':'<'} ${nReq}. ${r===best?'Smallest compliant size.':r.sf>=nReq?'Safe, but bigger than necessary.':'Does not meet the rule.'}`,fx:r.sf>=nReq?{c:-2}:{s:-25}}))},
+  {type:'final',title:'Advice to Ben',sk:'sf',q:'Your advice:',opts:[
+   O(`Use an ${best.n} rod (n ≈ ${fmt(best.sf,1)}), and also check the ceiling beam, the anchor/nut and the hoist rating – mark the maximum load on the hoist.`,1,'Whole load path checked, clear limit for users.',{},null,`Ben installs the ${best.n} rod; a local structural engineer confirms the beam. Two years later the hoist is still lifting engines every week.`),
+   O('Use the M8 – it holds the weight with n above 1.',0.05,'',{s:-40},null,'A few months later, a jerk when an engine slips on the chain overloads the M8 rod; it yields at the thread and the engine drops onto the workbench. Luckily nobody is under it.'),
+   O('Use the biggest rod you can find, no calculation needed.',0.4,'Safe, but without a calculation you cannot say how safe – and the beam may still be the weak link.',{c:-10},null,'The M16 rod holds – but the anchor in the ceiling beam had never been checked. It is fine this time.')]}],
+ debrief:{chain:['Turn the mass into a force: F = m·g.','Find the area that really carries the load (thread stress area).','Stress σ = F/A, then safety factor n = S<sub>y</sub>/σ.','Compare with the required n and pick the smallest compliant size.','Check the whole load path – rod, nut, anchor, beam.'],
+  concepts:[['Stress, strength & stress–strain','w1l1'],['Failure criteria & safety','w1l3']],
+  pitfalls:['Using kg as if it were a force (forgetting g = 9.81).','Using the nominal diameter instead of the thread stress area.','Thinking n > 1 is "safe enough" – rules ask for margins for good reasons.','Checking one part and forgetting the connection it hangs from.'],
+  history:'<b>Hyatt Regency, Kansas City (1981):</b> the hotel\'s walkways hung from steel rods. A change in the detailing made one connection carry twice the intended load; the connection failed and 114 people died. The lesson for every hanging load: check the whole load path, and review every design change.'}};}});
+
+/* ---------- INTRO CASE i2: bookshelf ---------- */
+defCase({id:'i2',icon:'📚',title:'Why Did the Bookshelf Sag?',level:1,domains:['s'],inspired:'Galileo\'s beam (1638)',intro:true,
+teaser:'A student\'s shelf smiles at him every morning. Will it break? Bigger board or a support in the middle? Learn the difference between strength and stiffness.',
+build(){
+ const L=rint(8,10)*100,b=250,h=pick([16,18]),q=rint(6,9)*5;const w=q*g9/1000,M=w*L*L/8,W=b*h*h/6,sig=M/W,E=2500,I=b*h*h*h/12,del=5*w*Math.pow(L,4)/(384*E*I),fs=12;
+ const dThick=del*Math.pow(h/25,3),dMid=del/16,dOak=del*E/11000;
+ return{brief:{avatar:'🧑‍🎓',who:'Jonas',role:'Student, proud owner of 300 books',quote:'My shelf sags like a smile in the middle. Will it break one day? Should I buy a thicker board, or add a bracket in the middle?',
+  story:`<p>The shelf is a particleboard plank, <b>${L} mm</b> long between the two shelf pins, <b>${b} mm</b> deep and <b>${h} mm</b> thick, full of books – about <b>${q} kg per metre</b>. The plank simply rests on the pins (simply supported).</p>`,
+  data:tbl([['Particleboard stiffness E','2 500 MPa'],['Particleboard bending strength','≈ 12 MPa'],['"Looks OK" sag limit','L/300 = '+fmt(L/300,1)+' mm']])},
+  sh:180,sketch:(c)=>{c.fillStyle='#6d5a43';c.beginPath();c.moveTo(120,60);c.quadraticCurveTo(320,110,520,60);c.lineTo(520,75);c.quadraticCurveTo(320,125,120,75);c.closePath();c.fill();
+   for(let k=0;k<22;k++){const x=135+k*17;const y=60+25*(1-Math.pow((x+6-320)/200,2))-31;c.fillStyle=['#4fc3f7','#ba68c8','#ffb74d','#66bb6a'][k%4];c.fillRect(x,y,12,32);}
+   dot(c,120,82,6,'#9aa6bf');dot(c,520,82,6,'#9aa6bf');txt(c,`L = ${L} mm`,280,150,'#9aa6bf');txt(c,'sag δ',330,128,'#ef5350');arrow(c,320,75,320,100,'#ef5350',2);},
+ steps:[
+  {type:'decide',title:'Sag or break?',sk:'mat',h1:'Is a bendy thing always a weak thing? Think of a rubber band.',q:'Jonas mixes up two questions. Which statement is right?',opts:[
+   O('Sagging is about stiffness (how much it deflects); breaking is about strength (stress vs material strength). Check both.',1,'Two different properties, two different calculations.'),
+   O('A shelf that sags is about to break',0.1,'Not necessarily: a stiffness problem is not a strength problem.'),
+   O('Sagging does not matter at all',0.2,'Big sag looks bad, books slide, and wood-based boards creep – the sag grows over months.')]},
+  {type:'compute',title:'Load per mm',sk:'stress',q:`The books weigh ${q} kg per metre. What is the load w in N per <b>mm</b> of shelf?`,ans:w,unit:'N/mm',tol:0.02,dec:3,fm:'w = (kg per m)·9.81 / 1000  (N/m → N/mm)',h1:'First kg → N (× 9.81), then per metre → per millimetre (÷ 1000).',explain:`w = ${q}·9.81/1000 = ${fmt(w,3)} N/mm.`},
+  {type:'compute',title:'Bending moment',sk:'bend',q:'Maximum bending moment in the middle of the shelf (evenly spread load, simply supported)?',ans:M,unit:'N·mm',tol:0.02,dec:0,fm:'M = w·L²/8',h1:'Use w from the last step and L in mm.',explain:`M = ${fmt(w,3)}·${L}²/8 = ${fmt(M,0)} N·mm.`},
+  {type:'compute',title:'Bending stress',sk:'bend',q:'Bending stress in the board?',ans:sig,unit:'MPa',tol:0.03,dec:2,fm:'σ = M/W · W = b·h²/6 (b = depth of the shelf, h = thickness)',h1:'The board bends about its thin side: h = thickness, b = depth.',explain:`W = ${b}·${h}²/6 = ${fmt(W,0)} mm³ → σ = ${fmt(M,0)}/${fmt(W,0)} = ${fmt(sig,2)} MPa.`},
+  {type:'decide',title:'Will it break?',sk:'sf',q:'Particleboard bending strength ≈ 12 MPa. Will the shelf break?',opts:[
+   O(`No – σ ≈ ${fmt(sig,1)} MPa gives a safety factor of about ${fmt(fs/sig,1)}`,1,'The board is strong enough. The problem is something else.'),
+   O('Yes – it is sagging, so it is failing',0.05,'Sag is not failure. The stress is well below the strength.'),
+   O('Impossible to say without a lab test',0.2,'A simple beam calculation answers this well.')]},
+  {type:'compute',title:'How much sag?',sk:'mat',q:'Compute the sag in the middle: δ = 5·w·L⁴/(384·E·I), with I = b·h³/12.',ans:del,unit:'mm',tol:0.04,dec:1,fm:'δ = 5·w·L⁴/(384·E·I) · I = b·h³/12 (mm⁴) · E = 2500 MPa',h1:'Compute I first (thickness cubed!), then plug everything in N and mm.',explain:`I = ${b}·${h}³/12 = ${fmt(I,0)} mm⁴ → δ = 5·${fmt(w,3)}·${L}⁴/(384·2500·${fmt(I,0)}) = ${fmt(del,1)} mm – much more than L/300 = ${fmt(L/300,1)} mm.`},
+  {type:'decide',title:'The fix',sk:'bend',h1:'Sag grows with L⁴ and shrinks with h³ and E. Which change attacks the biggest exponent?',q:'Which fix reduces the sag most effectively and cheaply?',opts:[
+   O('A bracket in the middle (two spans of L/2)',1,`Sag ∝ L⁴: halving the span gives at least 16× less sag → about ${fmt(dMid,1)} mm or less. Cheap and very effective.`),
+   O('A 25 mm board of the same particleboard',0.75,`I ∝ h³: (${h}/25)³ → about ${fmt(dThick,1)} mm. Works, but you need a new board.`,{c:-5}),
+   O('Solid oak of the same thickness (E ≈ 11 000 MPa)',0.6,`About ${fmt(dOak,1)} mm – 4.4× stiffer material, but expensive.`,{c:-10}),
+   O('Flip the board upside down',0.15,'It straightens for a while, then creeps back. It treats the symptom, not the cause.'),
+   O('Stronger screws in the shelf pins',0,'The pins are not the problem; the board is too flexible.')]},
+  {type:'final',title:'Advice to Jonas',sk:'bend',q:'Your advice:',opts:[
+   O('It will not break, but it is too flexible: add a middle bracket (or a thicker board). Put the heaviest books near the supports. Particleboard creeps, so the sag would keep growing.',1,'',{},null,'Jonas adds a €3 bracket. The shelf is straight – and stays straight a year later.'),
+   O('It will break soon – throw it away.',0.1,'',{c:-15},null,'Jonas buys a new shelf of the same kind. It sags just like the old one.'),
+   O('Nothing to do – it won\'t break.',0.35,'',{},null,'True, it doesn\'t break – but particleboard creeps: after a year the sag has roughly doubled and the books slide to the middle.')]}],
+ debrief:{chain:['Separate strength (will it break?) from stiffness (how much does it bend?).','Load → bending moment M = wL²/8 → stress σ = M/W → compare with strength.','Sag δ = 5wL⁴/(384EI): span to the 4th power, thickness to the 3rd.','Choose the fix that attacks the biggest exponent: shorter span.'],
+  concepts:[['Beam bending','w1l4'],['Stiffness and E','w1l1']],
+  pitfalls:['Treating sag as a strength problem.','Forgetting that W = bh²/6 and I = bh³/12 depend strongly on thickness.','Mixing N/m and N/mm.','Ignoring creep in wood-based boards and plastics.'],
+  history:'<b>Galileo Galilei</b> analysed the breaking strength of a cantilever beam in his <i>Two New Sciences</i> (1638) – one of the first attempts at a beam theory. His stress distribution was not correct; the beam theory we use today (Euler–Bernoulli) was developed in the 18th century.'}};}});
+
+/* ---------- INTRO CASE i3: which part fails first ---------- */
+defCase({id:'i3',icon:'🛴',title:'Which Part Fails First?',level:1,domains:['t'],inspired:'everyday reliability',intro:true,
+teaser:'Two suppliers of e-scooter folding hinges. One has the better average lifetime. The fleet manager wants the better one. Averages can lie – find out how.',
+build(){
+ let X,Y;const T=40;for(let g=0;g<500;g++){Y=[...Array(6)].map(()=>Math.round(60+5*randn()));X=[...Array(4)].map(()=>Math.round(88+6*randn())).concat([rint(18,30),rint(22,36)]);X=shuffle(X);
+  if(Math.min(...Y)>T+5&&X.filter(x=>x<T).length===2&&mean(X)>mean(Y)+3)break;}
+ const mX=mean(X),mY=mean(Y),early=100*X.filter(x=>x<T).length/6;
+ return{brief:{avatar:'👩‍💼',who:'Aylin Demir',role:'Fleet manager, e-scooter sharing',quote:'Supplier X\'s hinges last longer on average – the test lab says so. Let\'s order 5,000 from X. Agreed?',
+  story:`<p>The folding hinge is replaced at every service, after about <b>${T} thousand</b> folding/riding load cycles. A hinge that breaks before that can make a rider fall. The lab tested <b>6 hinges</b> from each supplier to failure on a rig.</p>`,
+  data:tbl([['Supplier X',...X],['Supplier Y',...Y]],['Life (thousand cycles)','#1','#2','#3','#4','#5','#6'])},
+  sh:170,sketch:(c)=>{const P=plotArea(c,70,15,540,110,[0,110],[0,3]);P.axes('life (thousand cycles)','',{yt:[1,2],yf:v=>v===2?'X':'Y',yoff:30});c.strokeStyle='#ef5350';c.setLineDash([5,4]);c.beginPath();c.moveTo(P.X(T),15);c.lineTo(P.X(T),125);c.stroke();c.setLineDash([]);txt(c,'service',P.X(T)+4,28,'#ef5350');
+   X.forEach(x=>dot(c,P.X(x),P.Y(2),6,'#ffb74d','#0c111b'));Y.forEach(y=>dot(c,P.X(y),P.Y(1),6,'#4fc3f7','#0c111b'));},
+ steps:[
+  {type:'compute',title:'Average X',sk:'stat',q:'Mean life of supplier X (thousand cycles)?',ans:mX,tol:0.01,dec:1,unit:'k cycles',fm:'mean = (sum of all values)/number of values',h1:'Add the six X values and divide by 6.',explain:`(${X.join(' + ')})/6 = ${fmt(mX,1)}.`},
+  {type:'compute',title:'Average Y',sk:'stat',q:'Mean life of supplier Y?',ans:mY,tol:0.01,dec:1,unit:'k cycles',fm:'mean = (sum of all values)/number of values',h1:'Same as before, with the Y row.',explain:`(${Y.join(' + ')})/6 = ${fmt(mY,1)} – lower than X.`},
+  {type:'decide',title:'Higher average = better?',sk:'stat',h1:'Look at the dot plot: where are the X dots relative to the red service line?',q:'X has the higher mean. Does that make X the better hinge?',opts:[
+   O('Not necessarily – look at the spread and especially the weakest parts',1,'Failures happen in the weak tail, not at the average.'),
+   O('Yes – a higher average always means fewer failures',0.05,'An average can hide a few very early failures.'),
+   O('No – lower average is always better',0,'That makes no sense either; it\'s about the whole distribution.')]},
+  {type:'compute',title:'Early failures X',sk:'stat',q:`What percentage of the X hinges failed BEFORE the ${T} thousand cycle service interval?`,ans:early,unit:'%',abs:1,tol:0,dec:1,fm:'fraction = count below the line / total × 100',h1:'Count the X values below '+T+', divide by 6.',explain:`${X.filter(x=>x<T).length} of 6 = ${fmt(early,1)} %. Supplier Y: 0 of 6.`},
+  {type:'decide',title:'Supplier',sk:'rel',q:'Which supplier do you recommend?',opts:[
+   O('Supplier Y – every tested hinge outlived the service interval, with small scatter',1,'Consistency is what keeps riders safe here.'),
+   O('Supplier X – the higher average wins',0.05,`One in three X hinges broke before service – that is ${fmt(early,0)} % of riders at risk.`,{s:-30}),
+   O('Test 20 more of each first',0.55,'More data is always welcome, but the early failures of X are already a clear warning.',{t:-15}),
+   O('Order half from each',0.2,'Half the fleet would still carry the early-failure risk.',{s:-15})]},
+  {type:'final',title:'Advice to Aylin',sk:'stat',q:'Your message to Aylin:',opts:[
+   O(`Order from Y. X looks better on average, but ${fmt(early,0)} % of its hinges failed before the service interval – for a safety part the weakest units matter. Ask X to find the cause of the early failures; with only 6 samples, keep monitoring field returns.`,1,'',{},null,'The Y hinges go into service. Field data after a year: no hinge failures before service. Supplier X later finds a heat-treatment problem in part of its production.'),
+   O('Order from X – longer life on average.',0.05,'',{s:-40},null,'Within months several hinges break in service. Two riders are injured; the fleet is grounded for inspection.'),
+   O('Both are fine – the averages are close.',0.2,'',{s:-20},null,'Half the scooters get X hinges; early hinge failures start to appear in the field.')]}],
+ debrief:{chain:['Compute the averages – but don\'t stop there.','Plot all the data against the requirement (service interval).','Count how many fall short: the weak tail decides safety.','Recommend the consistent supplier; ask for the root cause of early failures.','Small samples: keep collecting data.'],
+  concepts:[['Scatter & allowables','w3l4'],['Load vs strength scatter','w3l3'],['Weibull (next step)','w3l1']],
+  pitfalls:['Judging by the average alone.','Ignoring a "few" early failures as outliers.','Over-trusting 6 samples – real decisions need more data and field monitoring.'],
+  history:''}};}});
+/* ===================== Learner support for the Case Files: skills, nudges, formulas, guided steps ===================== */
+const CASE_META={
+ c1:{'First move':{sk:'rca',h1:'Before fixing anything: what would tell you HOW it broke? Think like a detective – protect the evidence.'},
+  'Mechanism':{sk:'fat',h1:'Look at the fracture sketch: curved lines spreading from one point mean the crack grew step by step.'},
+  'Data request':{sk:'rca',h1:'Ask for what changes the stress at the crack origin (notch geometry, load) and what rules out "bad steel".'},
+  'Nominal bending stress':{sk:'bend',fm:'σ<sub>a</sub> = 32·M/(π·d³)  (round shaft: W = π·d³/32) · kN·m × 10⁶ = N·mm',h1:'The shaft rotates, so the bending stress alternates. Use the NEW impeller moment and convert kN·m into N·mm.',look:'Data sheet: "Bending moment at keyway" (new impeller) and the shaft diameter.'},
+  'Fatigue notch factor':{sk:'kt',adv:true,fm:'q = 1/(1 + √a/√r) · K<sub>f</sub> = 1 + q·(K<sub>t</sub> − 1)'},
+  'Goodman check':{sk:'fat',fm:'1/n = K<sub>f</sub>·σ<sub>a</sub>/S<sub>e</sub> + σ′<sub>m</sub>/S<sub>ut</sub>  →  n = 1/(…)',h1:'Multiply the nominal amplitude by K<sub>f</sub> first, then add the two fractions and take the reciprocal.'},
+  'Life estimate':{sk:'fat',adv:true,fm:'b = −log₁₀(0.9S<sub>ut</sub>/S<sub>e</sub>)/3 · a = (0.9S<sub>ut</sub>)²/S<sub>e</sub> · N = (σ<sub>ar</sub>/a)<sup>1/b</sup>'},
+  'Redesign':{sk:'fat',h1:'Compare each package\'s n with the rule n ≥ 1.3, then pick the cheapest one that passes.'},
+  'Report to the plant manager':{sk:'rca',h1:'A good report names the cause, the fix, AND the process change that prevents a repeat.'}},
+ c2:{'Design load':{sk:'stress',h1:'Two inclined legs share the weight – and an inclined rope pulls harder than a vertical one.'},
+  'Sling force':{sk:'stress',fm:'S = DAF·m·g/(2·sin θ) · 1 t = 1000 kg · result in N → ÷ 1000 for kN',h1:'Tonnes → kg, × g, × dynamic factor 1.25, share between 2 legs, then divide by sin 45°.'},
+  'Lug orientation':{sk:'bend',h1:'A plate bent on its edge is far stronger than bent flat: W = t·w²/6 versus w·t²/6.'},
+  'Check the proposed lug':{sk:'crit',fm:'σ = V/A + H·h/W · τ = H/A · σ<sub>vM</sub> = √(σ² + 3τ²) · A = t·w · W = t·w²/6',h1:'The vertical component pulls (V/A), the horizontal one bends (H·h/W) and shears (H/A). Combine with von Mises.'},
+  'Verdict on the proposed lug':{sk:'sf',h1:'Compare with the ALLOWABLE stress (yield ÷ 3), not with the yield strength itself.'},
+  'Choose the lug':{sk:'sf',h1:'Lightest option with σ<sub>vM</sub> ≤ allowable.'},
+  'Net section at the hole':{sk:'stress',adv:true,fm:'σ = S/(2·(R − d/2)·t)'},
+  'Lifting certificate':{sk:'sf'}},
+ c3:{'First reaction':{sk:'mesh',h1:'One colourful number at a sharp corner – is it real? What would you need to know before spending €38k?'},
+  'Data request':{sk:'mesh',h1:'Ask for what proves whether the peak is converged and whether geometry and supports are real.'},
+  'Mesh study':{sk:'mesh',fm:'ratio = σ(0.5 mm) / σ(1 mm)',h1:'Divide the finest-mesh corner peak by the 1 mm value (Supplier reply table).',look:'Evidence "Supplier reply": row "Peak σ<sub>vM</sub> at corner".'},
+  'Interpretation':{sk:'mesh',h1:'If every refinement raises the value by the same ratio, is it converging?'},
+  'Hand check':{sk:'bend',fm:'σ = F·L/W · W = t·h²/6 · kN × 1000 = N',h1:'Cantilever: M = F·L. Convert kN to N.'},
+  'Safety factor':{sk:'sf',fm:'n = S<sub>y</sub> / σ<sub>peak, finest mesh</sub>',h1:'Use the finest-mesh fillet value from the rerun table and S<sub>y</sub> = 355 MPa.'},
+  'Decision on the change request':{sk:'mesh'}},
+ c4:{'Model choice':{sk:'crit',h1:'Thin-wall formulas assume a thin skin. Check D/t: below about 20 the wall counts as "thick".'},
+  'Lamé hoop stress':{sk:'crit',fm:'σ<sub>θ</sub> = p·(r<sub>o</sub>² + r<sub>i</sub>²)/(r<sub>o</sub>² − r<sub>i</sub>²) · r<sub>i</sub> = D<sub>i</sub>/2 · r<sub>o</sub> = r<sub>i</sub> + t · 10 bar = 1 MPa',h1:'Radii first (in mm), pressure in MPa.'},
+  'Equivalent stress':{sk:'crit',fm:'σ<sub>vM</sub> = √(½[(σ<sub>θ</sub>−σ<sub>r</sub>)² + (σ<sub>r</sub>−σ<sub>z</sub>)² + (σ<sub>z</sub>−σ<sub>θ</sub>)²]) · σ<sub>r</sub> = −p · σ<sub>z</sub> = p·r<sub>i</sub>²/(r<sub>o</sub>² − r<sub>i</sub>²)',h1:'Three stresses at the bore: hoop (last step), radial = −p, axial (closed ends).'},
+  'Weld check':{sk:'stress',h1:'A circumferential weld runs AROUND the tube. Which stress pulls across it?'},
+  'Design option':{sk:'sf',h1:'Check both rules for each option; prefer the smallest change that passes.'},
+  'Burst margin':{sk:'stress',adv:true,fm:'p<sub>b</sub> ≈ (2/√3)·S<sub>ut</sub>·ln(r<sub>o</sub>/r<sub>i</sub>)'},
+  'Answer to the customer':{sk:'sf'}},
+ c5:{'Hypothesis':{sk:'fat',h1:'Loose nuts AND fatigue fractures – what links the two?'},
+  'Investigation':{sk:'rca',h1:'Ask for what reveals the real clamping force and how the bolts were tightened.'},
+  'Remaining preload':{sk:'stress',fm:'F<sub>i</sub> = T/(K·d) · N·m × 1000 = N·mm · d in mm → F<sub>i</sub> in N (÷ 1000 for kN)',h1:'Torque in N·m × 1000 gives N·mm; divide by K·d.'},
+  'Joint constant':{sk:'fea',fm:'C = k<sub>b</sub>/(k<sub>b</sub> + k<sub>m</sub>)',h1:'Two springs side by side: the bolt\'s share is its stiffness divided by the total stiffness.'},
+  'Separation':{sk:'fea',adv:true,fm:'P<sub>0</sub> = F<sub>i</sub>/(1 − C)'},
+  'Bolt stress amplitude':{sk:'fat',fm:'separated joint: σ<sub>a</sub> = (P − F<sub>i</sub>)/(2·A<sub>t</sub>) · kN × 1000 = N',h1:'Once the joint opens, the bolt load swings between F<sub>i</sub> and P. Amplitude = half the swing, divided by the stress area.'},
+  'Corrective action':{sk:'fat',h1:'What restores the mechanism that protects the bolt? It starts with "pre…".'},
+  'Report to maintenance':{sk:'rca'}},
+ c6:{'Censored data':{sk:'weib',h1:'A unit still running at 3000 h tells you something: it lasted at least 3000 h.'},
+  'Adjusted rank':{sk:'weib',adv:true,fm:'O = [r·O<sub>prev</sub> + (N + 1)]/(r + 1)'},
+  'Failure mode':{sk:'weib',h1:'Look at β: below 1, about 1, or above 1?'},
+  'B10 life':{sk:'weib',fm:'B10 = η·(−ln 0.9)<sup>1/β</sup> · −ln 0.9 = 0.1054',h1:'Take β and η from the Weibull plot in the case file.',look:'Evidence "Weibull plot": the fitted β and η.'},
+  'Expected claims':{sk:'rel',fm:'F(t) = 1 − exp[−(t/η)<sup>β</sup>] · × 100 for %',h1:'Put the 2-year hours into the Weibull formula.'},
+  'Warranty period':{sk:'rel',h1:'Compare the claim percentage for 1, 2 and 3 years with the 3 % budget.'},
+  'Recommendation':{sk:'weib'}},
+ c7:{'Comparison metric':{sk:'stat',h1:'Failures come from the weakest parts. Which number describes the weakest parts?'},
+  'B-basis A':{sk:'stat',fm:'B-basis = x̄ − 2.355·s',h1:'Use supplier A\'s mean and standard deviation printed under the data table.'},
+  'Interference, supplier A':{sk:'rel',fm:'z = (x̄ − μ<sub>L</sub>)/√(s² + σ<sub>L</sub>²)',h1:'Difference of the means divided by the combined scatter.'},
+  'Expected failures':{sk:'rel',adv:true,fm:'failures/yr = P<sub>f</sub> × 200 000 · P<sub>f</sub> = 1 − Φ(z) (normal table)'},
+  'Supplier choice':{sk:'rel',h1:'Which supplier meets the ≤ 10 ppm requirement?'},
+  'Memo to purchasing':{sk:'stat'}},
+ c8:{'What data?':{sk:'stat',h1:'A slide that shows only the bad cases cannot show a trend. What is missing?'},
+  'Incident rate when cold':{sk:'stat',fm:'fraction = starts below 15 °C with ≥ 1 incident / all starts below 15 °C × 100',h1:'Count the dots left of the dashed 15 °C line: red ones vs all of them.',look:'Evidence plot "All start-ups": dots left of the dashed line.'},
+  'Seals at −30 °C':{sk:'stat',h1:'Is −30 °C inside or outside the temperatures you have experience with?'},
+  'Charpy transition':{sk:'mat',fm:'read the temperature where the curve crosses the dashed 27 J line',h1:'Find where the green curve crosses the orange dashed line and read the temperature below it.'},
+  'Frame steel':{sk:'mat',h1:'Choose a steel that was tested for toughness BELOW the design temperature.'},
+  'Sign-off':{sk:'mat'}},
+ c9:{'Governing load case':{sk:'fat',h1:'How often is the cabin pressurised? Once per …'},
+  'Hoop stress':{sk:'stress',fm:'σ = p·R/t · kPa ÷ 1000 = MPa · m × 1000 = mm',h1:'Convert kPa → MPa and m → mm before dividing.'},
+  'Corner life (draft)':{sk:'kt',fm:'S<sub>max</sub> = K<sub>t</sub>·σ · N = (S<sub>max</sub>/1000)<sup>1/(−0.15)</sup>',h1:'Peak stress first (K<sub>t</sub>·σ), then invert the S–N curve.'},
+  'Corner design':{sk:'kt',h1:'Lower K<sub>t</sub> locally – and plan for cracks anyway.'},
+  'Critical crack length':{sk:'frac',fm:'a<sub>c</sub> = (1/π)·(K<sub>c</sub>/(Y·σ<sub>loc</sub>))² → metres × 1000 = mm',h1:'σ<sub>loc</sub> = 2.6 × hoop stress. The formula gives metres – convert to mm.'},
+  'Crack growth':{sk:'frac',adv:true},
+  'Inspection interval':{sk:'frac',h1:'How many chances to find the crack do you want before it becomes critical?'},
+  'Design review':{sk:'frac'}},
+ c10:{'Pareto':{sk:'rca',fm:'share = top count / total × 100',h1:'Add up all counts, then divide the top category by the total.'},
+  'Next step':{sk:'rca',h1:'Focus on the biggest category – and get physical evidence.'},
+  'Fatigue life as built':{sk:'fat',fm:'N = 2·10⁶·(FAT/Δσ)³',h1:'Use FAT 71 and the measured Δσ from the lab report.',look:'Evidence "Lab report": Δσ and the FAT class.'},
+  'Drawing change':{sk:'fat',h1:'Compute N for each option and compare with the 8-year requirement.'},
+  'Improved life':{sk:'fat',adv:true,fm:'N = 2·10⁶·(112/Δσ)³'},
+  'FMEA priority':{sk:'rca',h1:'Severity first: which failure can hurt somebody?'},
+  'Answer to production':{sk:'rca'}}};
+function applyCaseMeta(id,K){const M=CASE_META[id];if(!M)return;K.steps.forEach(s=>{const m=M[s.title];if(m)for(const k in m)if(s[k]==null)s[k]=m[k];});}
+/* ===================== LEARNING PATH, LESSONS, SKILLS MAP, REVIEW ===================== */
+const PATH=[['lesson','stress'],['lesson','sf'],['case','i1'],['lesson','mat'],['lesson','bend'],['case','i2'],['lesson','stat'],['case','i3'],
+ ['lesson','crit'],['case','c2'],['lesson','kt'],['lesson','fat'],['case','c1'],['case','c5'],['lesson','fea'],['lesson','mesh'],['lesson','bc'],['case','c3'],['case','c4'],
+ ['lesson','rel'],['case','c7'],['case','c8'],['lesson','weib'],['case','c6'],['lesson','rca'],['case','c10'],['lesson','frac'],['case','c9'],['boss','boss']].map(([t,id],k)=>({t,id,k}));
+const CASE_NEEDS={i1:['stress','sf'],i2:['mat','bend'],i3:['stat'],c2:['crit'],c1:['kt','fat'],c5:['fat'],c3:['fea','mesh','bc'],c4:['crit'],c7:['rel'],c8:['stat','mat'],c6:['weib'],c10:['rca'],c9:['frac']};
+CASES.sort((a,b)=>PATH.findIndex(n=>n.id===a.id)-PATH.findIndex(n=>n.id===b.id));
+const lessonDone=id=>!!(STORE.lessons[id]||{}).done;
+const caseDone=id=>(STORE.cases[id]||{}).best!=null;
+function nodeTitle(n){return n.t==='lesson'?SKILLS[n.id].name:n.t==='case'?(CASES.find(c=>c.id===n.id)||{}).title:'Failure Review Board';}
+function nodeDone(n){return n.t==='lesson'?lessonDone(n.id):n.t==='case'?caseDone(n.id):((STORE.levels.boss||{}).stars>0);}
+function nodeUnlocked(n){if(STORE.unlockAll)return true;if(n.t==='boss')return isUnlocked(LEVELS.find(l=>l.id==='boss'));
+ const prev=PATH.slice(0,n.k).filter(x=>x.t===n.t);if(n.t==='lesson')return !prev.length||nodeDone(prev[prev.length-1]);
+ const needs=(CASE_NEEDS[n.id]||[]).every(lessonDone);return needs&&(!prev.length||nodeDone(prev[prev.length-1]));}
+function caseUnlocked(id){const n=PATH.find(x=>x.id===id&&x.t==='case');return n?nodeUnlocked(n):true;}
+function lockReason(n){if(n.t==='case'){const miss=(CASE_NEEDS[n.id]||[]).filter(k=>!lessonDone(k)).map(k=>SKILLS[k].name);const prev=PATH.slice(0,n.k).filter(x=>x.t==='case').pop();
+  return (miss.length?'Needs the lesson'+(miss.length>1?'s':'')+': '+miss.join(', ')+'. ':'')+(prev&&!nodeDone(prev)?'Close "'+nodeTitle(prev)+'" first. ':'')+'(Or enable "unlock everything" in ⚙.)';}
+ if(n.t==='lesson'){const prev=PATH.slice(0,n.k).filter(x=>x.t==='lesson').pop();return 'Finish the lesson "'+nodeTitle(prev)+'" first (or enable "unlock everything" in ⚙).';}
+ return 'Unlocks after 6 lessons, 4 cases or stars in 8 training levels.';}
+function nextPathNode(){return PATH.find(n=>!nodeDone(n)&&nodeUnlocked(n)&&n.t!=='boss')||null;}
+function openPathNode(n){if(!nodeUnlocked(n)){toast('🔒 '+lockReason(n));return;}if(n.t==='lesson')openLesson(n.id);else if(n.t==='case')startCase(CASES.find(c=>c.id===n.id));else openLevel('boss');}
+function seenSkills(){return SKILL_ORDER.filter(k=>(STORE.lessons[k]||{}).seen||skillState(k).n>0);}
+function practiceNext(){const s=seenSkills().filter(k=>skillState(k).m<90).sort((a,b)=>skillState(a).m-skillState(b).m);return s[0]||null;}
+function dueSkills(){const now=Date.now();return seenSkills().filter(k=>{const s=skillState(k);return s.n>0&&(s.due<=now||s.m<50);}).sort((a,b)=>skillState(a).m-skillState(b).m);}
+
+function renderHome(app){
+ const nL=SKILL_ORDER.filter(lessonDone).length,nC=CASES.filter(c=>caseDone(c.id)).length;const nx=nextPathNode();const pn=practiceNext();const due=dueSkills();
+ const w=el('div',{class:'welcome'});app.appendChild(w);
+ w.appendChild(el('div',{style:'font-size:56px;line-height:1'},'🦉'));
+ const mid=el('div',{style:'flex:1;min-width:280px'},`<h2 style="margin:0 0 4px">${nL+nC===0?'Welcome to Stress Quest!':'Welcome back, engineer!'}</h2><p style="margin:0 0 8px">I'm <b>Ada</b>, your mentor. We'll learn strength, FEA and failure statistics step by step: short lessons with everyday examples, then real engineering cases where <i>you</i> make the call. No prior knowledge needed.</p>
+  <div class="small mut">📗 Lessons ${nL}/${SKILL_ORDER.length} · 📁 Cases ${nC}/${CASES.length} · ★ Training ${totalStars()}/${LEVELS.length*3}</div><div class="prog" style="max-width:420px"><i style="width:${100*(nL+nC)/(SKILL_ORDER.length+CASES.length)}%"></i></div>`);w.appendChild(mid);
+ const rt=el('div',{style:'display:flex;flex-direction:column;gap:8px;min-width:230px'});w.appendChild(rt);
+ if(nx){const b=el('button',{class:'btn pri',id:'continueBtn',style:'font-size:15px;padding:10px 16px'},`▶ ${nL+nC===0?'Start':'Continue'}: ${nx.t==='lesson'?'📗':'📁'} ${nodeTitle(nx)}`);b.onclick=()=>openPathNode(nx);rt.appendChild(b);}
+ else rt.appendChild(el('div',{class:'small'},'🏆 Path complete! Try the optional Review Board or replay cases in Expert mode.'));
+ if(pn){const b=el('button',{class:'btn'},`🎯 Practice next: ${SKILLS[pn].icon} ${SKILLS[pn].name}`);b.onclick=()=>startPractice([pn],5,'Practice: '+SKILLS[pn].name);rt.appendChild(b);}
+ if(due.length){const b=el('button',{class:'btn',id:'reviewBtn'},`🔁 Review (${due.length} skill${due.length>1?'s':''} due)`);b.onclick=startReview;rt.appendChild(b);}
+ const mp=el('div',{class:'small mut'},'Difficulty: ');mp.appendChild(modePicker(showMap));rt.appendChild(mp);
+ app.appendChild(el('div',{class:'sechead',id:'path'},'<h2>🧭 Learning path</h2><span class="small mut">Lessons 📗 teach a concept with an everyday example; cases 📁 put it to work on a real problem. Hover or tap dotted words for a definition.</span>'));
+ const g=el('div',{class:'path'});app.appendChild(g);
+ PATH.forEach(n=>{const done=nodeDone(n),un=nodeUnlocked(n),isNext=nx&&n===nx;const ic=n.t==='lesson'?SKILLS[n.id].icon:n.t==='case'?(CASES.find(c=>c.id===n.id)||{}).icon:'🐉';
+  const sub=n.t==='lesson'?SKILLS[n.id].short:n.t==='case'?((STORE.cases[n.id]||{}).best!=null?'best '+STORE.cases[n.id].best+'% '+'★'.repeat(STORE.cases[n.id].stars||0):'case · '+'●'.repeat((CASES.find(c=>c.id===n.id)||{}).level||1)):'optional challenge';
+  const d=el('div',{class:`pnode ${n.t}${done?' done':''}${un?'':' locked'}${isNext?' next':''}`,'data-node':n.t+':'+n.id},`<div class="pi">${done?'✓':un?n.k+1:'🔒'}</div><div class="k">${n.t==='lesson'?'📗 Lesson':n.t==='case'?'📁 Case':'🐉 Boss'} ${ic||''}</div><b>${nodeTitle(n)}</b><div class="small mut">${sub}</div>`);
+  d.onclick=()=>openPathNode(n);g.appendChild(d);});
+ renderCaseHome(app);renderTraining(app);}
+
+function openLesson(id){cleanup();CUR_LEVEL=null;const S=SKILLS[id];const app=$('#app');app.innerHTML='';window.scrollTo(0,0);
+ const head=el('div',{class:'lvhead'});head.appendChild(el('button',{class:'btn sm',onclick:showMap},'◀ Home'));head.appendChild(el('h2',null,`📗 Lesson: ${S.icon} ${S.name}`));
+ head.appendChild(el('button',{class:'btn sm',onclick:showSkills},'🧠 Skills map'));app.appendChild(head);
+ const wrap=el('div',{class:'levelwrap'});const left=el('div',{class:'card',id:'lessonCard'}),right=el('div',{class:'card',id:'lessonPractice'});wrap.append(left,right);app.appendChild(wrap);
+ right.appendChild(el('div',{class:'steptitle'},'Practice'));right.appendChild(el('p',{class:'mut'},'Read Ada\'s explanation and answer the quick check first – then three practice questions appear here. Hints are on the 💡 button, the calculator on 🧮.'));
+ if(S.levels&&S.levels.length){const r=el('div',{class:'row small'},'Want more? Training: ');S.levels.forEach(l=>{const L=LEVELS.find(x=>x.id===l);if(L)r.appendChild(el('button',{class:'btn sm',onclick:()=>openLevel(l)},L.title));});right.appendChild(r);}
+ mentorBlock(left,S,()=>startLessonPractice(id,right),{intro:`Hi, I'm Ada! 👋 This lesson is about <b>${S.name}</b>. Read it at your own pace – the dotted words explain themselves when you hover or tap.`,btn:'Great – let\'s practise ▶'});}
+function startLessonPractice(id,box){const S=SKILLS[id];box.innerHTML='';box.appendChild(el('div',{class:'steptitle'},'Practice · 3 questions'));const tb=el('div');box.appendChild(tb);
+ runTasks(tb,skillTasks(id,3),score=>{const prev=STORE.lessons[id]||{};STORE.lessons[id]=Object.assign(prev,{seen:true,done:true,best:Math.max(prev.best||0,score)});save();updHeader();celebrate();
+  const nx=nextPathNode();const m=skillState(id).m;
+  modal(`<div class="results"><h2>Lesson complete! 🎉</h2>${mentorHTML(score>=67?'Excellent – you\'ve got the idea. Now let\'s use it on something real.':'Well done for working through it! Mistakes are how we learn – the next case will practise it again, and hints are always there.')}<p>Practice score: <b>${score}%</b></p><p>${S.icon} ${S.name}: <b>${masteryName(m)}</b> (${m}%)</p></div>`,
+   [{t:'Back to the path',fn:showMap},...(nx?[{t:'Next: '+nodeTitle(nx)+' ▶',pri:true,fn:()=>openPathNode(nx)}]:[])]);},{sk:id,finishLabel:'Finish lesson ✔'});}
+
+function startPractice(ids,n,title){cleanup();CUR_LEVEL=null;const app=$('#app');app.innerHTML='';window.scrollTo(0,0);
+ const head=el('div',{class:'lvhead'});head.appendChild(el('button',{class:'btn sm',onclick:showMap},'◀ Home'));head.appendChild(el('h2',null,'🎯 '+title));head.appendChild(el('button',{class:'btn sm',onclick:showSkills},'🧠 Skills map'));app.appendChild(head);
+ const wrap=el('div',{class:'levelwrap'});const left=el('div',{class:'card'}),right=el('div',{class:'card'});wrap.append(left,right);app.appendChild(wrap);
+ left.appendChild(el('div',null,mentorHTML(ids.length>1?'Quick review! Short questions on the skills that are due or still a bit shaky. Spaced repetition makes knowledge stick.':`Let's strengthen <b>${SKILLS[ids[0]].name}</b>. Need a reminder first? Open the formula card below.`)));
+ ids.forEach(k=>left.appendChild(el('div',{class:'formula'},`${SKILLS[k].icon} <b>${SKILLS[k].name}:</b> ${SKILLS[k].formula}`)));
+ left.appendChild(el('div',{class:'row',style:'margin-top:8px'},''));ids.forEach(k=>left.lastChild.appendChild(el('button',{class:'btn sm',onclick:()=>openLesson(k)},'📗 Lesson: '+SKILLS[k].name)));
+ const tasks=[];for(let i=0;i<n;i++){const k=ids[i%ids.length];tasks.push(skillTasks(k,1)[0]);}
+ runTasks(right,shuffle(tasks),score=>{celebrate();modal(`<div class="results"><h2>${score>=80?'Superb! 🏆':score>=50?'Nice work! 👍':'Good effort! 🌱'}</h2><p>Score: <b>${score}%</b></p>${ids.map(k=>{const m=skillState(k).m;return `<div style="text-align:left;margin:6px 0">${SKILLS[k].icon} ${SKILLS[k].name}<div class="mbar"><i style="width:${m}%;background:${masteryCol(m)}"></i></div><span class="lvlname">${masteryName(m)} · ${m}%</span></div>`;}).join('')}</div>`,
+  [{t:'Skills map',fn:showSkills},{t:'Back to the path',pri:true,fn:showMap}]);},{finishLabel:'Finish ✔'});}
+function startReview(){let ids=dueSkills();if(!ids.length)ids=seenSkills().sort((a,b)=>skillState(a).m-skillState(b).m);if(!ids.length)ids=['stress'];startPractice(ids.slice(0,4),5,'Review session');}
+
+function showSkills(){cleanup();CUR_LEVEL=null;updHeader();const app=$('#app');app.innerHTML='';window.scrollTo(0,0);
+ const head=el('div',{class:'lvhead'});head.appendChild(el('button',{class:'btn sm',onclick:showMap},'◀ Home'));head.appendChild(el('h2',null,'🧠 Skills map'));app.appendChild(head);
+ const pn=practiceNext(),due=dueSkills();const avg=Math.round(mean(SKILL_ORDER.map(k=>skillState(k).m)));
+ const top=el('div',{class:'welcome',id:'skillTop'});top.appendChild(el('div',{style:'font-size:48px'},'🦉'));
+ top.appendChild(el('div',{style:'flex:1;min-width:260px'},`<b>Overall mastery: ${avg}%</b><div class="mbar" style="max-width:420px"><i style="width:${avg}%;background:linear-gradient(90deg,var(--w1),var(--w2),var(--w3))"></i></div><div class="small">${pn?`My suggestion: practise <b>${SKILLS[pn].icon} ${SKILLS[pn].name}</b> next (${skillState(pn).m}%).`:'Start with the first lesson on the learning path – your skills will grow here as you answer questions.'}${due.length?` · ${due.length} skill${due.length>1?'s are':' is'} due for review.`:''}</div><div class="small mut">Mastery grows with every correct answer in lessons, cases, training and reviews. Levels: New → Learning → Practising (40 %) → Proficient (70 %) → Mastered (90 %).</div>`));
+ const rr=el('div',{class:'row'});if(pn)rr.appendChild(el('button',{class:'btn pri',onclick:()=>startPractice([pn],5,'Practice: '+SKILLS[pn].name)},'🎯 Practice '+SKILLS[pn].name));if(due.length||seenSkills().length)rr.appendChild(el('button',{class:'btn',onclick:startReview},'🔁 Review session'));top.appendChild(rr);app.appendChild(top);
+ const g=el('div',{class:'skillgrid'});app.appendChild(g);
+ SKILL_ORDER.forEach(k=>{const S=SKILLS[k],s=skillState(k);const isDue=due.includes(k);
+  const c=el('div',{class:'skill','data-skill':k},`<div class="row" style="justify-content:space-between"><h3>${S.icon} ${S.name}</h3>${isDue?'<span class="tag" style="color:#ffb74d">due</span>':''}</div><div class="small mut">${S.short}</div><div class="mbar"><i style="width:${s.m}%;background:${masteryCol(s.m)}"></i></div><div class="lvlname">${masteryName(s.m)} · ${s.m}% · ${s.n} answer${s.n===1?'':'s'}${lessonDone(k)?' · 📗 lesson done':''}</div>`);
+  const r=el('div',{class:'row',style:'margin-top:8px'});r.appendChild(el('button',{class:'btn sm',onclick:()=>openLesson(k)},'📗 Lesson'));r.appendChild(el('button',{class:'btn sm',onclick:()=>startPractice([k],5,'Practice: '+S.name)},'🎯 Practice'));
+  (S.levels||[]).forEach(l=>{const L=LEVELS.find(x=>x.id===l);if(L)r.appendChild(el('button',{class:'btn sm',title:'Training level',onclick:()=>openLevel(l)},'🏋 '+L.title));});c.appendChild(r);g.appendChild(c);});}
 /* ===================== INIT ===================== */
-$('#bMap').onclick=showMap;$('#logo').onclick=showMap;$('#bGloss').onclick=showGlossary;$('#bSet').onclick=settings;
+$('#bMap').onclick=showMap;$('#logo').onclick=showMap;$('#bGloss').onclick=showGlossary;$('#bSet').onclick=settings;$('#bSkills').onclick=showSkills;$('#bCalc').onclick=()=>calcOpen();$('#modeBadge').onclick=settings;
+tipInit();calcInit();updModeBadge();
 showMap();
-if(!STORE.seenIntro){STORE.seenIntro=true;save();modal(`<h2>⚙ Welcome to Stress Quest</h2><p><b>📁 Case Files</b> are the heart of the game: realistic engineering investigations where <i>you</i> are the engineer – read the brief, request data, pick the right analysis, compute, and make the call. Your decisions have consequences.</p><p>Behind them are the <b>🎯 Training grounds</b>, three worlds of drills:</p><ol><li><b>Strength theory</b> – stress–strain, Mohr's circle, failure criteria, beams, fatigue</li><li><b>Finite element method</b> – assembly, convergence, elements, BCs, results</li><li><b>Statistics for failure analysis</b> – Weibull, reliability, interference, allowables, RCA tools</li></ol><p>Training levels: concept card → hands-on tasks → stars (★ ≥40 %, ★★ ≥70 %, ★★★ ≥90 %). First-try answers earn full points, second tries half. Levels unlock in order within each world; the cheat sheet is always available. Progress is saved in your browser.</p>`,[{t:"Let's go!",pri:true}]);}
+if(!STORE.seenIntro){STORE.seenIntro=true;save();const box=modal(`<h2>⚙ Welcome to Stress Quest</h2>${mentorHTML("Hi, I'm Ada! I'll be your mentor. Stress Quest teaches how engineers make sure things don't break – from <b>what stress is</b> up to fatigue, FEA and failure statistics. You don't need any prior knowledge.")}
+<ol><li><b>🧭 Learning path</b> – short lessons (plain words, an everyday analogy, a tiny worked example, a quick check) alternate with <b>📁 cases</b>: real engineering problems where you make the decisions.</li>
+<li><b>💡 Hints</b> in every step: a nudge → the formula and why → a worked substitution. <b>🧮</b> calculator always available; answer boxes also accept expressions like 5000/78.5.</li>
+<li><b>🧠 Skills map</b> – watch your mastery grow, get "practise next" suggestions and short review sessions.</li>
+<li><b>🏋 Training grounds</b> and an optional <b>🐉 Review Board</b> for extra practice.</li></ol>
+<p><b>Choose your difficulty</b> (you can change it anytime in ⚙):</p><div id="introModes"></div><p class="small mut" id="introModeDesc">${MODES[MODE()].desc}</p>`,[{t:"Let's go!",pri:true}]);
+ const slot=box.querySelector('#introModes');const fill=()=>{slot.innerHTML='';slot.appendChild(modePicker(()=>{fill();showMap();}));box.querySelector('#introModeDesc').textContent=MODES[MODE()].desc;};fill();}
 </script>
 </body>
 </html>

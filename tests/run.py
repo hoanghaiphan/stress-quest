@@ -76,6 +76,7 @@ async def main():
         await pg.goto(URL); await pg.wait_for_timeout(300)
         await pg.screenshot(path='/workspace/stress-quest/test/intro.png')
         await pg.click('#modalRoot .btn.pri')
+        await pg.evaluate("m=>setMode(m)", os.environ.get('SQ_MODE','learner'))
         await pg.screenshot(path='/workspace/stress-quest/map.png',full_page=True)
         ids=await pg.evaluate('LEVELS.map(l=>l.id)')
         for rnd in range(ROUNDS):

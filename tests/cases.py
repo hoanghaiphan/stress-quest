@@ -39,6 +39,7 @@ def main():
     pg.on('dialog',lambda d:d.accept())
     pg.goto(HTML);pg.wait_for_timeout(300)
     pg.evaluate("document.querySelectorAll('.modal-bg,.modal').forEach(m=>m.remove())")
+    pg.evaluate("setMode('engineer')")  # classic engineer-mode auto-play; learner mode is covered by learn.py
     ids=pg.evaluate("CASES.map(c=>c.id)");print('cases',ids)
     res={}
     for cid in ids:

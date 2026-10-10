@@ -15,15 +15,18 @@ const BOSSGEN=[
  ()=>({type:'choice',q:'[Weibull] A Weibull fit of field failures gives β = 0.6. Most likely cause?',opts:[{t:'Early failures from manufacturing/assembly defects (infant mortality)',ok:true,why:'β < 1 → decreasing hazard.'},{t:'Fatigue wear-out',why:'Wear-out gives β > 1.'},{t:'Purely random external events',why:'Random events give β ≈ 1.'}]}),
  ()=>({type:'choice',q:'[FEA] Model in mm and N. Which Young\'s modulus input for steel is consistent?',opts:[{t:'210 000',ok:true,why:'N/mm² = MPa.'},{t:'210e9',why:'That is Pa (N/m²) – for metres.'},{t:'210',why:'That is GPa – not consistent with N and mm.'}]}),
  ()=>({type:'choice',q:'[Fatigue] Which mean-stress line is the most conservative in the Haigh diagram?',opts:[{t:'Soderberg (Se → Sy)',ok:true,why:'It intercepts at Sy < Sut.'},{t:'Goodman',why:'Goodman uses Sut – less conservative than Soderberg.'},{t:'Gerber',why:'The Gerber parabola is the least conservative.'}]})];
-defLevel({id:'boss',world:0,title:'Final Boss: Failure Review Board',short:'10 mixed questions from all worlds – no concept card hints!',
-concept:`<p>The Failure Review Board wants answers. You face <b>10 random questions</b> drawn from all three worlds: strength calculations, FEA know-how and reliability statistics. Each correct answer hits the dragon; first-try answers hit hardest.</p><p class="mut small">The cheat sheet (📘) may be consulted – real engineers look things up too.</p>`,
+const BOSS_SK=['crit','crit','bend','fat','fea','fea','weib','weib','rel','rca','mesh','crit','weib','fea','fat'];
+defLevel({id:'boss',world:0,title:'Final Boss: Failure Review Board',short:'Optional: mixed questions from all worlds. Adapts to your mode (6 / 10 / 12 questions) and, in Learner mode, to the skills you have practised.',
+concept:`<p>The Failure Review Board wants answers. You face random questions (<b>6 in Learner, 10 in Engineer, 12 in Expert mode</b>) drawn from all three worlds. In Learner mode the board prefers topics you have already practised, and hints are allowed: strength calculations, FEA know-how and reliability statistics. Each correct answer hits the dragon; first-try answers hit hardest.</p><p class="mut small">The cheat sheet (📘) may be consulted – real engineers look things up too.</p>`,
 takeaway:'You have mastered the toolchain: strength theory → FEA → statistics of failure.',
-build(sim){const tasks=shuffle(BOSSGEN).slice(0,10).map(g=>g());let hp=100;
+build(sim){const nQ={learner:6,engineer:10,expert:12}[MODE()];const idx=BOSSGEN.map((g,k)=>k);const ms=k=>((STORE.skills[BOSS_SK[k]]||{}).m||0);
+ const order=isLearner()?idx.sort((a,b)=>(ms(b)+rnd(0,35))-(ms(a)+rnd(0,35))):shuffle(idx);
+ const tasks=order.slice(0,nQ).map(k=>{const t=BOSSGEN[k]();t.sk=BOSS_SK[k];return t;});let hp=100;const dmg=100/nQ;
  const C=makeCanvas(sim,680,320),ctx=C.ctx;
  function draw(hit){C.clear();ctx.font='120px serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.globalAlpha=0.3+0.7*hp/100;ctx.fillText(hp>0?'🐉':'💀',340,140);ctx.globalAlpha=1;
   ctx.fillStyle='#26304a';ctx.fillRect(140,260,400,20);ctx.fillStyle=hp>50?'#66bb6a':hp>25?'#ffb74d':'#ef5350';ctx.fillRect(140,260,4*hp,20);ctx.strokeStyle='#9aa6bf';ctx.strokeRect(140,260,400,20);
   txt(ctx,`Review Board HP: ${Math.round(hp)}`,340,300,'#e6ebf5','bold 13px system-ui','center');if(hit)txt(ctx,hit,340,40,'#ffd54f','bold 20px system-ui','center');}
- tasks.forEach(t=>{t.onDone=sc=>{hp=Math.max(0,hp-10*sc);draw(sc>=1?'CRITICAL HIT! −10':sc>0?'Hit −5':'Miss…');};});draw();
+ tasks.forEach(t=>{t.onDone=sc=>{hp=Math.max(0,hp-dmg*sc);draw(sc>=1?'CRITICAL HIT! −'+Math.round(dmg):sc>0?'Hit −'+Math.round(dmg*sc):'Miss…');};});draw();
  sim.appendChild(el('div',{class:'legend'},'Questions are freshly randomized every fight.'));
  return{tasks};}});
 

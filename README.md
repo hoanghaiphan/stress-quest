@@ -4,7 +4,30 @@ A browser game for learning **mechanical strength theory**, the **finite element
 
 **Play:** https://hoanghaiphan.github.io/stress-quest/ (or download `index.html` and open it in any browser; it works offline).
 
-![Home](screenshots/home.png)
+![Home with the learning path](screenshots/home_path.png)
+
+## 🌱 Made for learners
+No prior knowledge is needed. The game is built for someone who wants to *master* the concepts, not for experts.
+
+- **Learning path:** home shows one path from fundamentals to advanced. It interleaves short **lessons** 📗 with **cases** 📁. Each case unlocks once you have done the lessons it needs and the case before it. "Unlock all" in ⚙ Settings opens everything.
+- **Teach before test:** Ada 🦉, your mentor, introduces every concept the first time you meet it: plain words, an everyday analogy, a tiny worked example, the formula and a quick check. Dotted words are glossary terms; hover over them or tap them for a definition.
+- **Hint ladder on every question** (lessons, cases, Training and the boss): 💡 nudge → formula plus why it applies → worked substitution with *your* numbers. A 🧮 calculator (with "use result") and a formula helper sit next to each calculation. Tolerance is ±5 %. A specific **unit check** message appears for typical slips: Pa vs MPa, m vs mm, mm² vs m², kN vs N, kg vs N, N·m vs N·mm, % vs fraction, r vs d.
+- **Difficulty modes:**
+  - **🌱 Learner** (default): free hints, the mentor, a multiple-choice rescue after a miss, rounded numbers in cases, the data sheet collapsed and "👀 look at" focus hints, an explanation of every option after a decision, and advanced sub-steps worked through by the mentor.
+  - **🛠 Engineer:** the original challenge, with a small hint cost.
+  - **🔥 Expert:** one try, no hints, a longer boss.
+- **Skills map** (🧠): 15 skills with mastery levels (New → Learning → Practising → Proficient → Mastered), "practice this next", and a **spaced-repetition review** (Leitner boxes) of skills that are due. Progress is celebrated with skill-up toasts.
+- **Optional, adaptive boss:** the Failure Review Board unlocks after 6 lessons, 4 cases or 8 starred levels. It has 6 / 10 / 12 questions by mode; in Learner it favours skills you have practised.
+
+**Lessons (15):** Force, stress & units · Safety factor · Material behaviour · Bending · Statistics basics · Combined stress (von Mises) · Stress concentration · Fatigue · FEA basics · Mesh & convergence · Boundary conditions · Reliability · Weibull analysis · Root-cause tools · Cracks & fracture.
+
+**New intro cases:**
+- **i1 Will This Rod Hold?:** F = m·g, σ = F/A_s, safety factor and picking a threaded rod size.
+- **i2 Why Did the Bookshelf Sag?:** uniform load, M = wL²/8, σ = M/W, sag 5wL⁴/384EI and which fix works best.
+- **i3 Which Part Fails First?:** why the average hides the early failures; compare two hinge suppliers.
+
+<p><img src="screenshots/mentor_intro.png" width="49%"> <img src="screenshots/hint_ladder.png" width="49%"></p>
+<p><img src="screenshots/skills_map.png" width="49%"> <img src="screenshots/lesson_bend.png" width="49%"></p>
 
 ## 📁 Case Files (problem-based learning)
 The headline mode. Each case is a realistic engineering problem, and you are the engineer. A stakeholder (plant manager, purchasing, sales, a supplier) brings a question with a brief: the situation, a sketch, data tables. You work through the investigation step by step:
@@ -43,11 +66,12 @@ The original drill levels are now the **Training** section below the Case Files.
 
 **World 3: Failure statistics.** Weibull lab, reliability and B10 life, stress–strength interference, scatter, confidence and B-basis allowables, root-cause tools (Pareto, fishbone, FMEA RPN).
 
-**Final boss:** the Failure Review Board, with 10 mixed questions.
+**Final boss (optional):** the Failure Review Board, with mixed questions (6, 10 or 12 depending on the mode).
 
 Each level starts with a concept card and key formulas. Answers are checked with engineering tolerances and explained, parameters are randomized on every replay, and progress is saved in the browser's local storage.
 
 ## Simplifications
+- In Learner mode, case numbers are rounded to 2–3 significant figures, and a few advanced sub-steps (e.g. notch factor, crack growth) are shown worked out instead of being scored.
 - Case Files use simplified, textbook-level models (e.g. Kt charts as given values, Paris law with a constant geometry factor, IIW FAT classes given for the detail). They teach the reasoning, not code compliance.
 - Incident references are short, conservative summaries; see the official investigation reports for details.
 - Mesh convergence uses a modelled convergence behaviour, not a live FE solver.
@@ -59,4 +83,4 @@ Each level starts with a concept card and key formulas. Answers are checked with
 ## Repo layout
 - `index.html` is the complete, self-contained game.
 - `src/` holds the parts it is built from: `cat src/* > index.html`.
-- `tests/` holds the headless-browser test scripts (Playwright): `run.py` auto-plays all Training levels; `cases.py` auto-plays every case on the best path, the worst path and mixed/random paths, and checks that a debrief appears with zero console errors; `case_shots.py` takes the screenshots.
+- `tests/` holds the headless-browser test scripts (Playwright): `run.py` auto-plays all Training levels; `cases.py` auto-plays every case on the best path, the worst path and mixed/random paths, and checks that a debrief appears with zero console errors; `case_shots.py` takes the screenshots. `learn.py` plays the novice path (every lesson and case, using hints, wrong answers and the MC rescue) in Learner, Engineer and Expert, checks the unit-mistake detection, gating, review, the boss and tooltips. `learn_shots.py` takes the learner screenshots. `run.py` honours `SQ_MODE=learner|engineer`.
